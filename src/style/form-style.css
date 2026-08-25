@@ -1,0 +1,18 @@
+.alert-info {
+  display: block;
+  height: 2rem;
+  /* border: 2px solid red; */
+  color: var(--primary-color);
+  font-family: var(--text-font);
+  font-size: 1rem;
+  margin-top: 0.3rem;
+
+}
+.alert-info.alert {
+  color: var(--red-dark);
+  background-color: rgb(246, 201, 201);
+  padding: 0.5rem;
+  border-radius: var(--borderRadius);
+  font-size: 0.8rem;
+  font-family: var(--text-font)
+}

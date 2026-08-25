@@ -1,0 +1,31 @@
+{
+  "name": "js2-camilla-furuknappen-larsen",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furuknappen/js2-camilla-furuknappen-larsen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/furuknappen/js2-camilla-furuknappen-larsen/issues"
+  },
+  "homepage": "https://github.com/furuknappen/js2-camilla-furuknappen-larsen#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.9.1",
+    "globals": "^17.11.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.68.0",
+    "vite": "^8.2.2"
+  }
+}
