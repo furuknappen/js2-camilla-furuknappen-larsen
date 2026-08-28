@@ -31,7 +31,11 @@ const registrationForm = document.getElementById(
 if (registrationForm) {
   registrationForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    //getting the elements
+
+
+     const target = e.currentTarget
+     const username = (target.elements.namedItem("username") as HTMLInputElement)
+
     const nameInput = (
       document.getElementById("username") as HTMLInputElement
     ).value.trim();
@@ -45,6 +49,8 @@ if (registrationForm) {
       document.getElementById("password2") as HTMLInputElement
     ).value.trim();
 
+    
+
     const errors = validateRegistrationForm(
       nameInput,
       emailInput,
@@ -52,6 +58,7 @@ if (registrationForm) {
       password2Input,
     );
     errorDisplay.displayErrors(errors);
+    
 
     if (Object.keys(errors).length === 0) {
       const registrationData: RegistrationData = {
