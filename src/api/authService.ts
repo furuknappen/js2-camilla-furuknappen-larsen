@@ -1,4 +1,4 @@
-import { post } from "./apiClient";
+import { post } from "../api/apiClient.ts";
 
 // {
 //   "data": {
@@ -20,17 +20,17 @@ import { post } from "./apiClient";
 interface RegisterResponse {
   name: string;
   email: string;
-  bio: string | null;
+  bio: string;
   avatar: {
     url: string;
-    alt: string;
+    alt: string
   };
   banner: {
     url: string;
     alt: string;
-  };
-}
+  }
 
+}
 type RegisterPayload = {
   name: string;
   email: string;
@@ -46,7 +46,7 @@ export async function registerUser(
     if (!response) {
       throw new Error("No response from server");
     }
-    console.log("User registered successfully:", response);
+    // console.log("User registered successfully:", response);
     // ... do something with new post
     return response;
   } catch (error: unknown) {
