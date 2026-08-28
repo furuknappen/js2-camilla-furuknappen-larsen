@@ -119,7 +119,7 @@ form?.addEventListener("submit", async (e) => {
   }
 
 
-  //TODO: nødvendig med if her
+
   if (!hasErrors) {
     // loadingStart();
 

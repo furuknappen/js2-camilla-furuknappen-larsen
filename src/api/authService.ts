@@ -1,4 +1,4 @@
-import { post } from "../api/apiClient.ts";
+import { post, get } from "../api/apiClient.ts";
 
 // {
 //   "data": {
@@ -23,13 +23,12 @@ interface RegisterResponse {
   bio: string;
   avatar: {
     url: string;
-    alt: string
+    alt: string;
   };
   banner: {
     url: string;
     alt: string;
-  }
-
+  };
 }
 type RegisterPayload = {
   name: string;
@@ -47,6 +46,51 @@ export async function registerUser(
       throw new Error("No response from server");
     }
     // console.log("User registered successfully:", response);
+    // ... do something with new post
+    return response;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Registration error:", error.message);
+    }
+    throw error;
+  }
+}
+
+// ..................................
+
+interface LoginResponse {
+  data: {
+    name: string;
+    email: string;
+    bio: string;
+    avatar: {
+      url: string;
+      alt: string;
+    };
+    banner: {
+      url: string;
+      alt: string;
+    };
+    accessToken: string;
+    venueManager: boolean;
+  };
+  meta: {};
+}
+
+type LoginPayload = {
+  email: string;
+  password: string;
+};
+
+export async function loginUser(data: LoginPayload): Promise<LoginResponse> {
+  try {
+    const response = await post<LoginResponse>("/auth/login", data);
+
+    if (!response) {
+      throw new Error("No response from server");
+    }
+    console.log("User registered successfully:", response);
+    console.log(response.data.accessToken);
     // ... do something with new post
     return response;
   } catch (error: unknown) {
