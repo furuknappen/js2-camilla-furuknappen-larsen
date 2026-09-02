@@ -84,11 +84,11 @@ form?.addEventListener("submit", async (e) => {
 
   console.log(data, username, email, password1, password2);
 
-  let hasErrors= false
+  let hasErrors = false;
 
   if (username == "") {
     displayError(usernameField, alertName, "Username is required");
-    hasErrors = true
+    hasErrors = true;
   }
 
   if (!email.includes(EMAIL_CRITERIA)) {
@@ -97,7 +97,7 @@ form?.addEventListener("submit", async (e) => {
       alertEmail,
       `Email must contain "${EMAIL_CRITERIA}"`,
     );
-     hasErrors = true
+    hasErrors = true;
   }
 
   if (password1 !== password2) {
@@ -106,7 +106,7 @@ form?.addEventListener("submit", async (e) => {
       alertPasswordConfirm,
       "Passwords do not match",
     );
-     hasErrors = true
+    hasErrors = true;
   }
 
   if (password1.length < REQUIRED_PASSWORD_LENGTH) {
@@ -115,10 +115,8 @@ form?.addEventListener("submit", async (e) => {
       alertPassword,
       `Passwords must be at least ${REQUIRED_PASSWORD_LENGTH} characters long`,
     );
-     hasErrors = true
+    hasErrors = true;
   }
-
-
 
   if (!hasErrors) {
     // loadingStart();
@@ -130,6 +128,5 @@ form?.addEventListener("submit", async (e) => {
     };
 
     await onRegisterSubmit(registrationData);
-  
   }
 });

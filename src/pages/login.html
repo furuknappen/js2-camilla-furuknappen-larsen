@@ -1,34 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <a href=".\index.html" rel="noopener noreferrer">register</a>
+    <h1>Sign in</h1>
+    <p
+      id="error-request"
+      class="alert-info"
+      role="alert"
+      aria-live="polite"
+    ></p>
+    <form id="sign-in-form">
+      <div class="form-group">
+        <label for="login-email"> Email Address</label><br />
+        <input
+          type="email"
+          id="login-email"
+          name="email"
+          placeholder="email@stud.noroff.no"
+          aria-describedby="error-request"
+          required
+        />
+      </div>
 
-<body>
-<a  href=".\index.html" rel="noopener noreferrer">register</a>
-  <h1> Sign in </h1>
-  <p id="error-request" class="alert-info" role="alert" aria-live="polite"></p>
-  <form id="sign-in-form">
-    <div class="form-group">
-      <label for="login-email"> Email Address</label><br>
-      <input type="email" id="login-email" name="email" placeholder="email@stud.noroff.no"
-        aria-describedby="error-request" required>
-    </div>
+      <div class="form-group">
+        <label for="login-password"> Password</label><br />
+        <input
+          id="login-password"
+          name="password"
+          required
+          placeholder="Enter password"
+          type="password"
+          aria-describedby="error-request"
+        /><br />
+      </div>
 
-    <div class="form-group">
-      <label for="login-password"> Password</label><br>
-      <input id="login-password" name="password" required placeholder="Enter password" type="password"
-        aria-describedby="error-request"><br>
-    </div>
-
-    <div class="bottomButtons">
-      <div class="backToBtnDivCheckout">
-        <h2 class="account-link">Dont have an account yet?</h2>
-        <a class="linkBackBtn" href="register.html">
-          <!-- <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      <div class="bottomButtons">
+        <div class="backToBtnDivCheckout">
+          <h2 class="account-link">Dont have an account yet?</h2>
+          <a class="linkBackBtn" href="register.html">
+            <!-- <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -36,28 +52,15 @@
                 <path d="M5 12l6 6" />
                 <path d="M5 12l6 -6" />
               </svg> -->
-          <span>
-            Sign up here
-          </span>
-        </a>
+            <span> Sign up here </span>
+          </a>
+        </div>
+        <button type="submit" class="btn checkoutBtn" id="loginBtn">
+          Sign in
+        </button>
       </div>
-      <button type="submit" class="btn checkoutBtn" id="loginBtn"> Sign in</button>
-    </div>
+    </form>
 
-  </form>
-
-
-
-
-
-
-
-
-
-
-
-  <script type="module" src="../main.ts"> </script>
-
-</body>
-
+    <script type="module" src="../main.ts"></script>
+  </body>
 </html>

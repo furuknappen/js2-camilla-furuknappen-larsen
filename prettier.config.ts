@@ -1,9 +1,7 @@
-// import { type Config } from "prettier";
+import { type Config } from "prettier";
 
-// const config: Config = {
-//  overrides: {
-//   option
-//  }
-// };
+const config: Config = {
+  trailingComma: "all",
+};
 
-// export default config;
+export default config;
