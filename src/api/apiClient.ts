@@ -6,9 +6,9 @@ interface ApiClientOptions extends Omit<RequestInit, "body"> {
   body?: unknown;
 }
 
-interface ApiErrorResponse {
-  errors?: { message: string }[];
-}
+// interface ApiErrorResponse {
+//   errors?: { message: string }[];
+// }
 
 async function apiClient<T = unknown>(
   endpoint: string,

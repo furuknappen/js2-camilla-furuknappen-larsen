@@ -1,4 +1,4 @@
-import { post, get } from "../api/apiClient.ts";
+import { post,  } from "../api/apiClient.ts";
 
 // {
 //   "data": {
@@ -74,7 +74,7 @@ interface LoginResponse {
     accessToken: string;
     venueManager: boolean;
   };
-  meta: {};
+  meta: object;
 }
 
 type LoginPayload = {

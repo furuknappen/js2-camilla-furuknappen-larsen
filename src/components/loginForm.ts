@@ -19,7 +19,6 @@ async function onLoginSubmit(formdata: LoginData): Promise<void> {
     const user = await loginUser(formdata);
     console.log("User logged in successfully:", user);
   } catch (error: unknown) {
-    debugger;
     // Check if the error is an instance of our custom ApiError
     if (error instanceof ApiError) {
       if (error.status === 409) {
@@ -37,15 +36,15 @@ async function onLoginSubmit(formdata: LoginData): Promise<void> {
 }
 
 const form = document.querySelector<HTMLFormElement>("#sign-in-form");
-const alertLogin = document.querySelector(
-  "error-request",
-) as HTMLParagraphElement;
+// const alertLogin = document.querySelector(
+//   "error-request",
+// ) as HTMLParagraphElement;
 
-const emailField = document.getElementById("login-email") as HTMLInputElement;
+// const emailField = document.getElementById("login-email") as HTMLInputElement;
 
-const passwordField = document.getElementById(
-  "login-password",
-) as HTMLInputElement;
+// const passwordField = document.getElementById(
+//   "login-password",
+// ) as HTMLInputElement;
 
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
