@@ -1,7 +1,9 @@
 import { get } from "../../api/apiClient";
 
+
+//TODO: må jeg har noe mer her?
 export interface AllPosts {
-  "string": any
+  data: string[]
 }
 
 
