@@ -58,7 +58,7 @@ export async function registerUser(
 
 // ..................................
 
-interface LoginResponse {
+export interface LoginResponse {
   data: {
     name: string;
     email: string;
@@ -91,7 +91,7 @@ export async function loginUser(data: LoginPayload): Promise<LoginResponse> {
     }
     console.log("User registered successfully:", response);
     console.log(response.data.accessToken);
-    // ... do something with new post
+    // ... do something with new user
     return response;
   } catch (error: unknown) {
     if (error instanceof Error) {

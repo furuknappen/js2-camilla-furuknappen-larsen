@@ -1,7 +1,12 @@
 // import { displayError, removeDisplayError } from "../utils/FormErrorDisplay.ts";
-import { loginUser } from "../api/authService.ts";
+import { loginUser, type LoginResponse } from "../api/authService.ts";
 import { ApiError } from "../errors/apiError.ts";
+import {localStorageUtil, } from "../utils/storageUtils.ts"
+// import { LoginResponse } from "../api/authService.ts";
 // import { displayError, removeDisplayError } from "../utils/FormErrorDisplay.ts";
+
+
+
 console.log("test login");
 
 type LoginData = {
@@ -17,7 +22,12 @@ type LoginFormData = {
 async function onLoginSubmit(formdata: LoginData): Promise<void> {
   try {
     const user = await loginUser(formdata);
+    // debugger
+    //  console.log("accestoken after await: ", user.data.accessToken)
     console.log("User logged in successfully:", user);
+    addUserInfoLocalStorage(user)
+   
+    window.location.href = "../pages/homePage/homePage.html"
   } catch (error: unknown) {
     // Check if the error is an instance of our custom ApiError
     if (error instanceof ApiError) {
@@ -67,3 +77,16 @@ form?.addEventListener("submit", async (e) => {
   //fortsett her
   await onLoginSubmit({ email, password });
 });
+
+
+function addUserInfoLocalStorage(user: LoginResponse ): void {
+  const exsistingStorage = localStorageUtil.load<LoginResponse>("user") || {}
+ 
+const storage = {...exsistingStorage, ...user}
+
+localStorageUtil.save("user", storage)
+// justLoggedIn ble brukt for å lage toast notification
+localStorageUtil.save("justLoggedIn", "true")
+localStorageUtil.save("accessToken", user.data.accessToken)
+
+}

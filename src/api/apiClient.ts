@@ -1,4 +1,5 @@
 import { ApiError } from "../errors/apiError";
+import { localStorageUtil } from "../utils/storageUtils";
 
 const BASE_URL = "https://v2.api.noroff.dev";
 
@@ -17,15 +18,19 @@ async function apiClient<T = unknown>(
   const { body, ...customOptions } = options;
 
   // Retrieve auth info from storage
-  const apiKey = localStorage.getItem("apiKey"); // Your Noroff API key
 
-  const accessToken = localStorage.getItem("accessToken"); // The user's login token
+  const apiKey = "e5f9875a-30a9-4ed7-9e21-8132c86725c0"
+  // localStorage.getItem("apiKey"); 
+  // Your Noroff API key
 
+  const accessToken =  localStorageUtil.load<string> ("accessToken");
+   // The user's login token
+//  console.log("accesstoken... ", accessToken)
   const headers: HeadersInit = {
     "Content-Type": "application/json",
     Accept: "application/json",
     From: "camlar06341@stud.noroff.no",
-    "User-Agent": "Mozilla/5.0",
+    // "User-Agent": "Mozilla/5.0",
     ...(apiKey && { "X-Noroff-API-Key": apiKey }),
     ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
     ...customOptions.headers,
