@@ -1,0 +1,30 @@
+:root {
+--h2-font: Arial, Helvetica, sans-serif
+
+
+
+}
+#post-parent a{
+  /* background-color: red;
+  border: 2px solid red */
+}
+
+
+#post-parent h2{
+  font-family: var(--h2-font);
+}
+
+#post-parent .time {
+ color: gray;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#post-parent p{
+ color: black;
+}
+
+
+#post-parent img{
+  width: 20rem;
+  /* background-color: red; */
+}

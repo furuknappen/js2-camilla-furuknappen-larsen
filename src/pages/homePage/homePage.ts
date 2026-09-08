@@ -1,23 +1,8 @@
 import { type LoginResponse } from "../../api/authService";
-import { getAllPosts } from "./getPosts";
+import { getAllPosts, type Post } from "./getPosts";
 console.log("homepage ts");
+import "../../style/cards.css";
 
-type Post = {
-  body: string;
-  created: string;
-  id: number;
-  media: {
-    alt: string;
-    url: string;
-  };
-  tags: [];
-  title: string;
-  updated: string;
-  _count: {
-    comments: number;
-    reactions: number;
-  };
-};
 
 const userdata: LoginResponse = JSON.parse(
   localStorage.getItem("user") || "{}"
@@ -40,23 +25,23 @@ if (!isLoggedIn) {
 }
 
 const postParent =
-  (document.getElementById("post-parent") as HTMLElement) || null;
+  (document.getElementById("post-parent") as HTMLElement);
 
 const allPosts = await getAllPosts();
-// console.log("test", allPosts.data);
 
-function renderPosts(allPosts) {
-  return allPosts.data.forEach((post: Post) => {
+// BK hvorfor er den rød?
+function renderPosts(posts: Post[]) {
+  return posts.forEach((post: Post) => {
     createPost(post, postParent);
   });
 }
 
-renderPosts(allPosts);
+renderPosts(allPosts.data);
 
 function createPost(post: Post, postParent: HTMLElement) {
   // console.log(post.created);
 
-  const postContainer = document.createElement("div");
+  const postContainer = document.createElement("a");
 
   const title = document.createElement("h2");
   title.textContent = post.title;
@@ -65,57 +50,50 @@ function createPost(post: Post, postParent: HTMLElement) {
   body.textContent = post.body;
 
   const imgDiv = document.createElement("div") as HTMLDivElement;
+  imgDiv.classList.add("imgDiv");
 
   const image = document.createElement("img") as HTMLImageElement;
-  
-   
-   if (post.media?.url) {
-   image.src = post.media?.url ?? null 
+
+  if (post.media?.url) {
+    image.src = post.media?.url ?? null;
     image.alt = post.media?.alt ?? "No alt-text proviided";
   }
 
   imgDiv.append(image);
- 
-  
-if(post.tags.length){
-  const tags = post.tags
-  console.log("Got tags", post.tags)
-  const tagDiv = document.createElement("span")
-  // tagDiv. 
-  tags.forEach((tag) => {
-    const tagPill = document.createElement("span")
-    tagPill.textContent = `#${tag} `
-    tagDiv.append(tagPill)
-  })
-  // });
-    postContainer.append(tagDiv)
+
+  /// TAGS
+  if (post.tags.length) {
+    const tags = post.tags;
+    const tagDiv = document.createElement("span");
+    // tagDiv.
+    tags.forEach((tag) => {
+      const tagPill = document.createElement("span");
+      tagPill.textContent = `#${tag} `;
+      tagDiv.append(tagPill);
+    });
+    postContainer.append(tagDiv);
   }
-
-
 
   // TIME SECTION
   const formatedTimeCreated = formatTime(post.created);
   const timeCreated = document.createElement("span");
+  timeCreated.classList.add("time");
   timeCreated.textContent = formatedTimeCreated;
 
-   const timeEdited = document.createElement("span");
-   // finnes en bedre løsning enn denne
-   timeEdited.style.display = "block"
+  const timeEdited = document.createElement("span");
+  timeEdited.classList.add("time");
+  // finnes en bedre løsning enn denne
+  timeEdited.style.display = "block";
 
   if (post.updated !== post.created) {
     const formatedTimeEdited = formatTime(post.updated);
-   
+
     timeEdited.textContent = `Updated: ${formatedTimeEdited}`;
   }
-
-
-
 
   postContainer.append(title, timeCreated, timeEdited, body, imgDiv);
 
   postParent.append(postContainer);
-
-  
 
   /*
   create postdiv -
@@ -148,7 +126,7 @@ function formatTime(time: string): string {
   }
 
   const timeOptions = {
-    weekday: "short",
+    // weekday: "short",
     day: "numeric",
     month: "short",
     year: "numeric",
