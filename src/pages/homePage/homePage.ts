@@ -42,6 +42,7 @@ function createPost(post: Post, postParent: HTMLElement) {
   // console.log(post.created);
 
   const postContainer = document.createElement("a");
+  postContainer.classList.add("post-container")
 
   const title = document.createElement("h2");
   title.textContent = post.title;
@@ -56,22 +57,23 @@ function createPost(post: Post, postParent: HTMLElement) {
 
   if (post.media?.url) {
     image.src = post.media?.url ?? null;
-    image.alt = post.media?.alt ?? "No alt-text proviided";
+    image.alt = post.media?.alt ?? "No alt-text provided";
   }
 
   imgDiv.append(image);
-
+ const tagDiv = document.createElement("div");
+ tagDiv.classList.add("tagDiv")
   /// TAGS
   if (post.tags.length) {
     const tags = post.tags;
-    const tagDiv = document.createElement("span");
+   
     // tagDiv.
     tags.forEach((tag) => {
       const tagPill = document.createElement("span");
       tagPill.textContent = `#${tag} `;
       tagDiv.append(tagPill);
     });
-    postContainer.append(tagDiv);
+    // postContainer.append(tagDiv);
   }
 
   // TIME SECTION
@@ -91,7 +93,7 @@ function createPost(post: Post, postParent: HTMLElement) {
     timeEdited.textContent = `Updated: ${formatedTimeEdited}`;
   }
 
-  postContainer.append(title, timeCreated, timeEdited, body, imgDiv);
+  postContainer.append(title, timeCreated, timeEdited, body,tagDiv, imgDiv);
 
   postParent.append(postContainer);
 
