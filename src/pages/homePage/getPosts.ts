@@ -1,4 +1,5 @@
 import { get } from "../../api/apiClient";
+import type { Author, Comment } from "../postPage/getSinglePost";
 
 
 //TODO: må jeg har noe mer her?
@@ -16,7 +17,9 @@ export interface PostsResponse {
 }
 
 export type Post = {
+  author: Author
   body: string;
+  comments: Comment[]
   created: string;
   id: number;
   media: {
@@ -39,7 +42,7 @@ export type Post = {
 
 export async function getAllPosts(): Promise<PostsResponse> {
   try {
-    const response = await get<PostsResponse>("/social/posts");
+    const response = await get<PostsResponse>("/social/posts?_author=true&_comments=true&_reactions=true");
 
     if (!response) {
       throw new Error("No response from server");
@@ -50,7 +53,7 @@ export async function getAllPosts(): Promise<PostsResponse> {
     return response;
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error("Registration error:", error.message);
+      console.error("Fetch error:", error.message);
     }
     throw error;
   }
