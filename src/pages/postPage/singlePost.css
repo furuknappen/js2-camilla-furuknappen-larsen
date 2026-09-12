@@ -93,6 +93,11 @@
   margin-bottom: 1rem
 }
 
+.reply-comment{
+  margin-left: 1rem;
+  border-bottom: none
+}
+
 /* .............. iPads (tablets) - Landscape ............ */
 @media (min-width: 768px) {
   #post-parent {

@@ -24,9 +24,11 @@ if (postIdRaw && !invalidNumber ) {
 
   function displayPost(post: Post, postParent: HTMLElement) {
     createSinglePost(post, postParent);
-   if(post.comments){
-    console.log("has comments", post.comments)
-   }
+
+    
+  //  if(post.comments){
+  //   console.log("has comments", post.comments)
+  //  }
 renderAuthor(post)
 
   }

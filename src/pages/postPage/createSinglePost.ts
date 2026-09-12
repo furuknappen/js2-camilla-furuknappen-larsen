@@ -1,11 +1,15 @@
 import type { Post } from "../homePage/getPosts";
 // import "../style/cards.css";
-import "./singlePost.css"
+import "./singlePost.css";
 import { createAuthorHeader } from "../../components/createAuthorHeader";
-import { createCommentSection } from "../../components/createCommentSection";
+import { createComment } from "../../components/createCommentSection";
+import { postComment } from "../../hooks/postComment";
 
 /// SINGLE POST
-export function createSinglePost(post: Post, postsParentContainer: HTMLElement) {
+export function createSinglePost(
+  post: Post,
+  postsParentContainer: HTMLElement,
+) {
   const postContainer = document.createElement("a");
   postContainer.classList.add("post-container");
   postContainer.href = `../postPage/postPage.html?id=${post.id}`;
@@ -38,7 +42,6 @@ export function createSinglePost(post: Post, postsParentContainer: HTMLElement) 
       tagPill.textContent = `#${tag} `;
       tagDiv.append(tagPill);
     });
-
   }
 
   let postHeader1: HTMLDivElement = document.createElement("div");
@@ -54,10 +57,54 @@ export function createSinglePost(post: Post, postsParentContainer: HTMLElement) 
   postContainer.append(postHeader1, title, body, tagDiv, imgDiv);
   postsParentContainer.append(postContainer);
 
+  // const commentInputSection = document.createElement("div")
+  const commentForm = document.createElement("form");
+  const commentInput = document.createElement("input");
+  commentInput.name = "comment";
+  commentInput.type = "text";
+
+  const submitCommentBtn = document.createElement("button");
+  submitCommentBtn.textContent = "Send";
+  submitCommentBtn.type = "submit";
+
+  commentForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const target = event.currentTarget as HTMLFormElement;
+    const formData = new FormData(target);
+    const data = Object.fromEntries(formData) as unknown as { comment: string };
+
+    if (data.comment == "") return;
+
+    const response = await postComment(data.comment, post.id);
+    window.location.reload();
+  });
+
+  commentForm.append(commentInput, submitCommentBtn);
+  postsParentContainer.append(commentForm);
+
   if (post.comments) {
     const commentsContainer = document.createElement("section");
-    createCommentSection(post.comments, commentsContainer);
-    postsParentContainer.append(commentsContainer);
+ postsParentContainer.append(commentsContainer);
+    post.comments.forEach((comment) => {
+      const commentDiv = createComment(comment);
+
+      if (comment.replyToId) {
+        const parentComment = document.getElementById(comment.replyToId);
+        if(parentComment) {
+           parentComment.append(commentDiv);
+        }
+
+      
+
+      }
+      else{
+  commentsContainer.append(commentDiv);
+      }
+
+    
+    });
+
+   
   }
 }
-

@@ -7,6 +7,10 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
+    rules: {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+    },
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
     plugins: { js },
     extends: ["js/recommended"],

@@ -1,7 +1,7 @@
 import type { Post } from "../pages/homePage/getPosts";
 import "../style/cards.css";
 import { createAuthorHeader } from "./createAuthorHeader";
-import { createCommentSection } from "./createCommentSection";
+import { createComment } from "./createCommentSection";
 
 
 export function createPost(post: Post, postsParentContainer: HTMLElement) {
@@ -67,7 +67,7 @@ inteactionContainer.append(commentsAmount)
 
   if (post.comments) {
     const commentsContainer = document.createElement("section");
-    createCommentSection(post.comments, commentsContainer);
+    createComment(post.comments, commentsContainer);
     postsParentContainer.append(commentsContainer);
   }
 }
