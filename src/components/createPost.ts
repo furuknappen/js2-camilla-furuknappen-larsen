@@ -20,7 +20,7 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   const body = document.createElement("p");
   body.classList.add("body");
   body.textContent = post.body;
-
+  console.log(post.id, post._count.comments)
   const imgDiv = document.createElement("div") as HTMLDivElement;
   imgDiv.classList.add("imgDiv");
 
@@ -67,10 +67,10 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
 
   postsParentContainer.append(postContainer);
 
-  const authorCommentP = document.createElement("p");
+  // const authorCommentP = document.createElement("p");
   if (post.comments) {
     const commentsContainer = document.createElement("section");
-    createCommentSection(post.comments, commentsContainer, authorCommentP);
+    createCommentSection(post.comments, commentsContainer);
 
     postsParentContainer.append(commentsContainer);
 
@@ -181,12 +181,12 @@ function createCommentSection(
   commentsContainer: HTMLElement,
   // authorCommentP: HTMLParagraphElement,
 ) {
-  console.log("has comments to create", comments[0]);
-
   comments.forEach((comment) => {
     const commentDiv = document.createElement("div") as HTMLDivElement;
+    commentDiv.classList.add("comment-div")
 
     const commentBody = document.createElement("p");
+    commentBody.classList.add("comment-body")
     commentBody.textContent = comment.body;
     const header = createAuthorHeader(comment);
     // comment.author, commentDiv, authorCommentP
