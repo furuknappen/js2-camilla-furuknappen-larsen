@@ -1,10 +1,11 @@
-import type { Post } from "../pages/homePage/getPosts";
-import "../style/cards.css";
-import { createAuthorHeader } from "./createAuthorHeader";
-import { createCommentSection } from "./createCommentSection";
+import type { Post } from "../homePage/getPosts";
+// import "../style/cards.css";
+import "./singlePost.css"
+import { createAuthorHeader } from "../../components/createAuthorHeader";
+import { createCommentSection } from "../../components/createCommentSection";
 
-
-export function createPost(post: Post, postsParentContainer: HTMLElement) {
+/// SINGLE POST
+export function createSinglePost(post: Post, postsParentContainer: HTMLElement) {
   const postContainer = document.createElement("a");
   postContainer.classList.add("post-container");
   postContainer.href = `../postPage/postPage.html?id=${post.id}`;
@@ -27,18 +28,6 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   }
 
   imgDiv.append(image);
-
-  const inteactionContainer = document.createElement("div")
-  inteactionContainer.classList.add("interaction-container")
-
-
- const commentsAmount= document.createElement("span") as HTMLSpanElement;
- commentsAmount.classList.add("comment-ammount")
-  
-  commentsAmount.textContent = `Comments: ${post._count.comments}`
-inteactionContainer.append(commentsAmount)
-  // console.log(post.reactions)
-
   const tagDiv = document.createElement("div");
   tagDiv.classList.add("tagDiv");
   /// TAGS
@@ -59,10 +48,10 @@ inteactionContainer.append(commentsAmount)
       post.author.avatar,
       post.author.name,
       post.created,
-      // post.updated,
+      post.updated,
     );
   }
-  postContainer.append(postHeader1, title, body, tagDiv, imgDiv, inteactionContainer);
+  postContainer.append(postHeader1, title, body, tagDiv, imgDiv);
   postsParentContainer.append(postContainer);
 
   if (post.comments) {
@@ -71,5 +60,4 @@ inteactionContainer.append(commentsAmount)
     postsParentContainer.append(commentsContainer);
   }
 }
-
 

@@ -1,6 +1,6 @@
-import { getSinglePost } from "./getSinglePost";
-import { createPost } from "../../components/createPost";
+import { getSinglePost } from "../homePage/getPosts";
 import type { Post } from "../homePage/getPosts";
+import { createSinglePost } from "./createSinglePost";
 // import { type PostWithComentsAndAuthor } from "./getSinglePost";
 console.log("Post Page");
 
@@ -23,7 +23,7 @@ if (postIdRaw && !invalidNumber ) {
   console.log("get post contiinter", postParent);
 
   function displayPost(post: Post, postParent: HTMLElement) {
-    createPost(post, postParent);
+    createSinglePost(post, postParent);
    if(post.comments){
     console.log("has comments", post.comments)
    }

@@ -2,7 +2,7 @@
   --h2-font: Arial, Helvetica, sans-serif
 }
 
-#posts-parent {
+.post {
   /* display: inline-block  */
   background-color: rgb(245, 245, 245);
   margin-inline: 0rem;
@@ -28,7 +28,7 @@
   font-family:Arial, Helvetica, sans-serif
 }
 
-#posts-parent .avatar img {
+.post .avatar img {
   border-radius: 50px;
   width: 2.5rem
 }
@@ -45,21 +45,21 @@
   padding-block: 0rem
 }
 
-#posts-parent .time {
+.post .time {
   color: gray;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.9rem;
 }
 
 
-#posts-parent h2 {
+.post h2 {
   font-family: var(--h2-font);
   font-size: 1.2rem;
     margin-inline: 1rem;
     margin-bottom: 0.5rem;
 }
 
-#posts-parent .body {
+.post .body {
   color: black;
   font-family: var(--h2-font);
   padding-top: 0.1rem;
@@ -67,7 +67,7 @@
 }
 
 
-#posts-parent .tagDiv {
+.post .tagDiv {
   color: rgb(156, 156, 156);
   margin: 1rem;
   font-family: Arial, Helvetica, sans-serif;
@@ -75,7 +75,7 @@
   margin-inline: 1rem;
 }
 
-#posts-parent img {
+.post img {
   width: 100%;
   display: flex;
 }
@@ -92,20 +92,6 @@
   margin-inline: 1rem;
   margin-bottom: 1rem
 }
-
-.interaction-container {
-  display:flex;
-justify-content: right;
-margin-inline: 1.5rem;
-margin-block: 0.5rem 1rem;
-font-family: Arial, Helvetica, sans-serif;
-color:gray;
-font-size: 0.9rem;
-}
-/* 
-.comment-ammount{
-  
-} */
 
 /* .............. iPads (tablets) - Landscape ............ */
 @media (min-width: 768px) {
