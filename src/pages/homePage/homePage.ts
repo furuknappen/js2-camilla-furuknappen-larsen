@@ -26,6 +26,14 @@ if (!isLoggedIn) {
   window.location.href = "../login.html";
 }
 
+// const createpostBtn = document.getElementById("create-post-btn") as HTMLAnchorElement
+
+
+
+
+
+
+
 const postsParent = document.getElementById("posts-parent") as HTMLElement;
 console.log(postsParent);
 const allPosts = await getAllPosts();
