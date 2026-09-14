@@ -1,7 +1,7 @@
 import { postComment } from "../hooks/postComment";
 import type { Comment } from "../pages/homePage/getPosts";
 import { createAuthorHeader } from "./createAuthorHeader";
-
+//BK commenten appender feil
 export function createComment(
   comment: Comment,
 ): HTMLDivElement {
@@ -19,16 +19,23 @@ export function createComment(
   );
   // comment.author, commentDiv, authorCommentP
   // commentDiv.append(authorImgCommentDiv);
-  
+    const replyBtn = document.createElement("button") as HTMLButtonElement;
+  replyBtn.textContent = "Reply";
+const replyDiv = document.createElement("div")
   if (comment.replyToId) {
     commentDiv.classList.add("reply-comment")
+      
+    replyDiv.append(header, commentBody, replyBtn);
+
+    commentDiv.append(replyDiv)
+  }
+
+else{
+  commentDiv.append(header, commentBody, replyBtn);
   }
 
 
-  const replyBtn = document.createElement("button");
-  replyBtn.textContent = "Reply";
 
-  commentDiv.append(header, commentBody, replyBtn);
 
   replyBtn.addEventListener("click", (event) => {
     event.preventDefault();
@@ -44,7 +51,16 @@ export function createComment(
     submitCommentBtn.type = "submit";
 
     commentForm.append(commentInput, submitCommentBtn);
-    commentDiv.append(commentForm);
+
+    if(comment.replyToId){
+
+      replyDiv.append(commentForm)
+      commentDiv.append(replyDiv)
+    }
+ else{
+     commentDiv.append(commentForm);
+ }
+ 
 
     commentForm.addEventListener("submit", async (event) => {
       event.preventDefault();
