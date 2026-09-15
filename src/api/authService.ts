@@ -16,8 +16,11 @@ import { post,  } from "../api/apiClient.ts";
 //   },
 //   "meta": {}
 // }
-
-interface RegisterResponse {
+export type RegisterResponse = {
+  data: RegisterData
+  meta: object
+}
+export type RegisterData = {
   name: string;
   email: string;
   bio: string;
@@ -30,6 +33,9 @@ interface RegisterResponse {
     alt: string;
   };
 }
+
+
+
 type RegisterPayload = {
   name: string;
   email: string;

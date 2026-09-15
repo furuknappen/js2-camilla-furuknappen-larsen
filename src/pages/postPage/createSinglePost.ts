@@ -51,17 +51,22 @@ export function createSinglePost(
       post.author.avatar,
       post.author.name,
       post.created,
+      post.id,
       post.updated,
+   
     );
   }
+
   postContainer.append(postHeader1, title, body, tagDiv, imgDiv);
   postsParentContainer.append(postContainer);
 
   // const commentInputSection = document.createElement("div")
   const commentForm = document.createElement("form");
+  commentForm.classList.add("comment-form")
   const commentInput = document.createElement("input");
   commentInput.name = "comment";
   commentInput.type = "text";
+  commentInput.placeholder = "Comment on this post..."
 
   const submitCommentBtn = document.createElement("button");
   submitCommentBtn.textContent = "Send";
@@ -75,8 +80,7 @@ export function createSinglePost(
     const data = Object.fromEntries(formData) as unknown as { comment: string };
 
     if (data.comment == "") return;
-
-    const response = await postComment(data.comment, post.id);
+    await postComment(data.comment, post.id);
     window.location.reload();
   });
 
@@ -92,14 +96,20 @@ export function createSinglePost(
       if (comment.replyToId) {
         const parentComment = document.getElementById(comment.replyToId);
         if(parentComment) {
+
            parentComment.append(commentDiv);
         }
 
-      
 
       }
       else{
-  commentsContainer.append(commentDiv);
+
+        const parentWithChildrenDiv = document.createElement("div")
+        parentWithChildrenDiv.classList.add("parent-children-div")
+
+        parentWithChildrenDiv.append(commentDiv)
+
+  commentsContainer.append(parentWithChildrenDiv);
       }
 
     

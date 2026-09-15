@@ -15,3 +15,9 @@ a{
   text-decoration: none;
   color: black;
 }
+
+input:focus {
+  border-style: solid;
+  border-color: rgb(110, 110, 110);
+  outline: none;
+}

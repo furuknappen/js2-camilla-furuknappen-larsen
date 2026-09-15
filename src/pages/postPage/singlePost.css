@@ -4,7 +4,7 @@
 
 .post {
   /* display: inline-block  */
-  background-color: rgb(245, 245, 245);
+  /* background-color: rgb(245, 245, 245); */
   margin-inline: 0rem;
 
 }
@@ -20,7 +20,7 @@
 
 }
 
-.post-header {
+/* .post-header {
   display: flex;
   flex-direction: row;
   padding-bottom: 1rem;
@@ -49,7 +49,7 @@
   color: gray;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.9rem;
-}
+} */
 
 
 .post h2 {
@@ -80,10 +80,10 @@
   display: flex;
 }
 
-
-.comment-div{
+/* 
+.comment-div{ */
   /* border: 2px solid red; */
-  border-bottom: 1px solid gray;
+  /* border-bottom: 1px solid gray;
   margin-bottom: 0.5rem
 }
 
@@ -96,7 +96,7 @@
 .reply-comment{
   margin-left: 1rem;
   border-bottom: none
-}
+} */
 
 /* .............. iPads (tablets) - Landscape ............ */
 @media (min-width: 768px) {
@@ -114,7 +114,7 @@
 
   #post-parent h2,
   /*   */
-  #post-parent p,
+  /* #post-parent p, */
   #post-parent .tagDiv {
     margin-inline: 0.8rem;
 

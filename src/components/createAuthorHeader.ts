@@ -1,10 +1,17 @@
+import type { RegisterResponse } from "../api/authService";
+import { deletePost } from "../hooks/deletePost";
 import type { Avatar } from "../pages/homePage/getPosts";
 import { formatTime } from "../utils/formatTime";
+import { localStorageUtil } from "../utils/storageUtils";
+import { createModal } from "./modal";
+import "../style/author-header.css"
+import trashIcon from "../assets/trash.svg"
 
 export function createAuthorHeader(
   avatar: Avatar,
   name: string,
   created: string,
+  id?: number,
   updated?: string,
 ): HTMLDivElement {
   const postHeader = document.createElement("div");
@@ -44,5 +51,46 @@ export function createAuthorHeader(
   }
 
   postHeader.append(authorImgDiv, postHeaderTextDiv);
+
+  const user: RegisterResponse | null = localStorageUtil.load("user");
+
+  if (user?.data.name == name) {
+    const trashButton = document.createElement("button");
+    trashButton.classList.add("trash-btn")
+
+
+    const optionsImg = document.createElement("img");
+    optionsImg.src = trashIcon
+    trashButton.append(optionsImg);
+
+    // hamburgermenu.textContent = ;
+
+
+    trashButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const heading = "Delete?";
+      const message = `Do you want to delete this post? This is a permanent action`;
+      const actionBtn = "Delete";
+      createModal(heading, message, actionBtn, deletePost, id);
+     
+    });
+    //help bk - problem with it not working
+    postHeader.append(trashButton);
+  }
+
+  // hamburgermenu.setAttribute("aria-label", "Toggle post options");
+  // hamburgermenu.setAttribute("aria-expanded", "false");
+  // hamburgermenu.setAttribute("aria-controls", "main-nav-mob");
+
+  //   const isExpanded = hamburgermenu.getAttribute("aria-expanded") === "true";
+  //   hamburgermenu.setAttribute("aria-expanded", !isExpanded);
+  //   navMenu.hidden = isExpanded;
+
+  //   if (isExpanded) {
+  //   hamburgerMenuNav.setAttribute("hidden", "");
+  // } else {
+  //   hamburgerMenuNav.removeAttribute("hidden");
+  //   }
+
   return postHeader;
 }

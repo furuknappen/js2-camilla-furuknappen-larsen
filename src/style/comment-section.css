@@ -1,0 +1,100 @@
+
+
+
+/* .comment-div{ */
+  /* border: 2px solid red;
+  /* border-bottom: 1px solid gray; */
+  /* margin-bottom: 0.5rem */
+/* }  */ 
+.comment-form{
+  background-color: transparent;
+  margin-bottom: 1rem; 
+  display: flex;
+ margin-inline: 1rem;
+ 
+ gap: 0.5rem
+}
+
+
+.comment-form input{
+  height: 2rem;
+  flex: 1;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: rgb(196, 195, 195);
+  padding-left: 1rem
+}
+
+.comment-form button{
+border: none;
+background-color: rgb(103, 103, 156);
+border-radius: 6px;
+padding-inline: 0.5rem
+}
+
+/* input {
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: 2px solid blue;
+  border-radius: var(--borderRadius);
+  width: 100%;
+} */
+
+/* input:focus {
+  border-style: solid;
+  border-color: rgb(110, 110, 110);
+  outline: none;
+} */
+
+
+
+
+
+.comment-body {
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 1rem;
+  /* margin-inline: 3.7rem; */
+  margin-block: 0.4rem;
+  margin-right: 1.5rem
+}
+
+.reply-btn{
+ border: none;
+ background-color: transparent;
+ /* margin-left: 3.7rem ; */
+ margin-block: 0rem 1rem;
+ color: gray;
+}
+
+.comment-body,
+.reply-btn{
+   margin-left: 3.2rem ;
+}
+
+/* .thread{
+  width: 3px;
+  height: 5rem;
+  background-color: black;
+} */
+
+
+/* contains the main comment and its children */
+.parent-children-div{
+  /* border: 2px solid rgb(85, 109, 243); */
+  border-bottom: 1px solid gray;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem
+}
+
+
+/* contains the reply and its children */
+.reply-div{
+    margin-left: 2rem;  
+}
+
+/* single reply comment */
+/* .reply-comment{ */
+  /* margin-left: 1rem;  */
+  /* border: 2px solid green*/
+/* } */
+

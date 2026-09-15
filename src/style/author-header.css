@@ -1,0 +1,44 @@
+.post-header {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.post-header .avatar img {
+  border-radius: 700px;
+  width: 2rem
+}
+
+.post-header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0.7rem;
+}
+
+
+
+/* .header-author {
+  /* padding-block: 0rem */
+
+
+.post .time {
+  color: #808080;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 0.9rem;
+}
+
+.trash-btn {
+  border: none;
+  margin-inline: auto 0;
+  margin-right: 1rem;
+
+}
+
+
+/* .reply-div{
+background-color: red;
+/* border: 2px solid rgb(70, 86, 139) */
+/* } */ 
