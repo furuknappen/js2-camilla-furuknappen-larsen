@@ -1,10 +1,11 @@
+import type { PostNoComments } from "../hooks/getSearchResult";
 import type { Post } from "../pages/homePage/getPosts";
 import "../style/cards.css";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
 
 
-export function createPost(post: Post, postsParentContainer: HTMLElement) {
+export function createPost(post: Post|PostNoComments, postsParentContainer: HTMLElement) {
   const postContainer = document.createElement("a");
   postContainer.classList.add("post-container");
   postContainer.href = `../postPage/postPage.html?id=${post.id}`;
@@ -67,7 +68,10 @@ inteactionContainer.append(commentsAmount)
 
   if (post.comments) {
     const commentsContainer = document.createElement("section");
-    createComment(post.comments, commentsContainer);
+    post.comments.forEach((comment)=> {
+          createComment(comment);
+    })
+
     postsParentContainer.append(commentsContainer);
   }
 }

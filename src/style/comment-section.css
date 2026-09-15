@@ -16,7 +16,7 @@
 }
 
 
-.comment-form input{
+input{
   height: 2rem;
   flex: 1;
   border-radius: 15px;

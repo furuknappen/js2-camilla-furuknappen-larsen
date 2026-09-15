@@ -43,7 +43,7 @@ export function createComment(comment: Comment): HTMLDivElement {
     replyBtn.style.display = "none";
 
     const commentForm = document.createElement("form");
-    commentForm.classList.add("comment-form")
+    commentForm.classList.add("commentform")
     const commentInput = document.createElement("input");
     commentInput.name = "comment";
     commentInput.type = "text";
