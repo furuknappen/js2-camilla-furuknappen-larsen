@@ -1,11 +1,11 @@
 import { get } from "../../api/apiClient";
-import type { PostNoComments } from "../../hooks/getSearchResult";
+
 // import type { Author, Comment } from "../postPage/getSinglePost";
 
 
 //TODO: må jeg har noe mer her?
 export type PostsResponse = {
-  data: PostNoComments[], 
+  data: Post[], 
   meta: {
     isFirstPage: boolean,
     isLastPage: boolean,
@@ -25,7 +25,7 @@ export type SinglePostResponse= {
 export type Post = {
   author: Author
   body: string;
-  comments: Comment[]
+  comments?: Comment[]
   created: string;
   id: number;
   media: {

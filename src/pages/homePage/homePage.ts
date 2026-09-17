@@ -1,10 +1,9 @@
 import { type LoginResponse } from "../../api/authService";
-import { getAllPosts} from "./getPosts";
+import { getAllPosts, type Post} from "./getPosts";
 // import "../../style/cards.css";
 import { createPost } from "../../components/createPost";
 import {
   getSearchResult,
-  type PostNoComments,
 } from "../../hooks/getSearchResult";
 const postsParent = document.getElementById("posts-parent") as HTMLElement;
 console.log("homepage ts");
@@ -66,9 +65,9 @@ postSearchField?.addEventListener("input", async () => {
 console.log(postsParent);
 const allPosts = await getAllPosts();
 
-function renderPosts(posts: PostNoComments[]) {
+function renderPosts(posts: Post[]) {
   postsParent.innerHTML = "";
-  return posts.forEach((post: PostNoComments) => {
+  return posts.forEach((post: Post) => {
     createPost(post, postsParent);
   });
 }

@@ -1,12 +1,13 @@
 /**
  * Info: this function takes inn 5 parameters: heading, message, button-text, a function for the actionbutton and the functionparameters
  */
-export function createModal <T extends string| number>(
-  heading:string,
-  message:string,
-  buttonText:string,
+export function createModal<T extends string | number>(
+  heading: string,
+  message: string,
+  buttonText: string,
   actionBtnFunction: (parameter: T) => void,
-  functionParameter:T,
+  functionParameter?: T,
+  secondFunction?: () => void
 ) {
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-labelledby", "modal-heading");
@@ -37,9 +38,13 @@ export function createModal <T extends string| number>(
 
   actionBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    actionBtnFunction(functionParameter);
+    if (functionParameter !== undefined) {
+      actionBtnFunction(functionParameter);
+      if(secondFunction){secondFunction()}
+    }
+
     dialog.close();
-     window.location.href = "../homePage/homePage.html";
+    // window.location.href = "../homePage/homePage.html";
   });
 
   buttonsDiv.append(closeBtn, actionBtn);
@@ -54,3 +59,7 @@ export function createModal <T extends string| number>(
     dialog.close();
   });
 }
+
+// export function redirectToHomepage(){
+//      window.location.href = "../homePage/homePage.html";
+// }

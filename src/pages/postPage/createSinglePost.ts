@@ -89,6 +89,7 @@ export function createSinglePost(
 
   if (post.comments) {
     const commentsContainer = document.createElement("section");
+    commentsContainer.classList.add("comment-section")
  postsParentContainer.append(commentsContainer);
     post.comments.forEach((comment) => {
       const commentDiv = createComment(comment);

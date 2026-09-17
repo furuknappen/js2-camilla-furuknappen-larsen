@@ -1,11 +1,10 @@
-import type { PostNoComments } from "../hooks/getSearchResult";
 import type { Post } from "../pages/homePage/getPosts";
 import "../style/cards.css";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
 
 
-export function createPost(post: Post|PostNoComments, postsParentContainer: HTMLElement) {
+export function createPost(post: Post, postsParentContainer: HTMLElement, ) {
   const postContainer = document.createElement("a");
   postContainer.classList.add("post-container");
   postContainer.href = `../postPage/postPage.html?id=${post.id}`;

@@ -66,14 +66,36 @@ export function createAuthorHeader(
     // hamburgermenu.textContent = ;
 
 
-    trashButton.addEventListener("click", (e) => {
-      e.preventDefault();
+
+
+    trashButton?.addEventListener("click", (e) => {
+      const target = e.currentTarget as HTMLElement
+      if(!target?.closest(".comment-section")){
+      e.preventDefault()
+
+
       const heading = "Delete?";
       const message = `Do you want to delete this post? This is a permanent action`;
       const actionBtn = "Delete";
       createModal(heading, message, actionBtn, deletePost, id);
-     
-    });
+        // window.location.href = "../homePage/homePage.html";
+        // redirectToHomepage()
+   } });
+
+    const commentSection= document.querySelector(".comment-section");
+    commentSection?.addEventListener("click", (e) => {
+  
+      const target = e.target as HTMLElement
+      const trashBtn = target.closest(".trash-btn")
+      if(trashBtn){
+            const heading = "Delete?";
+      const message = `Do you want to delete this comment and all potensial replies? This is a permanent action`;
+      const actionBtn = "Delete";
+        createModal(heading, message, actionBtn, deletePost, id, redirectToHomepage);
+        // redirectToHomepage()
+      }
+    })
+
     //help bk - problem with it not working
     postHeader.append(trashButton);
   }
@@ -93,4 +115,8 @@ export function createAuthorHeader(
   //   }
 
   return postHeader;
+}
+
+export function redirectToHomepage(){
+     window.location.href = "../homePage/homePage.html";
 }

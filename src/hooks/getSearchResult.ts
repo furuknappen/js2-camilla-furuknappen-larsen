@@ -1,29 +1,29 @@
 import { get } from "../api/apiClient";
-import type { Author, Reaction,  } from "../pages/homePage/getPosts";
+import type { Post } from "../pages/homePage/getPosts";
 
 
-export type PostNoComments = {
-  author: Author
-  body: string;
-  created: string;
-  id: number;
-  media: {
-    alt: string;
-    url: string;
-  };
-  reactions: Reaction[],
-  tags: [];
-  title: string;
-  updated: string;
-  _count: {
-    comments: number;
-    reactions: number;
-  };
-};
+// export type PostNoComments = {
+//   author: Author
+//   body: string;
+//   created: string;
+//   id: number;
+//   media: {
+//     alt: string;
+//     url: string;
+//   };
+//   reactions: Reaction[],
+//   tags: [];
+//   title: string;
+//   updated: string;
+//   _count: {
+//     comments: number;
+//     reactions: number;
+//   };
+// };
 
 
 type SearchResponse ={
-  data: PostNoComments[],
+  data: Post[],
   meta: object
 
 }
