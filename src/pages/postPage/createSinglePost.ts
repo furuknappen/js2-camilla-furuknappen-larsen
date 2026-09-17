@@ -1,4 +1,4 @@
-import type { Post } from "../homePage/getPosts";
+import type { Post } from "../../hooks/getAllPosts";
 // import "../style/cards.css";
 import "./singlePost.css";
 import { createAuthorHeader } from "../../components/createAuthorHeader";
@@ -10,9 +10,9 @@ export function createSinglePost(
   post: Post,
   postsParentContainer: HTMLElement,
 ) {
-  const postContainer = document.createElement("a");
+  const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
-  postContainer.href = `../postPage/postPage.html?id=${post.id}`;
+  // postContainer.href = `../postPage/postPage.html?id=${post.id}`;
 
   const title = document.createElement("h2");
   title.textContent = post.title;

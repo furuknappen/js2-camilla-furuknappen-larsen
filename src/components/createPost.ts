@@ -1,13 +1,13 @@
-import type { Post } from "../pages/homePage/getPosts";
+import type { Post } from "../hooks/getAllPosts";
 import "../style/cards.css";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
 
 
-export function createPost(post: Post, postsParentContainer: HTMLElement, ) {
-  const postContainer = document.createElement("a");
+export function createPost(post: Post, postsParentContainer: HTMLElement) {
+  const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
-  postContainer.href = `../postPage/postPage.html?id=${post.id}`;
+  
 
   const title = document.createElement("h2");
   title.textContent = post.title;
@@ -62,7 +62,13 @@ inteactionContainer.append(commentsAmount)
       // post.updated,
     );
   }
-  postContainer.append(postHeader1, title, body, tagDiv, imgDiv, inteactionContainer);
+  const contentDiv = document.createElement("a") as HTMLAnchorElement
+  
+  contentDiv.href = `../postPage/singlePostPage.html?id=${post.id}`;
+
+
+  contentDiv.append(title, body, tagDiv, imgDiv,)
+  postContainer.append(postHeader1, contentDiv, inteactionContainer);
   postsParentContainer.append(postContainer);
 
   if (post.comments) {

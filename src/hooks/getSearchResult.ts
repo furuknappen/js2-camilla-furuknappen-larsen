@@ -1,5 +1,5 @@
 import { get } from "../api/apiClient";
-import type { Post } from "../pages/homePage/getPosts";
+import type { Post } from "./getAllPosts";
 
 
 // export type PostNoComments = {

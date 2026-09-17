@@ -1,5 +1,5 @@
 import { postComment } from "../hooks/postComment";
-import type { Comment } from "../pages/homePage/getPosts";
+import type { Comment } from "../hooks/getAllPosts";
 import { createAuthorHeader } from "./createAuthorHeader";
 import "../style/comment-section.css"
 

@@ -1,5 +1,5 @@
-import { getSinglePost } from "../homePage/getPosts";
-import type { Post } from "../homePage/getPosts";
+import { getSinglePost } from "../../hooks/getSinglePost";
+import type { Post } from "../../hooks/getAllPosts";
 import { createSinglePost } from "./createSinglePost";
 // import { type PostWithComentsAndAuthor } from "./getSinglePost";
 console.log("Post Page");
@@ -18,37 +18,11 @@ if (!postIdRaw || invalidNumber) {
 if (postIdRaw && !invalidNumber ) {
   const post = await getSinglePost(postId);
 
-  // console.log(post)
   const postParent = document.getElementById("post-parent") as HTMLElement;
-  console.log("get post contiinter", postParent);
+
 
   function displayPost(post: Post, postParent: HTMLElement) {
     createSinglePost(post, postParent);
-
-    
-  //  if(post.comments){
-  //   console.log("has comments", post.comments)
-  //  }
-renderAuthor(post)
-
   }
-
   displayPost(post.data, postParent)
-
-
 }
-
-function renderAuthor(post: Post){
-const author = post.author
-console.log(author.name)
-// const imgDiv = document.createElement("div")
-
-// const image = document.getElementById("img")
-// image.src = post.avatar?.url || null
-//  FALLBACK_IMAGE
-
-
-}
-// function renderComments() {
-
-// }

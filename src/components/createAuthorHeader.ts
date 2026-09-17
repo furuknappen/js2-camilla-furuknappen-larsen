@@ -1,11 +1,23 @@
 import type { RegisterResponse } from "../api/authService";
 import { deletePost } from "../hooks/deletePost";
-import type { Avatar } from "../pages/homePage/getPosts";
+import type { Avatar } from "../hooks/getAllPosts";
 import { formatTime } from "../utils/formatTime";
 import { localStorageUtil } from "../utils/storageUtils";
 import { createModal } from "./modal";
-import "../style/author-header.css"
-import trashIcon from "../assets/trash.svg"
+import "../style/author-header.css";
+import trashIcon from "../assets/trash.svg";
+import {
+  followProfile,
+  unfollowProfile,
+  type FollowProfileResponse,
+  type Profile,
+} from "../hooks/profiles/follow-unfollow-profile";
+// import { getAllProfiles } from "../hooks/profiles/getAllProfiles";
+// import {following } from "../pages/homePage/homePage";
+
+// const following:string[] = []
+// localStorageUtil.save("following", following)
+// console.log(localStorageUtil.load("following"))
 
 export function createAuthorHeader(
   avatar: Avatar,
@@ -34,13 +46,42 @@ export function createAuthorHeader(
   const authorP = document.createElement("p");
   authorP.classList.add("header-author");
   authorP.textContent = name;
+  const titleFollowDiv = document.createElement("div");
+  const followBtn = document.createElement("button");
+  followBtn.textContent = "Follow";
+  let isFollowing: boolean = false;
+
+
+  const getfollowing: FollowProfileResponse | null = localStorageUtil.load("following");
+  if (getfollowing) {
+    const followingArray = getfollowing.data.following;
+
+    const followedProfile = followingArray.some(
+      (e: Profile) => e.name === name,
+    );
+    if (followedProfile) {
+      isFollowing = true;
+      followBtn.textContent = "Unfollow";
+    }
+  }
+
+  followBtn.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    await followProfile(name);
+    isFollowing = !isFollowing;
+    followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
+
+    if (isFollowing) {
+      await unfollowProfile(name);
+    }
+  });
 
   const createdTime = formatTime(created);
   const createdTimeSpan = document.createElement("span");
   createdTimeSpan.classList.add("time");
   createdTimeSpan.textContent = createdTime;
-
-  postHeaderTextDiv.append(authorP, createdTimeSpan);
+  titleFollowDiv.append(authorP, followBtn);
+  postHeaderTextDiv.append(titleFollowDiv, createdTimeSpan);
 
   if (updated && updated !== created) {
     const editedTime = formatTime(updated);
@@ -56,67 +97,52 @@ export function createAuthorHeader(
 
   if (user?.data.name == name) {
     const trashButton = document.createElement("button");
-    trashButton.classList.add("trash-btn")
-
+    trashButton.classList.add("trash-btn");
 
     const optionsImg = document.createElement("img");
-    optionsImg.src = trashIcon
+    optionsImg.src = trashIcon;
     trashButton.append(optionsImg);
 
-    // hamburgermenu.textContent = ;
-
-
-
-
     trashButton?.addEventListener("click", (e) => {
-      const target = e.currentTarget as HTMLElement
-      if(!target?.closest(".comment-section")){
-      e.preventDefault()
+      const target = e.currentTarget as HTMLElement;
+      if (!target?.closest(".comment-section")) {
+        e.preventDefault();
 
-
-      const heading = "Delete?";
-      const message = `Do you want to delete this post? This is a permanent action`;
-      const actionBtn = "Delete";
-      createModal(heading, message, actionBtn, deletePost, id);
+        const heading = "Delete?";
+        const message = `Do you want to delete this post? This is a permanent action`;
+        const actionBtn = "Delete";
+        createModal(heading, message, actionBtn, deletePost, id);
         // window.location.href = "../homePage/homePage.html";
         // redirectToHomepage()
-   } });
+      }
+    });
 
-    const commentSection= document.querySelector(".comment-section");
+    const commentSection = document.querySelector(".comment-section");
     commentSection?.addEventListener("click", (e) => {
-  
-      const target = e.target as HTMLElement
-      const trashBtn = target.closest(".trash-btn")
-      if(trashBtn){
-            const heading = "Delete?";
-      const message = `Do you want to delete this comment and all potensial replies? This is a permanent action`;
-      const actionBtn = "Delete";
-        createModal(heading, message, actionBtn, deletePost, id, redirectToHomepage);
+      const target = e.target as HTMLElement;
+      const trashBtn = target.closest(".trash-btn");
+      if (trashBtn) {
+        const heading = "Delete?";
+        const message = `Do you want to delete this comment and all potensial replies? This is a permanent action`;
+        const actionBtn = "Delete";
+        createModal(
+          heading,
+          message,
+          actionBtn,
+          deletePost,
+          id,
+          redirectToHomepage,
+        );
         // redirectToHomepage()
       }
-    })
+    });
 
-    //help bk - problem with it not working
     postHeader.append(trashButton);
   }
-
-  // hamburgermenu.setAttribute("aria-label", "Toggle post options");
-  // hamburgermenu.setAttribute("aria-expanded", "false");
-  // hamburgermenu.setAttribute("aria-controls", "main-nav-mob");
-
-  //   const isExpanded = hamburgermenu.getAttribute("aria-expanded") === "true";
-  //   hamburgermenu.setAttribute("aria-expanded", !isExpanded);
-  //   navMenu.hidden = isExpanded;
-
-  //   if (isExpanded) {
-  //   hamburgerMenuNav.setAttribute("hidden", "");
-  // } else {
-  //   hamburgerMenuNav.removeAttribute("hidden");
-  //   }
 
   return postHeader;
 }
 
-export function redirectToHomepage(){
-     window.location.href = "../homePage/homePage.html";
+export function redirectToHomepage() {
+  window.location.href = "../homePage/homePage.html";
 }

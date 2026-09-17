@@ -1,16 +1,22 @@
 import { type LoginResponse } from "../../api/authService";
-import { getAllPosts, type Post} from "./getPosts";
+import { getAllPosts, type Post} from "../../hooks/getAllPosts";
 // import "../../style/cards.css";
 import { createPost } from "../../components/createPost";
 import {
   getSearchResult,
 } from "../../hooks/getSearchResult";
-const postsParent = document.getElementById("posts-parent") as HTMLElement;
-console.log("homepage ts");
+import { getAllFollowingProfiles } from "../../hooks/profiles/getAllProfiles";
+import { localStorageUtil } from "../../utils/storageUtils";
+
 const userdata: LoginResponse = JSON.parse(
   localStorage.getItem("user") || "{}",
 );
 console.log(userdata);
+
+const following = await getAllFollowingProfiles(userdata.data.name)
+localStorageUtil.save("following", following)
+
+
 
 const isLoggedIn: object = JSON.parse(
   sessionStorage.getItem("justLoggedIn") || "{}",
@@ -27,8 +33,10 @@ if (!isLoggedIn) {
   window.location.href = "../login.html";
 }
 
+ const postsParent = document.getElementById("posts-parent") as HTMLElement;
 // const createpostBtn = document.getElementById("create-post-btn") as HTMLAnchorElement
 
+console.log("homepage ts");
 const postSearchField = document.getElementById(
   "post-search-field",
 ) as HTMLInputElement;
@@ -44,7 +52,7 @@ postSearchField?.addEventListener("input", async () => {
   noResultInfo = null;
 
   const query = postSearchField.value.trim();
-  console.log("search: ", query);
+
 
   const response = await getSearchResult(query);
   
@@ -62,14 +70,15 @@ postSearchField?.addEventListener("input", async () => {
 });
 
 
-console.log(postsParent);
 const allPosts = await getAllPosts();
 
 function renderPosts(posts: Post[]) {
+
+
   postsParent.innerHTML = "";
-  return posts.forEach((post: Post) => {
-    createPost(post, postsParent);
+  posts.forEach((post: Post) => {
+    createPost(post, postsParent );
   });
 }
 
-renderPosts(allPosts.data);
+renderPosts(allPosts.data );
