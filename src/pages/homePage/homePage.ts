@@ -56,7 +56,7 @@ postSearchField?.addEventListener("input", async () => {
 
   const response = await getSearchResult(query);
   
-  
+
 
   if(response.data.length === 0) {
     noResultInfo = document.createElement("p")
@@ -65,7 +65,6 @@ postSearchField?.addEventListener("input", async () => {
     postSearchField.after(noResultInfo)
   }
   console.log(response.data);
-
   renderPosts(response.data);
 });
 
@@ -73,8 +72,6 @@ postSearchField?.addEventListener("input", async () => {
 const allPosts = await getAllPosts();
 
 function renderPosts(posts: Post[]) {
-
-
   postsParent.innerHTML = "";
   posts.forEach((post: Post) => {
     createPost(post, postsParent );

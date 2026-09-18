@@ -17,7 +17,7 @@ import {
 
 // const following:string[] = []
 // localStorageUtil.save("following", following)
-// console.log(localStorageUtil.load("following"))
+
 
 export function createAuthorHeader(
   avatar: Avatar,
@@ -26,6 +26,7 @@ export function createAuthorHeader(
   id?: number,
   updated?: string,
 ): HTMLDivElement {
+
   const postHeader = document.createElement("div");
   postHeader.classList.add("post-header");
 
@@ -64,15 +65,21 @@ export function createAuthorHeader(
       followBtn.textContent = "Unfollow";
     }
   }
-
+//TODO: gjør at alle postnene fra en user updater followknappen når den trukkes på en
   followBtn.addEventListener("click", async (e) => {
-    e.stopPropagation();
-    await followProfile(name);
-    isFollowing = !isFollowing;
-    followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
+    console.log("isfollowing?",isFollowing)
+    e.preventDefault();
 
+    isFollowing = !isFollowing;
+
+    followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
+    console.log("isfollowing??",isFollowing)
+  
     if (isFollowing) {
       await unfollowProfile(name);
+    }
+    else{
+      await followProfile(name);
     }
   });
 
@@ -104,6 +111,7 @@ export function createAuthorHeader(
     trashButton.append(optionsImg);
 
     trashButton?.addEventListener("click", (e) => {
+      // debugger;
       const target = e.currentTarget as HTMLElement;
       if (!target?.closest(".comment-section")) {
         e.preventDefault();
