@@ -29,6 +29,8 @@ export async function renderFollowingSection() {
   const following = await getAllFollowingProfiles(userdata.data.name);
   localStorageUtil.save("following", following);
 
+  //TODO bk help?
+  if(!followingContainer){return}
   followingContainer.innerHTML = "";
 
   following.data.following.forEach((profile) => {

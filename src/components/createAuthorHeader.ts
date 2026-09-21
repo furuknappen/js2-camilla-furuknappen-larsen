@@ -43,9 +43,11 @@ export function createAuthorHeader(
   const postHeaderTextDiv = document.createElement("div");
   postHeaderTextDiv.classList.add("post-header-text");
 
-  const authorP = document.createElement("p");
+  const authorP = document.createElement("a");
   authorP.classList.add("header-author");
   authorP.textContent = name;
+  authorP.href = `../profilePage/profilePage.html?name=${name}`; 
+  
   const titleFollowDiv = document.createElement("div");
   const followBtn = document.createElement("button");
   followBtn.textContent = "Follow";

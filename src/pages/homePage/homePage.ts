@@ -2,6 +2,7 @@ import { type LoginResponse } from "../../api/authService";
 import { getAllPosts, type Post} from "../../hooks/getAllPosts";
 // import "../../style/cards.css";
 import { createPost } from "../../components/createPost";
+// import "../style/cards.css";
 import {
   getSearchResult,
 } from "../../hooks/getSearchResult";

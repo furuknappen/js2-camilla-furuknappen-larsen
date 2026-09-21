@@ -1,4 +1,5 @@
-import { get } from "../api/apiClient";
+// import { get } from "../api/apiClient";
+import { get } from "../../api/apiClient";
 import type { Profile } from "./follow-unfollow-profile";
 
 
