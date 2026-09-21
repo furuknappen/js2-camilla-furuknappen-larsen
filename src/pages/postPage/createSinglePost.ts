@@ -4,7 +4,7 @@ import "./singlePost.css";
 import { createAuthorHeader } from "../../components/createAuthorHeader";
 import { createComment } from "../../components/createCommentSection";
 import { postComment } from "../../hooks/postComment";
-
+import { deletePost } from "../../hooks/deletePost";
 /// SINGLE POST
 export function createSinglePost(
   post: Post,
@@ -51,9 +51,11 @@ export function createSinglePost(
       post.author.avatar,
       post.author.name,
       post.created,
-      post.id,
+      async() => {
+       await deletePost(post.id);
+      },
+      post,
       post.updated,
-   
     );
   }
 
@@ -62,11 +64,11 @@ export function createSinglePost(
 
   // const commentInputSection = document.createElement("div")
   const commentForm = document.createElement("form");
-  commentForm.classList.add("comment-form")
+  commentForm.classList.add("comment-form");
   const commentInput = document.createElement("input");
   commentInput.name = "comment";
   commentInput.type = "text";
-  commentInput.placeholder = "Comment on this post..."
+  commentInput.placeholder = "Comment on this post...";
 
   const submitCommentBtn = document.createElement("button");
   submitCommentBtn.textContent = "Send";
@@ -89,33 +91,24 @@ export function createSinglePost(
 
   if (post.comments) {
     const commentsContainer = document.createElement("section");
-    commentsContainer.classList.add("comment-section")
- postsParentContainer.append(commentsContainer);
+    commentsContainer.classList.add("comment-section");
+    postsParentContainer.append(commentsContainer);
     post.comments.forEach((comment) => {
       const commentDiv = createComment(comment);
 
       if (comment.replyToId) {
         const parentComment = document.getElementById(comment.replyToId);
-        if(parentComment) {
-
-           parentComment.append(commentDiv);
+        if (parentComment) {
+          parentComment.append(commentDiv);
         }
+      } else {
+        const parentWithChildrenDiv = document.createElement("div");
+        parentWithChildrenDiv.classList.add("parent-children-div");
 
+        parentWithChildrenDiv.append(commentDiv);
 
+        commentsContainer.append(parentWithChildrenDiv);
       }
-      else{
-
-        const parentWithChildrenDiv = document.createElement("div")
-        parentWithChildrenDiv.classList.add("parent-children-div")
-
-        parentWithChildrenDiv.append(commentDiv)
-
-  commentsContainer.append(parentWithChildrenDiv);
-      }
-
-    
     });
-
-   
   }
 }

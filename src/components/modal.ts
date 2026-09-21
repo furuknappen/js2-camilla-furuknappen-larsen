@@ -1,17 +1,17 @@
 /**
  * Info: this function takes inn 5 parameters: heading, message, button-text, a function for the actionbutton and the functionparameters
  */
-export function createModal<T extends string | number>(
+export function createModal(
   heading: string,
   message: string,
   buttonText: string,
-  actionBtnFunction: (parameter: T) => void,
-  functionParameter?: T,
-  secondFunction?: () => void
+  actionBtnFunction: () => void | Promise<void>,
+  secondFunction?: () => void 
 ) {
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-labelledby", "modal-heading");
   dialog.classList.add("modal", "border");
+  //TODO: endre navn på modal
   dialog.id = "login-modal";
 
   const header = document.createElement("h3");
@@ -36,15 +36,14 @@ export function createModal<T extends string | number>(
   actionBtn.classList.add("btn");
   actionBtn.textContent = buttonText;
 
-  actionBtn.addEventListener("click", (e) => {
+  actionBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    if (functionParameter !== undefined) {
-      actionBtnFunction(functionParameter);
-      if(secondFunction){secondFunction()}
+  
+    await actionBtnFunction();
+    if(secondFunction){
+     secondFunction()
     }
-
     dialog.close();
-    // window.location.href = "../homePage/homePage.html";
   });
 
   buttonsDiv.append(closeBtn, actionBtn);

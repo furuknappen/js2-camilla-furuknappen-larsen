@@ -4,9 +4,9 @@ import { del } from "../api/apiClient";
 
 
 
-export async function deletePost(id:number): Promise<void> {
+export async function deleteComment(postId:number, commentId: number): Promise<void> {
  try {
-    await del<void>(`/social/posts/${id}`);
+    await del<void>(`/social/posts/${postId}/comment/${commentId}`);
 
   } catch (error: unknown) {
     if (error instanceof Error) {

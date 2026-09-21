@@ -1,14 +1,14 @@
 import { postComment } from "../hooks/postComment";
 import type { Comment } from "../hooks/getAllPosts";
 import { createAuthorHeader } from "./createAuthorHeader";
-import "../style/comment-section.css"
+import "../style/comment-section.css";
+import { deleteComment } from "../hooks/deleteComment";
 
-//BK commenten appender feil
 export function createComment(comment: Comment): HTMLDivElement {
   const commentDiv = document.createElement("div") as HTMLDivElement;
   commentDiv.id = comment.id.toString();
   // commentDiv.classList.add("comment-div");
-        // commentDiv.classList.add("comment-directly-on-post");
+  // commentDiv.classList.add("comment-directly-on-post");
   const commentBody = document.createElement("p");
   commentBody.classList.add("comment-body");
   commentBody.textContent = comment.body;
@@ -16,21 +16,23 @@ export function createComment(comment: Comment): HTMLDivElement {
     comment.author.avatar,
     comment.author.name,
     comment.created,
+    async()=>{
+      await deleteComment(comment.postId, comment.id
+    )},
   );
   // comment.author, commentDiv, authorCommentP
   // commentDiv.append(authorImgCommentDiv);
   const replyBtn = document.createElement("button") as HTMLButtonElement;
-  replyBtn.classList.add("reply-btn")
+  replyBtn.classList.add("reply-btn");
   replyBtn.textContent = "Reply";
-  const replyDiv = document.createElement("div"); 
-  replyDiv.classList.add("reply-comment") 
+  const replyDiv = document.createElement("div");
+  replyDiv.classList.add("reply-comment");
   if (comment.replyToId) {
     commentDiv.classList.add("reply-div");
 
-
     // commentDiv.append(header, commentBody, replyBtn);
-// const thread = document.createElement("div")
-// thread.classList.add("thread")
+    // const thread = document.createElement("div")
+    // thread.classList.add("thread")
     replyDiv.append(header, commentBody, replyBtn);
 
     commentDiv.append(replyDiv);
@@ -43,11 +45,11 @@ export function createComment(comment: Comment): HTMLDivElement {
     replyBtn.style.display = "none";
 
     const commentForm = document.createElement("form");
-    commentForm.classList.add("commentform")
+    commentForm.classList.add("commentform");
     const commentInput = document.createElement("input");
     commentInput.name = "comment";
     commentInput.type = "text";
-    commentInput.placeholder = `write a comment to ${comment.author.name}`
+    commentInput.placeholder = `write a comment to ${comment.author.name}`;
 
     const submitCommentBtn = document.createElement("button");
     submitCommentBtn.textContent = "Send";
@@ -56,9 +58,7 @@ export function createComment(comment: Comment): HTMLDivElement {
     commentForm.append(commentInput, submitCommentBtn);
 
     if (comment.replyToId) {
-
       commentBody.after(commentForm);
-
     } else {
       commentBody.after(commentForm);
     }
@@ -74,11 +74,7 @@ export function createComment(comment: Comment): HTMLDivElement {
 
       if (data.comment == "") return;
 
-        await postComment(
-        data.comment,
-        comment.postId,
-        comment.id,
-      );
+      await postComment(data.comment, comment.postId, comment.id);
       window.location.reload();
     });
   });

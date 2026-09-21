@@ -1,0 +1,13 @@
+
+.edit-dialog{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem
+}
+
+.update-form{
+    display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+}

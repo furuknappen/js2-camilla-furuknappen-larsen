@@ -1,11 +1,11 @@
 import type { RegisterResponse } from "../api/authService";
-import { deletePost } from "../hooks/deletePost";
-import type { Avatar } from "../hooks/getAllPosts";
+import type { Avatar, Post } from "../hooks/getAllPosts";
 import { formatTime } from "../utils/formatTime";
 import { localStorageUtil } from "../utils/storageUtils";
 import { createModal } from "./modal";
 import "../style/author-header.css";
 import trashIcon from "../assets/trash.svg";
+import editIcon from "../assets/edit.svg";
 import {
   followProfile,
   unfollowProfile,
@@ -13,6 +13,8 @@ import {
   type Profile,
 } from "../hooks/profiles/follow-unfollow-profile";
 import { renderFollowingSection } from "./asideFollowing";
+import { renderEditModal } from "./renderEditModal";
+
 // import { getAllProfiles } from "../hooks/profiles/getAllProfiles";
 // import {following } from "../pages/homePage/homePage";
 
@@ -23,7 +25,8 @@ export function createAuthorHeader(
   avatar: Avatar,
   name: string,
   created: string,
-  id?: number,
+  actionBtnFunction: () => void | Promise<void>,
+  post?: Post,
   updated?: string,
 ): HTMLDivElement {
   const postHeader = document.createElement("div");
@@ -46,8 +49,8 @@ export function createAuthorHeader(
   const authorP = document.createElement("a");
   authorP.classList.add("header-author");
   authorP.textContent = name;
-  authorP.href = `../profilePage/profilePage.html?name=${name}`; 
-  
+  authorP.href = `../profilePage/profilePage.html?name=${name}`;
+
   const titleFollowDiv = document.createElement("div");
   const followBtn = document.createElement("button");
   followBtn.textContent = "Follow";
@@ -81,13 +84,14 @@ export function createAuthorHeader(
     } else {
       await unfollowProfile(name);
     }
-
+    
     const followingArray =
       localStorageUtil.load<FollowProfileResponse>("following")?.data.following;
 
     if (followingArray) {
       renderFollowingSection();
     }
+    window.location.reload()
   });
 
   const createdTime = formatTime(created);
@@ -113,30 +117,21 @@ export function createAuthorHeader(
     const trashButton = document.createElement("button");
     trashButton.classList.add("trash-btn");
 
-    const optionsImg = document.createElement("img");
-    optionsImg.src = trashIcon;
-    trashButton.append(optionsImg);
+    const trashImg = document.createElement("img");
+    trashImg.src = trashIcon;
+    trashButton.append(trashImg);
 
-    trashButton?.addEventListener("click", (e) => {
-      // debugger;
+    trashButton.addEventListener("click", (e) => {
+      e.preventDefault();
       const target = e.currentTarget as HTMLElement;
-      if (!target?.closest(".comment-section")) {
-        e.preventDefault();
 
+      if (!target?.closest(".comment-section")) {
         const heading = "Delete?";
         const message = `Do you want to delete this post? This is a permanent action`;
         const actionBtn = "Delete";
-        createModal(heading, message, actionBtn, deletePost, id);
-        // window.location.href = "../homePage/homePage.html";
-        // redirectToHomepage()
+        createModal(heading, message, actionBtn, actionBtnFunction, () => {window.location.href = "../homePage/homePage.html"});
       }
-    });
-
-    const commentSection = document.querySelector(".comment-section");
-    commentSection?.addEventListener("click", (e) => {
-      const target = e.target as HTMLElement;
-      const trashBtn = target.closest(".trash-btn");
-      if (trashBtn) {
+    else{
         const heading = "Delete?";
         const message = `Do you want to delete this comment and all potensial replies? This is a permanent action`;
         const actionBtn = "Delete";
@@ -144,20 +139,26 @@ export function createAuthorHeader(
           heading,
           message,
           actionBtn,
-          deletePost,
-          id,
-          redirectToHomepage,
+          actionBtnFunction,
+          () => {window.location.reload()}
         );
-        // redirectToHomepage()
       }
     });
 
-    postHeader.append(trashButton);
+    const editButton = document.createElement("button");
+    editButton.classList.add("edit-btn");
+    const editImg = document.createElement("img");
+    editImg.src = editIcon;
+    editButton.append(editImg);
+
+    editButton?.addEventListener("click", () => {
+      // e.preventDefault()
+      if(post){
+        renderEditModal(post);
+      }
+    })
+    postHeader.append(editButton, trashButton);
   }
 
   return postHeader;
-}
-
-export function redirectToHomepage() {
-  window.location.href = "../homePage/homePage.html";
 }

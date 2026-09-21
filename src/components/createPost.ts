@@ -1,5 +1,7 @@
+import { deletePost } from "../hooks/deletePost";
 import type { Post } from "../hooks/getAllPosts";
 import "../style/cards.css";
+import { cleanUpTags } from "../utils/cleanUpTags";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
 
@@ -40,24 +42,9 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   tagDiv.classList.add("tagDiv");
   /// TAGS
 
-  // post.tags
-
   if (post.tags.length) {
-    const tags = post.tags as string[];
-    const tagPill = document.createElement("span");
-    tags.forEach((tag) => {
-      if (tag.includes(" ")) {
-        const splitTags = tag.split(/\s+/).filter((t) => t.length > 0);
-        splitTags.forEach((singleTag) => {
-          const cleanTag = `#${singleTag.replace(/^#+/, " ")}`;
-          tagPill.append(cleanTag + " ");
-        });
-      } else {
-        const cleanTag = `#${tag.replace(/^#+/, " ")}`;
-        tagPill.append(cleanTag + " ");
-      }
-    });
-    tagDiv.append(tagPill);
+    const tags = cleanUpTags(post.tags);
+    tagDiv.append(tags);
   }
 
   let postHeader1: HTMLDivElement = document.createElement("div");
@@ -67,6 +54,10 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
       post.author.avatar,
       post.author.name,
       post.created,
+      async () => {
+        await deletePost(post.id);
+      },
+      post,
       // post.updated,
     );
   }
