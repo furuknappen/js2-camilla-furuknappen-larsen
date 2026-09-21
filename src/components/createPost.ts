@@ -44,7 +44,6 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
 
   if (post.tags.length) {
     const tags = post.tags as string[];
-    console.log(tags);
     const tagPill = document.createElement("span");
     tags.forEach((tag) => {
       if (tag.includes(" ")) {

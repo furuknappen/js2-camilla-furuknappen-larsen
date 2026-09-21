@@ -12,12 +12,12 @@ import {
   type FollowProfileResponse,
   type Profile,
 } from "../hooks/profiles/follow-unfollow-profile";
+import { renderFollowingSection } from "./asideFollowing";
 // import { getAllProfiles } from "../hooks/profiles/getAllProfiles";
 // import {following } from "../pages/homePage/homePage";
 
 // const following:string[] = []
 // localStorageUtil.save("following", following)
-
 
 export function createAuthorHeader(
   avatar: Avatar,
@@ -26,7 +26,6 @@ export function createAuthorHeader(
   id?: number,
   updated?: string,
 ): HTMLDivElement {
-
   const postHeader = document.createElement("div");
   postHeader.classList.add("post-header");
 
@@ -52,8 +51,8 @@ export function createAuthorHeader(
   followBtn.textContent = "Follow";
   let isFollowing: boolean = false;
 
-
-  const getfollowing: FollowProfileResponse | null = localStorageUtil.load("following");
+  const getfollowing: FollowProfileResponse | null =
+    localStorageUtil.load("following");
   if (getfollowing) {
     const followingArray = getfollowing.data.following;
 
@@ -65,21 +64,27 @@ export function createAuthorHeader(
       followBtn.textContent = "Unfollow";
     }
   }
-//TODO: gjør at alle postnene fra en user updater followknappen når den trukkes på en
+  //TODO: gjør at alle postnene fra en user updater followknappen når den trukkes på en
   followBtn.addEventListener("click", async (e) => {
-    console.log("isfollowing?",isFollowing)
+    console.log("isfollowing?", isFollowing);
     e.preventDefault();
 
     isFollowing = !isFollowing;
 
     followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
-    console.log("isfollowing??",isFollowing)
-  
+    console.log("isfollowing??", isFollowing);
+
     if (isFollowing) {
+      await followProfile(name);
+    } else {
       await unfollowProfile(name);
     }
-    else{
-      await followProfile(name);
+
+    const followingArray =
+      localStorageUtil.load<FollowProfileResponse>("following")?.data.following;
+
+    if (followingArray) {
+      renderFollowingSection();
     }
   });
 

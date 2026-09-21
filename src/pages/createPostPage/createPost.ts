@@ -28,17 +28,20 @@ console.log("tagvalue: " , tagValue)
   ) as HTMLInputElement;
   const altTextValue = altTextInput.value;
 
-  const NewPostRequest: PostRequest = {
+  const newPostRequest: PostRequest = {
     title: titleValue,
     body: bodyValue, 
     tags: [tagValue], 
-    media: {
-      url: imgValue,
-      alt: altTextValue,
-    },
   };
+  
+  if(imgValue.trim()){
+    newPostRequest.media={
+        url: imgValue,
+      alt: altTextValue,
+    }
+  }
 
-  postnewPost(NewPostRequest);
+  postnewPost(newPostRequest);
 
   // window.location.href = "../homepage/homepage.html";
 });

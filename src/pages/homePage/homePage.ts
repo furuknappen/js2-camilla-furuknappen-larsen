@@ -5,16 +5,16 @@ import { createPost } from "../../components/createPost";
 import {
   getSearchResult,
 } from "../../hooks/getSearchResult";
-import { getAllFollowingProfiles } from "../../hooks/profiles/getAllProfiles";
-import { localStorageUtil } from "../../utils/storageUtils";
+// import { getAllFollowingProfiles } from "../../hooks/profiles/getAllProfiles";
+// import { localStorageUtil } from "../../utils/storageUtils";
 
 const userdata: LoginResponse = JSON.parse(
   localStorage.getItem("user") || "{}",
 );
 console.log(userdata);
 
-const following = await getAllFollowingProfiles(userdata.data.name)
-localStorageUtil.save("following", following)
+// const following = await getAllFollowingProfiles(userdata.data.name)
+// localStorageUtil.save("following", following)
 
 
 
