@@ -16,7 +16,9 @@
   padding-top: 1rem;
 
 }
-
+#posts-parent{
+  margin-top: 1rem
+}
 /* .post-header {
   display: flex;
   flex-direction: row;

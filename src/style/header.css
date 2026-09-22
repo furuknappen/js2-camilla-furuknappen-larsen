@@ -1,26 +1,65 @@
 .nav {
-  /* background-color: red; */
+  background-color: white;
   border: 2px solid gray;
-  /* display:flex; */
+  display: flex;
+  height: 3rem;
+  flex-direction: column;
+  /* align-items: center; */
+
+}
+
+#search-add-div {
+  display: flex;
+  flex-direction: column;
+  height: 6.7rem
+}
+  #post-search-field {
+margin-inline: 1rem
+
+  }
+#homepage-main {
+  padding-top: 1rem
 }
 
 .nav-links {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  background-color: white;
+  z-index: 1;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1rem
 }
 
 .hamburger {
   display: block;
+  margin: 0.5rem
 }
 
 #following-container-mobile {
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
 
 }
 
+#create-post-btn {
+  border: none;
+  background-color: var(--main-color);
+  color: var(--text-light);
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 2rem;
+  text-align: center;
+}
+
+
+
 @media (min-width: 768px) {
+  .nav {
+    justify-content: center;
+  }
+
   .hamburger {
     display: none;
   }
@@ -32,7 +71,19 @@
   .nav-links {
     display: flex;
     flex-direction: row;
+    align-items: center
   }
 
+  #search-add-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 4rem
+  }
 
+  #post-search-field {
+   max-width: 40rem;
+
+  }
 }

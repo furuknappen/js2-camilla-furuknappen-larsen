@@ -1,22 +1,19 @@
-
-
-
 /* .comment-div{ */
-  /* border: 2px solid red;
+/* border: 2px solid red;
   /* border-bottom: 1px solid gray; */
-  /* margin-bottom: 0.5rem */
-/* }  */ 
+/* margin-bottom: 0.5rem */
+/* }  */
 .commentform,
-.comment-form{
+.comment-form {
   background-color: transparent;
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
   display: flex;
- margin-inline: 1rem;
- 
- gap: 0.5rem
+  margin-inline: 1rem;
+
+  gap: 0.5rem
 }
 
-input{
+input {
   height: 2rem;
   /* width: auto; */
   flex: 1;
@@ -27,12 +24,12 @@ input{
 }
 
 .commentform button,
-.comment-form button{
-border: none;
-background-color: var(--main-color);
-color: var(--text-light);
-border-radius: 7px;
-padding-inline: 0.5rem
+.comment-form button {
+  border: none;
+  background-color: var(--main-color);
+  color: var(--text-light);
+  border-radius: 7px;
+  padding-inline: 0.5rem
 }
 
 /* input {
@@ -54,24 +51,24 @@ padding-inline: 0.5rem
 
 
 .comment-body {
- font-family: Arial, Helvetica, sans-serif;
- font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
   /* margin-inline: 3.7rem; */
   margin-block: 0.4rem;
   margin-right: 1.5rem
 }
 
-.reply-btn{
- border: none;
- background-color: transparent;
- /* margin-left: 3.7rem ; */
- margin-block: 0rem 1rem;
- color: gray;
+.reply-btn {
+  border: none;
+  background-color: transparent;
+  /* margin-left: 3.7rem ; */
+  margin-block: 0rem 1rem;
+  color: gray;
 }
 
 .comment-body,
-.reply-btn{
-   margin-left: 3.2rem ;
+.reply-btn {
+  margin-left: 3.2rem;
 }
 
 /* .thread{
@@ -82,7 +79,7 @@ padding-inline: 0.5rem
 
 
 /* contains the main comment and its children */
-.parent-children-div{
+.parent-children-div {
   /* border: 2px solid rgb(85, 109, 243); */
   border-bottom: 1px solid gray;
   margin-bottom: 1rem;
@@ -91,13 +88,12 @@ padding-inline: 0.5rem
 
 
 /* contains the reply and its children */
-.reply-div{
-    margin-left: 2rem;  
+.reply-div {
+  margin-left: 2rem;
 }
 
 /* single reply comment */
 /* .reply-comment{ */
-  /* margin-left: 1rem;  */
-  /* border: 2px solid green*/
+/* margin-left: 1rem;  */
+/* border: 2px solid green*/
 /* } */
-
