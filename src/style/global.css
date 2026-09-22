@@ -2,9 +2,12 @@
 :root {
   --h2-font: Arial, Helvetica, sans-serif;
   --main-color: rgb(154, 57, 154);
+  --text-light: white;
+  --text-dark: rgb(10, 10, 10);
+
 }
 
-
+/* rgb(117, 59, 149) */
 
 
 
@@ -21,7 +24,7 @@ body {
 }
 
 a{
-
+  
   text-decoration: none;
   color: black;
 }

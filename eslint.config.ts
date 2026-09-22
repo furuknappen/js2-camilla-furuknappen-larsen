@@ -10,12 +10,6 @@ export default defineConfig([
     rules: {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "warn",
-      "css/no-invalid-properties": [
-        "warn",
-        {
-          ignoreProperties: ["/^--/"],
-        },
-      ],
     },
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
     plugins: { js },
@@ -34,5 +28,13 @@ export default defineConfig([
     plugins: { css },
     language: "css/css",
     extends: ["css/recommended"],
+    rules: {
+      "css/no-invalid-properties": [
+        "warn",
+        {
+          ignoreProperties: ["/^--/"],
+        },
+      ],
+    },
   },
 ]);

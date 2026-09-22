@@ -8,7 +8,8 @@
 
 .post-header .avatar img {
   border-radius: 700px;
-  width: 2rem
+  width: 2rem;
+  aspect-ratio: 1/1;
 }
 
 .post-header-text {
@@ -33,7 +34,7 @@
 .follow-btn{
   margin-left: 2rem;
   font-weight: 700;
-  color: rgb(117, 59, 149)
+  color: var(--main-color) 
 }
 
 

@@ -27,7 +27,8 @@ input{
 
 .comment-form button{
 border: none;
-background-color: rgb(103, 103, 156);
+background-color: var(--main-color);
+color: var(--text-light);
 border-radius: 6px;
 padding-inline: 0.5rem
 }
