@@ -1,22 +1,27 @@
+import type {  RegisterResponse } from "../../api/authService";
 import { createPost } from "../../components/createPost";
-import type { Post, PostsResponse } from "../../hooks/getAllPosts";
-import type { PostRequest } from "../../hooks/postPost";
-import type { FollowProfileResponse, Profile } from "../../hooks/profiles/follow-unfollow-profile";
+import type { Post } from "../../hooks/getAllPosts";
+// import type { PostRequest } from "../../hooks/postPost";
+// import type { FollowProfileResponse, Profile } from "../../hooks/profiles/follow-unfollow-profile";
 import { getProfilePosts } from "../../hooks/profiles/getProfilePosts";
 import { localStorageUtil } from "../../utils/storageUtils";
 // import "../../style/cards.css";
 
-//TODO BK HELP - red lines, 
+//TODO BK HELP - red lines, fikset men se om ikke registerreponse er det samme som profile
 async function renderProfilepage() {
   const urlParams = new URLSearchParams(window.location.search);
   let profileName = urlParams.get("name");
 
   if (profileName === null) {
-    const user: Profile | null = localStorageUtil.load("user");
+    const user: RegisterResponse | null = localStorageUtil.load("user");
     // console.log("user", user.data.name)
     if (user) {
       profileName = user.data.name;
     }
+    else{
+      return
+    }
+
   }
 
   const profilePostResponse = await getProfilePosts(profileName);

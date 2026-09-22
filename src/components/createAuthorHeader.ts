@@ -53,6 +53,7 @@ export function createAuthorHeader(
 
   const titleFollowDiv = document.createElement("div");
   const followBtn = document.createElement("button");
+  followBtn.classList.add("follow-btn")
   followBtn.textContent = "Follow";
   let isFollowing: boolean = false;
 

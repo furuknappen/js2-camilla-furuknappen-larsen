@@ -10,7 +10,12 @@ export default defineConfig([
     rules: {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "warn",
-  
+      "css/no-invalid-properties": [
+        "warn",
+        {
+          ignoreProperties: ["/^--/"],
+        },
+      ],
     },
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
     plugins: { js },
