@@ -108,7 +108,7 @@ font-size: 0.9rem;
 @media (min-width: 768px) {
   
   #posts-parent {
-   padding-inline: 30%;
+   padding-inline: 20%;
    margin-top: 1rem
   }
 
@@ -132,6 +132,14 @@ font-size: 0.9rem;
 
 }
 
+@media (min-width: 1025px) {
+  #posts-parent {
+   padding-inline: 25%;
+   margin-top: 1rem
+  }
+
+
+}
 /* #post-parent p{
 
  padding-block: 0.6rem;

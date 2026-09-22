@@ -37,8 +37,9 @@ export async function renderFollowingSection() {
   following.data.following.forEach((profile) => {
     const userDisplay = document.createElement("div");
     userDisplay.classList.add("user-display");
-    const userName = document.createElement("p");
+    const userName = document.createElement("a");
     userName.textContent = profile.name;
+    userName.setAttribute("href", `../profilePage/profilepage.html?name=${profile.name}`)
 
     const authorImgDiv = document.createElement("div");
     authorImgDiv.classList.add("img-div");
@@ -65,7 +66,7 @@ function moveFollowingOnResize(userDisplay: HTMLDivElement) {
     const navLinks = document.querySelector(".nav-links") as HTMLUListElement
 
 
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 1025) {
       followingcontainerMobile.append(userDisplay);
       navLinks.style.display = "none"
       followingcontainerMobile.style.display = "none";

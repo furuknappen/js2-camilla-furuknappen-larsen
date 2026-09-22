@@ -1,3 +1,5 @@
+import "../style/modal.css"
+
 /**
  * Info: this function takes inn 5 parameters: heading, message, button-text, a function for the actionbutton and the functionparameters
  */
@@ -33,7 +35,7 @@ export function createModal(
   closeBtn.setAttribute("aria-label", "close modal dialog");
 
   const actionBtn = document.createElement("button");
-  actionBtn.classList.add("btn");
+  actionBtn.classList.add("action-btn");
   actionBtn.textContent = buttonText;
 
   actionBtn.addEventListener("click", async (e) => {

@@ -2,39 +2,36 @@
   /* background-color: red; */
   border: 2px solid gray;
   /* display:flex; */
-
-}
-
-.hamburger {
-  display: none;
-}
-
-#following-container-mobile {
-  display: none
 }
 
 .nav-links {
   display: flex;
-  flex-direction: row;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
+.hamburger {
+  display: block;
+}
 
-  .nav-links {
-    display: flex;
+#following-container-mobile {
+  display: flex;
+  flex-direction: column;
 
-    justify-content: space-around;
-    flex-direction: column;
-  }
+}
 
+@media (min-width: 768px) {
   .hamburger {
-    display: block;
+    display: none;
   }
 
   #following-container-mobile {
-    display: flex;
-    flex-direction: column;
+    display: none
+  }
 
+  .nav-links {
+    display: flex;
+    flex-direction: row;
   }
 
 

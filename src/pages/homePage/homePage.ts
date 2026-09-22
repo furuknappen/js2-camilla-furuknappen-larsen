@@ -83,6 +83,6 @@ hamburger?.addEventListener("click", ( ) => {
   followingMobile.style.display = followingMobile.style.display === "none" ? "flex" : "none"
 })
 
-const profilePageLink = document.getElementById("profile-page-link")
-profilePageLink?.setAttribute("href", "../profilePage/profilepage.html")
+// const profilePageLink = document.getElementById("profile-page-link")
+// profilePageLink?.setAttribute("href", "../profilePage/profilepage.html")
 

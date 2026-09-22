@@ -5,6 +5,7 @@
   --text-light: white;
   --text-dark: rgb(10, 10, 10);
 
+  --main-font: arial;
 }
 
 /* rgb(117, 59, 149) */
@@ -27,6 +28,9 @@ a{
   
   text-decoration: none;
   color: black;
+}
+li {
+  list-style-type: none;
 }
 
 input{
