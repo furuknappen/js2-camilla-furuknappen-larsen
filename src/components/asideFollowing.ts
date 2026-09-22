@@ -12,7 +12,7 @@ import type { LoginResponse } from "../api/authService";
 //   "search-following",
 // ) as HTMLInputElement;
 
-const followingContainer = document.getElementById(
+const followingContainerDesktop = document.getElementById(
   "following-container",
 ) as HTMLDivElement;
 
@@ -29,10 +29,10 @@ export async function renderFollowingSection() {
   const following = await getAllFollowingProfiles(userdata.data.name);
   localStorageUtil.save("following", following);
 
-  if(!followingContainer){
-    return
+  if (!followingContainerDesktop) {
+    return;
   }
-  followingContainer.innerHTML = "";
+  followingContainerDesktop.innerHTML = "";
 
   following.data.following.forEach((profile) => {
     const userDisplay = document.createElement("div");
@@ -52,9 +52,34 @@ export async function renderFollowingSection() {
 
     authorImgDiv.append(userImage);
     userDisplay.append(authorImgDiv, userName);
-    followingContainer.append(userDisplay);
+
+    moveFollowingOnResize(userDisplay);
   });
 }
+
+function moveFollowingOnResize(userDisplay: HTMLDivElement) {
+  function updatePosition() {
+    const followingcontainerMobile = document.getElementById(
+      "following-container-mobile",
+    ) as HTMLDivElement;
+    const navLinks = document.querySelector(".nav-links") as HTMLUListElement
+
+
+    if (window.innerWidth < 768) {
+      followingcontainerMobile.append(userDisplay);
+      navLinks.style.display = "none"
+      followingcontainerMobile.style.display = "none";
+    }else{
+      followingContainerDesktop.append(userDisplay);
+      followingcontainerMobile.style.display = "flex";
+    }
+  }
+
+  updatePosition()
+  window.addEventListener("resize", updatePosition)
+
+}
+
 // if (followingArray) {
 //   renderFollowingSection(followingArray);
 // }

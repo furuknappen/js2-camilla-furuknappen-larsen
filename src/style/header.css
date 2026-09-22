@@ -1,0 +1,41 @@
+.nav {
+  /* background-color: red; */
+  border: 2px solid gray;
+  /* display:flex; */
+
+}
+
+.hamburger {
+  display: none;
+}
+
+#following-container-mobile {
+  display: none
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+
+  .nav-links {
+    display: flex;
+
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  #following-container-mobile {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+
+}

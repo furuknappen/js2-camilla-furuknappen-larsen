@@ -1,22 +1,24 @@
-#following-aside{
-  border: 1px solid gray;
-  display: flex;
-  flex-direction: column;
-  width: 15rem;
+
+
+#following-aside h2 {
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem
+}
+#following-container-mobile {
+  /* border: 1px solid gray; */
+  /* display: flex;
+  flex-direction: column; */
+  width: 100%;
   border-radius: 15px;
-
+  position: relative;
+  /* right: 1rem;
+  top: 10%; */
 }
-
-#following-aside h2{
- padding-inline: 0.5rem;
- padding-block: 0.5rem
-}
-
-#following-container {
+.following-container {
   /* background-color: red; */
   width: 15rem;
   /* height: 30rem; */
-  display:flex;
+  display: flex;
   flex-direction: column;
   /* border: 1px solid gray; */
   border-radius: 15px;
@@ -24,7 +26,7 @@
 
 .user-display {
   /* border: 2px solid blue; */
-  display:flex;
+  display: flex;
   align-items: center;
   gap: 1rem;
   padding: 0.1rem;
@@ -32,13 +34,13 @@
   margin-inline: 0.5rem;
 }
 
-.user-display{
+.user-display {
   /* background-color: red; */
   border-bottom: 1px solid rgb(178, 176, 176)
 }
 
 .user-display:last-child {
-  border:none
+  border: none
 }
 
 /* .img-div {
@@ -49,12 +51,28 @@
 
 } */
 
-#following-container .img-div img {
+.user-display .img-div img {
   /* background-color: green; */
   border-radius: 50px;
   /* border: 2px solid green; */
   width: 3rem;
   /* border-radius: 50%; */
-  object-fit: cover; 
+  object-fit: cover;
   aspect-ratio: 1 / 1;
+}
+
+/* .............. iPads (tablets) - Landscape ............ */
+@media (min-width: 768px) {
+
+#following-container-mobile {
+  /* border: 1px solid gray; */
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  border-radius: 15px;
+  position: absolute;
+  right: 1rem;
+  top: 10%;
+}
+
 }
