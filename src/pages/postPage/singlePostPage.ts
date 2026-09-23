@@ -1,5 +1,5 @@
 import { getSinglePost } from "../../hooks/getSinglePost";
-import type { Post } from "../../hooks/getAllPosts";
+// import type { Post } from "../../hooks/getAllPosts";
 import { createSinglePost } from "./createSinglePost";
 // import { type PostWithComentsAndAuthor } from "./getSinglePost";
 console.log("Post Page");
@@ -15,14 +15,14 @@ if (!postIdRaw || invalidNumber) {
   console.log("put in code the error");
 }
 
-if (postIdRaw && !invalidNumber ) {
-  const post = await getSinglePost(postId);
+const postParent = document.getElementById("post-parent") as HTMLElement;
 
-  const postParent = document.getElementById("post-parent") as HTMLElement;
+if (postIdRaw && !invalidNumber) {
+  const result = await getSinglePost(postId);
 
-
-  function displayPost(post: Post, postParent: HTMLElement) {
-    createSinglePost(post, postParent);
+  if (result.ok) {
+    createSinglePost(result.value.data, postParent);
+  } else {
+    postParent.textContent = result.error.message;
   }
-  displayPost(post.data, postParent)
 }

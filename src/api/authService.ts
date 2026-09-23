@@ -1,4 +1,5 @@
 import { post,  } from "../api/apiClient.ts";
+import type { Result } from "../utils/result.ts";
 
 // {
 //   "data": {
@@ -34,7 +35,7 @@ export type RegisterData = {
   };
 }
 
-
+//TODO: BK denne filen er litt teit, se hva du tenker, burde den splittes og flyttes til hooks?
 
 type RegisterPayload = {
   name: string;
@@ -44,22 +45,25 @@ type RegisterPayload = {
 
 export async function registerUser(
   data: RegisterPayload,
-): Promise<RegisterResponse> {
+): Promise<Result<RegisterResponse, Error>> {
   try {
     const response = await post<RegisterResponse>("/auth/register", data);
 
-    if (!response) {
-      throw new Error("No response from server");
+ if (!response) {
+      return {
+        ok: false,
+        error: new Error("No response was recieved"),
+      };
     }
-    // console.log("User registered successfully:", response);
-    // ... do something with new post
-    return response;
+
+    return { ok: true, value: response };
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("Registration error:", error.message);
+    return{
+      ok: false,
+      error: error as Error
     }
-    throw error;
   }
+  
 }
 
 // ..................................
@@ -88,21 +92,22 @@ type LoginPayload = {
   password: string;
 };
 
-export async function loginUser(data: LoginPayload): Promise<LoginResponse> {
+export async function loginUser(data: LoginPayload): Promise<Result<LoginResponse, Error>> {
   try {
     const response = await post<LoginResponse>("/auth/login", data);
 
-    if (!response) {
-      throw new Error("No response from server");
+     if (!response) {
+      return {
+        ok: false,
+        error: new Error("No response was recieved"),
+      };
     }
-    console.log("User registered successfully:", response);
-    console.log(response.data.accessToken);
-    // ... do something with new user
-    return response;
+
+    return { ok: true, value: response };
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("Registration error:", error.message);
+    return{
+      ok: false,
+      error: error as Error
     }
-    throw error;
   }
 }

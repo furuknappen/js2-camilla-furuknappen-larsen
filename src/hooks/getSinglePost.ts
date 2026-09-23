@@ -1,28 +1,30 @@
 import { get } from "../api/apiClient";
-import type { Post } from "./getAllPosts";
+import type { Result } from "../utils/result";
+import type { Post } from "../types";
 
 export type SinglePostResponse= {
   data: Post;
   meta: object;
 }
 
-export async function getSinglePost(id: number): Promise<SinglePostResponse> {
+export async function getSinglePost(id: number): Promise<Result<SinglePostResponse, Error>> {
   try {
     const response = await get<SinglePostResponse>(
-      `/social/posts/${id}?_author=true&_comments=true&_reactions=true`
+      `/social/posts/${id}?_author=true&_comments=true&_reactions=true`,
     );
 
     if (!response) {
-      throw new Error("No response from server");
+      return {
+        ok: false,
+        error: new Error("No response was recieved"),
+      };
     }
-    console.log("post collected", response);
-    // console.log(response.data.accessToken);
-    // ... do something with new user
-    return response;
+
+    return { ok: true, value: response };
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("get post error:", error.message);
+    return{
+      ok: false,
+      error: error as Error
     }
-    throw error;
   }
 }

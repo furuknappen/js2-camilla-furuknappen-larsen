@@ -1,24 +1,27 @@
 import { get } from "../../api/apiClient";
+import type { Result } from "../../utils/result";
 import type { PostsResponse } from "../getAllPosts";
 
-
-
-
-export async function getProfilePosts(name: string): Promise<PostsResponse> {
+export async function getProfilePosts(
+  name: string,
+): Promise<Result<PostsResponse, Error>> {
   try {
-    const response = await get<PostsResponse>(`/social/profiles/${name}/posts?_author=true&_reactions=true`);
+    const response = await get<PostsResponse>(
+      `/social/profiles/${name}/posts?_author=true&_reactions=true`,
+    );
 
     if (!response) {
-      throw new Error("No response from server");
+      return {
+        ok: false,
+        error: new Error("No response was recieved"),
+      };
     }
-    console.log("all posts from profile collected", response);
-    // console.log(response.data.accessToken);
-    // ... do something with new user
-    return response;
+
+    return { ok: true, value: response };
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("Fetch error:", error.message);
-    }
-    throw error;
+    return {
+      ok: false,
+      error: error as Error,
+    };
   }
 }

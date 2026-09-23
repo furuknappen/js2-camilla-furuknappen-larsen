@@ -1,6 +1,6 @@
 import type {  RegisterResponse } from "../../api/authService";
 import { createPost } from "../../components/createPost";
-import type { Post } from "../../hooks/getAllPosts";
+import type { Post } from "../../types";
 // import type { PostRequest } from "../../hooks/postPost";
 // import type { FollowProfileResponse, Profile } from "../../hooks/profiles/follow-unfollow-profile";
 import { getProfilePosts } from "../../hooks/profiles/getProfilePosts";

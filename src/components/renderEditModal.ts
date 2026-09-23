@@ -1,5 +1,6 @@
-import type { Post } from "../hooks/getAllPosts";
-import { putUpdatePost, type UpdateRequest } from "../hooks/getUpdatepost";
+import type { Post } from "../types";
+import { putUpdatePost, type UpdateRequest } from "../hooks/getUpdatePost";
+
 // import { createSinglePost } from "../pages/postPage/createSinglePost";
 import "../style/edit-dialog.css";
 
@@ -16,8 +17,8 @@ export function renderEditModal(post: Post) {
   const postBody = document.createElement("textarea");
   postBody.value = post.body;
 
-  const postTags = document.createElement("input")
-postTags.value = post.tags.join(" ")
+  const postTags = document.createElement("input");
+  postTags.value = post.tags.join(" ");
   const postImgUrl = document.createElement("input");
   const postImgAlt = document.createElement("input");
   //  const img= document.createElement("imput") as HTMLImageElement
@@ -34,7 +35,14 @@ postTags.value = post.tags.join(" ")
   dialogTitle.textContent = "this is the modal";
   document.querySelector("main")?.append(editDialog);
 
-  updateForm.append(postTitle, postBody, postImgUrl, postImgAlt, postTags, submitBtn);
+  updateForm.append(
+    postTitle,
+    postBody,
+    postImgUrl,
+    postImgAlt,
+    postTags,
+    submitBtn,
+  );
 
   editDialog.append(dialogTitle, updateForm);
   editDialog.showModal();
@@ -53,10 +61,16 @@ postTags.value = post.tags.join(" ")
       },
     };
 
-   await putUpdatePost(post.id, updateRequest);
+    const result = await putUpdatePost(post.id, updateRequest);
 
+    if (result.ok) {
+      //TODO: BK is this correct? how to check if ts displayed correctly? han den hente et element som blir laget på en annen side eller må den være i html? *.*
+      return result.value;
+    } else {
+      // const errorDiv = document.querySelector(".post-header") as HTMLDivElement;
+      // errorDiv.append(result.error.message);
+    }
     editDialog.close();
-    window.location.reload()
+    window.location.reload();
   });
 }
-

@@ -1,10 +1,12 @@
 import { type LoginResponse } from "../../api/authService";
-import { getAllPosts, type Post } from "../../hooks/getAllPosts";
+// import { getAllPosts, type Post } from "../../hooks/getAllPosts";
 // import "../../style/cards.css";
 import { createPost } from "../../components/createPost";
 // import "../style/cards.css";
 import { getSearchResult } from "../../hooks/getSearchResult";
 import { scrollToPosition, startScrollTracking } from "../../utils/scroll";
+import { getAllPaginatedPosts } from "../../hooks/getpaginatedPosts";
+import type { Post } from "../../types";
 // import { getAllFollowingProfiles } from "../../hooks/profiles/getAllProfiles";
 // import { localStorageUtil } from "../../utils/storageUtils";
 startScrollTracking()
@@ -50,21 +52,35 @@ postSearchField?.addEventListener("input", async () => {
 
   const query = postSearchField.value.trim();
 
-  const response = await getSearchResult(query);
-
-  if (response.data.length === 0) {
+  const resultSearch = await getSearchResult(query);
+  if (resultSearch.ok) {
+ if (resultSearch.value.data.length === 0) {
     noResultInfo = document.createElement("p");
     noResultInfo.textContent = "";
     noResultInfo.textContent = `Found no posts is containing ${query}`;
     postSearchField.after(noResultInfo);
   }
-  console.log(response.data);
-  renderPosts(response.data);
+  console.log(resultSearch.value.data);
+  renderPosts(resultSearch.value.data);
+  } else {
+  const searchErrorDiv = document.getElementById("search-error-div") as HTMLDivElement
+  searchErrorDiv.textContent = resultSearch.error.message;
+  }
+  
 });
 
-const allPosts = await getAllPosts();
+const result = await getAllPaginatedPosts();
+  if (result.ok) {
 
-function renderPosts(posts: Post[]) {
+
+ renderPosts(result.value.data);
+  } else {
+  postsParent.textContent = result.error.message;
+  }
+
+
+
+export function renderPosts(posts: Post[]) {
   postsParent.innerHTML = "";
   posts.forEach((post: Post) => {
     createPost(post, postsParent);
@@ -72,7 +88,7 @@ function renderPosts(posts: Post[]) {
   scrollToPosition()
 }
 
-renderPosts(allPosts.data);
+
 
 const hamburger = document.querySelector(".hamburger")
 const navLinks = document.querySelector(".nav-links") as HTMLUListElement

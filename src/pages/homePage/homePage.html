@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="../../style/global.css" />
   <link rel="stylesheet" href="../../style/header.css" />
+  <link rel="stylesheet" href="../../style/homePage.css" />
 </head>
 
 <body>
@@ -28,25 +29,31 @@
   </nav>
 
 
-  <aside id="following-aside" >
+  <aside id="following-aside">
     <!-- <input type="text" id="search-following"> -->
     <div id="following-container" class="following">
       <!-- Where the users you follow are -->
     </div>
   </aside>
- 
-  
-<main id="homepage-main">
-<div id="search-add-div">
-  <a id="create-post-btn" href="../createPostPage/createpost.html">Create new post</a> <input type="text" id="post-search-field" placeholder="Search for post"></div>
-
- <section id="posts-parent" class="post" ></section>
 
 
-  </section>
-</main>
+  <main id="homepage-main">
+    <div id="search-add-div">
+      <a id="create-post-btn" href="../createPostPage/createpost.html">Create new post</a> <input type="text"
+        id="post-search-field" placeholder="Search for post">
+        <div id="search-error-div"></div>
+    </div>
+
+    <section id="posts-parent" class="post"></section>
+    <div class="btn-div">
+      <button id="prev-btn"> Previous Page</button>
+          <button id="next-btn">Next Page</button>
+    </div>
+    </section>
+  </main>
   <script type="module" src="homePage.ts"></script>
   <script type="module" src="../../components/asideFollowing.ts"></script>
+  <script type="module" src="../../components/pagination.ts"></script>
 </body>
 
 </html>

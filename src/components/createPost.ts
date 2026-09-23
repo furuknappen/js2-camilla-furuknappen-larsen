@@ -1,5 +1,5 @@
 import { deletePost } from "../hooks/deletePost";
-import type { Post } from "../hooks/getAllPosts";
+import type { Post } from "../types";
 import "../style/cards.css";
 import { cleanUpTags } from "../utils/cleanUpTags";
 import { createAuthorHeader } from "./createAuthorHeader";
@@ -48,14 +48,21 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   }
 
   let postHeader1: HTMLDivElement = document.createElement("div");
-
+//TODO: BK complicated delete thing
   if (post.author) {
     postHeader1 = createAuthorHeader(
       post.author.avatar,
       post.author.name,
       post.created,
       async () => {
-        await deletePost(post.id);
+        const result = await deletePost(post.id);
+         if (result.ok) {
+         return
+        } else {
+        
+       postContainer.before(result.error.message);
+  }
+
       },
       post,
       // post.updated,

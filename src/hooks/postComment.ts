@@ -1,26 +1,20 @@
 import { post } from "../api/apiClient";
+import type { Comment } from "../types";
+import type { Result } from "../utils/result";
 
 type CommentRequest = {
   body: string;
   replyToId?: number;
 };
 type CommentResponse = {
-  data: CommentData;
+  data: Comment;
   meta: object;
 };
 
-type CommentData = {
-  body: string;
-  replyToId: null; // or replyToId number if provided in request
-  id: number;
-  postId: number;
-  owner: string;
-  created: string;
-};
 
-export async function postComment(comment: string, postId:number, replyToId?: number): Promise<CommentResponse> {
+
+export async function postComment(comment: string, postId:number, replyToId?: number): Promise<Result<CommentResponse, Error>> {
  try {
-   
    const request: CommentRequest = {
     body: comment,
     replyToId: replyToId 
@@ -31,17 +25,18 @@ export async function postComment(comment: string, postId:number, replyToId?: nu
     );
 
     if (!response) {
-      throw new Error("No response from server");
+      return {
+        ok: false,
+        error: new Error("No response was recieved"),
+      };
     }
-    console.log("post collected", response);
-    // console.log(response.data.accessToken);
-    // ... do something with new user
-    return response;
+
+    return { ok: true, value: response };
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("get post error:", error.message);
+    return{
+      ok: false,
+      error: error as Error
     }
-    throw error;
   }
 
 }

@@ -4,7 +4,7 @@
 // } from "../hooks/profiles/follow-unfollow-profile";
 import { localStorageUtil } from "../utils/storageUtils";
 import "../style/aside-following.css";
-import { getAllFollowingProfiles } from "../hooks/profiles/getAllProfiles";
+import { getAllFollowingProfiles } from "../hooks/profiles/getAllFollowingProfiles";
 import type { LoginResponse } from "../api/authService";
 // import { getSearchUser } from "../hooks/profiles/getSearchUser";
 
@@ -26,36 +26,42 @@ export async function renderFollowingSection() {
   const userdata: LoginResponse = JSON.parse(
     localStorage.getItem("user") || "{}",
   );
-  const following = await getAllFollowingProfiles(userdata.data.name);
-  localStorageUtil.save("following", following);
-
-  if (!followingContainerDesktop) {
-    return;
-  }
-  followingContainerDesktop.innerHTML = "";
-
-  following.data.following.forEach((profile) => {
-    const userDisplay = document.createElement("div");
-    userDisplay.classList.add("user-display");
-    const userName = document.createElement("a");
-    userName.textContent = profile.name;
-    userName.setAttribute("href", `../profilePage/profilepage.html?name=${profile.name}`)
-
-    const authorImgDiv = document.createElement("div");
-    authorImgDiv.classList.add("img-div");
-    const userImage = document.createElement("img") as HTMLImageElement;
-    if (profile.avatar) {
-      //TODO: default image wont work
-      userImage.src = profile.avatar?.url;
-      // ?? defaultUserImage;
-      userImage.alt = profile.avatar?.alt ?? "No alt-text provided";
+  const result = await getAllFollowingProfiles(userdata.data.name);
+  if (result.ok) {
+    localStorageUtil.save("following", result);
+    if (!followingContainerDesktop) {
+      return;
     }
+    followingContainerDesktop.innerHTML = "";
 
-    authorImgDiv.append(userImage);
-    userDisplay.append(authorImgDiv, userName);
+    result.value.data.following.forEach((profile) => {
+      const userDisplay = document.createElement("div");
+      userDisplay.classList.add("user-display");
+      const userName = document.createElement("a");
+      userName.textContent = profile.name;
+      userName.setAttribute(
+        "href",
+        `../profilePage/profilepage.html?name=${profile.name}`,
+      );
 
-    moveFollowingOnResize(userDisplay);
-  });
+      const authorImgDiv = document.createElement("div");
+      authorImgDiv.classList.add("img-div");
+      const userImage = document.createElement("img") as HTMLImageElement;
+      if (profile.avatar) {
+        //TODO: default image wont work
+        userImage.src = profile.avatar?.url;
+        // ?? defaultUserImage;
+        userImage.alt = profile.avatar?.alt ?? "No alt-text provided";
+      }
+
+      authorImgDiv.append(userImage);
+      userDisplay.append(authorImgDiv, userName);
+
+      moveFollowingOnResize(userDisplay);
+    });
+  } else {
+    followingContainerDesktop.textContent = result.error.message;
+  }
 }
 
 function moveFollowingOnResize(userDisplay: HTMLDivElement) {
@@ -63,22 +69,20 @@ function moveFollowingOnResize(userDisplay: HTMLDivElement) {
     const followingcontainerMobile = document.getElementById(
       "following-container-mobile",
     ) as HTMLDivElement;
-    const navLinks = document.querySelector(".nav-links") as HTMLUListElement
-
+    const navLinks = document.querySelector(".nav-links") as HTMLUListElement;
 
     if (window.innerWidth < 1025) {
       followingcontainerMobile.append(userDisplay);
-      navLinks.style.display = "none"
+      navLinks.style.display = "none";
       followingcontainerMobile.style.display = "none";
-    }else{
+    } else {
       followingContainerDesktop.append(userDisplay);
       followingcontainerMobile.style.display = "flex";
     }
   }
 
-  updatePosition()
-  window.addEventListener("resize", updatePosition)
-
+  updatePosition();
+  window.addEventListener("resize", updatePosition);
 }
 
 // if (followingArray) {

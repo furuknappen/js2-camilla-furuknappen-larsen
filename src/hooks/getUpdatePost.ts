@@ -1,5 +1,6 @@
 import { put } from "../api/apiClient";
-import type { Post } from "./getAllPosts";
+import type { Post } from "../types";
+import type { Result } from "../utils/result";
 // import type { PostsResponse } from "../getAllPosts";
 
 export type UpdateRequest = {
@@ -20,21 +21,22 @@ type UpdateResponse = {
 
 
 
-export async function putUpdatePost(id: number, updateRequest: UpdateRequest): Promise<UpdateResponse> {
+export async function putUpdatePost(id: number, updateRequest: UpdateRequest): Promise<Result<UpdateResponse, Error>> {
   try {
     const response = await put<UpdateResponse>(`/social/posts/${id}`, updateRequest);
 
-    if (!response) {
-      throw new Error("No response from server");
+     if (!response) {
+      return {
+        ok: false,
+        error: new Error("No response was recieved"),
+      };
     }
-    console.log("all posts from profile collected", response);
-    // console.log(response.data.accessToken);
-    // ... do something with new user
-    return response;
+
+    return { ok: true, value: response };
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("Fetch error:", error.message);
+    return{
+      ok: false,
+      error: error as Error
     }
-    throw error;
   }
 }

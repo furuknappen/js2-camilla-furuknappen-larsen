@@ -1,0 +1,42 @@
+
+
+/* #prev-btn{
+
+}
+
+#next-btn{
+  
+} */
+
+#next-btn,
+#prev-btn{
+ padding: 0.4rem 1.2rem; 
+font-size: 0.9rem;
+font-weight: 700;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-div{
+  display:flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-block: 3rem;
+}
+
+@media (min-width: 768px) {
+#next-btn,
+#prev-btn{
+padding: 0.5rem 2rem;
+font-size: 1rem;
+font-weight: 700;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-div{
+  display:flex;
+  justify-content: center;
+  gap: 5rem;
+  margin-block: 3rem;
+}
+
+}

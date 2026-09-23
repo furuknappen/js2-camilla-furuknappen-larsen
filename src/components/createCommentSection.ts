@@ -1,5 +1,5 @@
 import { postComment } from "../hooks/postComment";
-import type { Comment } from "../hooks/getAllPosts";
+import type { Comment } from "../types";
 import { createAuthorHeader } from "./createAuthorHeader";
 import "../style/comment-section.css";
 import { deleteComment } from "../hooks/deleteComment";
@@ -13,15 +13,21 @@ export function createComment(comment: Comment): HTMLDivElement {
   commentBody.classList.add("comment-body");
   commentBody.textContent = comment.body;
   const header = createAuthorHeader(
-    comment.author.avatar,
+    comment.author?.avatar,
     comment.author.name,
     comment.created,
-    async()=>{
-      await deleteComment(comment.postId, comment.id
-    )},
+    async () => {
+      const result = await deleteComment(comment.postId, comment.id);
+      if (result.ok) {
+        return result.value;
+      } else {
+        //TODO: BK hvor kan jeg henge denne?
+        // .textContent = result.error.message;
+      }
+    },
   );
-  // comment.author, commentDiv, authorCommentP
-  // commentDiv.append(authorImgCommentDiv);
+
+
   const replyBtn = document.createElement("button") as HTMLButtonElement;
   replyBtn.classList.add("reply-btn");
   replyBtn.textContent = "Reply";
@@ -29,12 +35,8 @@ export function createComment(comment: Comment): HTMLDivElement {
   replyDiv.classList.add("reply-comment");
   if (comment.replyToId) {
     commentDiv.classList.add("reply-div");
-
-    // commentDiv.append(header, commentBody, replyBtn);
-    // const thread = document.createElement("div")
-    // thread.classList.add("thread")
+  
     replyDiv.append(header, commentBody, replyBtn);
-
     commentDiv.append(replyDiv);
   } else {
     commentDiv.append(header, commentBody, replyBtn);

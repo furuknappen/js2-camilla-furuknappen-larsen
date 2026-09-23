@@ -1,5 +1,6 @@
 import type { RegisterResponse } from "../api/authService";
-import type { Avatar, Post } from "../hooks/getAllPosts";
+import type { Avatar } from "../types";
+import type { Post } from "../types";
 import { formatTime } from "../utils/formatTime";
 import { localStorageUtil } from "../utils/storageUtils";
 import { createModal } from "./modal";
@@ -7,11 +8,11 @@ import "../style/author-header.css";
 import trashIcon from "../assets/trash.svg";
 import editIcon from "../assets/edit.svg";
 import {
-  followProfile,
   unfollowProfile,
   type FollowProfileResponse,
   type Profile,
-} from "../hooks/profiles/follow-unfollow-profile";
+} from "../hooks/profiles/unfollowProfile";
+import { followProfile } from "../hooks/profiles/followProfile";
 import { renderFollowingSection } from "./asideFollowing";
 import { renderEditModal } from "./renderEditModal";
 
@@ -59,7 +60,7 @@ export function createAuthorHeader(
 
   const getfollowing: FollowProfileResponse | null =
     localStorageUtil.load("following");
-  if (getfollowing) {
+  if (getfollowing && getfollowing.data) {
     const followingArray = getfollowing.data.following;
 
     const followedProfile = followingArray.some(
@@ -79,11 +80,21 @@ export function createAuthorHeader(
 
     followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
     console.log("isfollowing??", isFollowing);
-
+//TODO: BK den refresher hele siden ved error
     if (isFollowing) {
-      await followProfile(name);
+      const result = await followProfile(name);
+       if (result.ok) {
+      return result.value
+  } else {
+   followBtn.after(result.error.message);
+  }
     } else {
-      await unfollowProfile(name);
+      const result = await unfollowProfile(name);
+        if (result.ok) {
+          return;
+        } else {
+    followBtn.after(result.error.message)
+        }
     }
     
     const followingArray =

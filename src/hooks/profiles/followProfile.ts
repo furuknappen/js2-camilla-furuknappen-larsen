@@ -1,17 +1,15 @@
-import { get } from "../../api/apiClient";
+import { put } from "../../api/apiClient";
 import type { Result } from "../../utils/result";
 import type { FollowProfileResponse } from "./unfollowProfile";
 
 
 
-
-export async function getAllProfiles(): Promise<
-  Result<FollowProfileResponse, Error>
-> {
+export async function followProfile(name: string): Promise<Result<FollowProfileResponse, Error>> {
   try {
-    const response = await get<FollowProfileResponse>(`/social/profiles`);
 
-    if (!response) {
+    const response = await put<FollowProfileResponse>(`/social/profiles/${name}/follow`, undefined);
+
+     if (!response) {
       return {
         ok: false,
         error: new Error("No response was recieved"),
@@ -20,11 +18,9 @@ export async function getAllProfiles(): Promise<
 
     return { ok: true, value: response };
   } catch (error: unknown) {
-    return {
+    return{
       ok: false,
-      error: error as Error,
-    };
+      error: error as Error
+    }
   }
 }
-
-

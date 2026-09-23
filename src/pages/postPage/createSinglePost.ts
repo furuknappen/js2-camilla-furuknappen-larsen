@@ -1,4 +1,4 @@
-import type { Post } from "../../hooks/getAllPosts";
+import type { Post } from "../../types";
 // import "../style/cards.css";
 import "./singlePost.css";
 import { createAuthorHeader } from "../../components/createAuthorHeader";
@@ -51,8 +51,14 @@ export function createSinglePost(
       post.author.avatar,
       post.author.name,
       post.created,
-      async() => {
-       await deletePost(post.id);
+      async () => {
+        //TODO: noe feil med denne? tricky delete
+       const result = await deletePost(post.id);
+        if (result.ok) {
+          return;
+        } else {
+          postContainer.append(result.error.message);
+        }
       },
       post,
       post.updated,
@@ -82,8 +88,15 @@ export function createSinglePost(
     const data = Object.fromEntries(formData) as unknown as { comment: string };
 
     if (data.comment == "") return;
-    await postComment(data.comment, post.id);
-    window.location.reload();
+
+    const result = await postComment(data.comment, post.id);
+//TODO: noe feil her? result.value??
+    if (result.ok) {
+      window.location.reload();
+      return result.value
+    } else {
+      commentForm.append(result.error.message);
+    }
   });
 
   commentForm.append(commentInput, submitCommentBtn);
@@ -94,6 +107,7 @@ export function createSinglePost(
     commentsContainer.classList.add("comment-section");
     postsParentContainer.append(commentsContainer);
     post.comments.forEach((comment) => {
+      console.log(comment, " comment")
       const commentDiv = createComment(comment);
 
       if (comment.replyToId) {

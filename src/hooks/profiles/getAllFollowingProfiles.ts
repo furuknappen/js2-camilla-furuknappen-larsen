@@ -3,15 +3,15 @@ import type { Result } from "../../utils/result";
 import type { FollowProfileResponse } from "./unfollowProfile";
 
 
-
-
-export async function getAllProfiles(): Promise<
-  Result<FollowProfileResponse, Error>
-> {
+export async function getAllFollowingProfiles(
+  name: string
+): Promise<Result<FollowProfileResponse, Error>> {
   try {
-    const response = await get<FollowProfileResponse>(`/social/profiles`);
+    const response = await get<FollowProfileResponse>(
+      `/social/profiles/${name}?_following=true`
+    );
 
-    if (!response) {
+     if (!response) {
       return {
         ok: false,
         error: new Error("No response was recieved"),
@@ -20,11 +20,9 @@ export async function getAllProfiles(): Promise<
 
     return { ok: true, value: response };
   } catch (error: unknown) {
-    return {
+    return{
       ok: false,
-      error: error as Error,
-    };
+      error: error as Error
+    }
   }
 }
-
-
