@@ -4,12 +4,14 @@ import { displayError, removeDisplayError } from "../utils/FormErrorDisplay.ts";
 
 interface RegistrationData {
   name: string;
+  image?: string;
   email: string;
   password: string;
 }
 interface RegistrationFormData {
   username: string;
   email: string;
+  image?: string;
   password1: string;
   password2: string;
 }
@@ -53,7 +55,7 @@ const emailField = document.getElementById(
 const alertEmail = document.getElementById(
   "email-error",
 ) as HTMLParagraphElement;
-
+// const profileImg = document.getElementById("registration-image")
 const passwordField = document.getElementById("password1") as HTMLInputElement;
 const alertPassword = document.getElementById(
   "password-error",
@@ -80,7 +82,7 @@ form?.addEventListener("submit", async (e) => {
   const formData = new FormData(target);
   const data = Object.fromEntries(formData) as unknown as RegistrationFormData;
 
-  const { username, email, password1, password2 } = data;
+  const { username, email, image, password1, password2 } = data;
 
   console.log(data, username, email, password1, password2);
 
@@ -120,10 +122,11 @@ form?.addEventListener("submit", async (e) => {
 
   if (!hasErrors) {
     // loadingStart();
-
+//TODO: sjekk om image fungerer!
     const registrationData: RegistrationData = {
       name: username,
       email: email,
+      image:image,
       password: password1,
     };
 
