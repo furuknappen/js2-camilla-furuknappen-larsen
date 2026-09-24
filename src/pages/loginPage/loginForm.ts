@@ -1,7 +1,7 @@
 // import { displayError, removeDisplayError } from "../utils/FormErrorDisplay.ts";
-import { loginUser, type LoginResponse } from "../api/authService.ts";
-import { ApiError } from "../errors/apiError.ts";
-import { localStorageUtil } from "../utils/storageUtils.ts";
+import { loginUser, type LoginResponse } from "../../api/authService.ts";
+import { ApiError } from "../../errors/apiError.ts";
+import { localStorageUtil } from "../../utils/storageUtils.ts";
 // import { LoginResponse } from "../api/authService.ts";
 // import { displayError, removeDisplayError } from "../utils/FormErrorDisplay.ts";
 
@@ -16,6 +16,7 @@ type LoginFormData = {
   email: string;
   password: string;
 };
+
 //TODO: BK trenger hjelp her
 
 async function onLoginSubmit(formdata: LoginData): Promise<void> {
@@ -23,11 +24,12 @@ async function onLoginSubmit(formdata: LoginData): Promise<void> {
     const result = await loginUser(formdata);
     if (result.ok) {
       addUserInfoLocalStorage(result.value);
+        window.location.href = "./index.html";
     } else {
       // .textContent = result.error.message;
     }
 
-    window.location.href = "../pages/homePage/homePage.html";
+  
 
   } catch (error: unknown) {
     // Check if the error is an instance of our custom ApiError

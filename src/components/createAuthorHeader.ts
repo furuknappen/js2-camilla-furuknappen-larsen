@@ -141,7 +141,7 @@ export function createAuthorHeader(
         const heading = "Delete?";
         const message = `Do you want to delete this post? This is a permanent action`;
         const actionBtn = "Delete";
-        createModal(heading, message, actionBtn, actionBtnFunction, () => {window.location.href = "../homePage/homePage.html"});
+        createModal(heading, message, actionBtn, actionBtnFunction, () => {window.location.href = "./index.html"});
       }
     else{
         const heading = "Delete?";

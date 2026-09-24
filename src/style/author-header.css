@@ -25,7 +25,7 @@
   /* padding-block: 0rem */
 
 
-.post .time {
+.time {
   color: #808080;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.9rem;
@@ -48,11 +48,23 @@
 .trash-btn {
   margin-right: 2rem;
 }
+
 .edit-btn{
   margin-inline: auto 1rem;
 }
 
+@media (min-width: 768px) {
+  .post-header {
+  padding-bottom: 2rem;
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
 
+}
+
+.time {
+  font-size: 1rem;
+}
+}
 /* .reply-div{
 background-color: red;
 /* border: 2px solid rgb(70, 86, 139) */

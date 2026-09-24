@@ -30,7 +30,7 @@ console.log("accessToken ", accessToken);
 
 //mulighens false istedenfor !
 if (!isLoggedIn) {
-  window.location.href = "../login.html";
+  window.location.href = "../loginPage/login.html";
 }
 
 const postsParent = document.getElementById("posts-parent") as HTMLElement;

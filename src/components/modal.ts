@@ -62,5 +62,5 @@ export function createModal(
 }
 
 // export function redirectToHomepage(){
-//      window.location.href = "../homePage/homePage.html";
+//      window.location.href = "./index.html";
 // }
