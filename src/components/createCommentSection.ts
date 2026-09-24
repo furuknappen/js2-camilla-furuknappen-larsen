@@ -25,6 +25,9 @@ export function createComment(comment: Comment): HTMLDivElement {
         // .textContent = result.error.message;
       }
     },
+    undefined,
+    undefined,
+    "../profilePage/profilePage.html"
   );
 
 

@@ -1,26 +1,10 @@
-import { post,  } from "../api/apiClient.ts";
+import { post } from "../api/apiClient.ts";
 import type { Result } from "../utils/result.ts";
 
-// {
-//   "data": {
-//       "name": "camillalsa",
-//       "email": "czsdjdfbajsd@stud.noroff.no",
-//       "bio": null,
-//       "avatar": {
-//           "url": "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400",
-//           "alt": "A blurry multi-colored rainbow background"
-//       },
-//       "banner": {
-//           "url": "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=500&w=1500",
-//           "alt": "A blurry multi-colored rainbow background"
-//       }
-//   },
-//   "meta": {}
-// }
 export type RegisterResponse = {
-  data: RegisterData
-  meta: object
-}
+  data: RegisterData;
+  meta: object;
+};
 export type RegisterData = {
   name: string;
   email: string;
@@ -33,9 +17,7 @@ export type RegisterData = {
     url: string;
     alt: string;
   };
-}
-
-//TODO: BK denne filen er litt teit, se hva du tenker, burde den splittes og flyttes til hooks?
+};
 
 type RegisterPayload = {
   name: string;
@@ -49,7 +31,7 @@ export async function registerUser(
   try {
     const response = await post<RegisterResponse>("/auth/register", data);
 
- if (!response) {
+    if (!response) {
       return {
         ok: false,
         error: new Error("No response was recieved"),
@@ -58,12 +40,11 @@ export async function registerUser(
 
     return { ok: true, value: response };
   } catch (error: unknown) {
-    return{
+    return {
       ok: false,
-      error: error as Error
-    }
+      error: error as Error,
+    };
   }
-  
 }
 
 // ..................................
@@ -92,11 +73,13 @@ type LoginPayload = {
   password: string;
 };
 
-export async function loginUser(data: LoginPayload): Promise<Result<LoginResponse, Error>> {
+export async function loginUser(
+  data: LoginPayload,
+): Promise<Result<LoginResponse, Error>> {
   try {
     const response = await post<LoginResponse>("/auth/login", data);
 
-     if (!response) {
+    if (!response) {
       return {
         ok: false,
         error: new Error("No response was recieved"),
@@ -105,9 +88,9 @@ export async function loginUser(data: LoginPayload): Promise<Result<LoginRespons
 
     return { ok: true, value: response };
   } catch (error: unknown) {
-    return{
+    return {
       ok: false,
-      error: error as Error
-    }
+      error: error as Error,
+    };
   }
 }

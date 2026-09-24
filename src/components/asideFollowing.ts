@@ -35,13 +35,13 @@ export async function renderFollowingSection() {
     followingContainerDesktop.innerHTML = "";
 
     result.value.data.following.forEach((profile) => {
-      const userDisplay = document.createElement("div");
+      const userDisplay = document.createElement("a") as HTMLAnchorElement
       userDisplay.classList.add("user-display");
-      const userName = document.createElement("a");
+      const userName = document.createElement("div");
       userName.textContent = profile.name;
-      userName.setAttribute(
+      userDisplay.setAttribute(
         "href",
-        `../profilePage/profilepage.html?name=${profile.name}`,
+        `./src/pages/profilePage/profilePage.html?name=${profile.name}`,
       );
 
       const authorImgDiv = document.createElement("div");
@@ -58,13 +58,15 @@ export async function renderFollowingSection() {
       userDisplay.append(authorImgDiv, userName);
 
       moveFollowingOnResize(userDisplay);
+
+
     });
   } else {
     followingContainerDesktop.textContent = result.error.message;
   }
 }
 
-function moveFollowingOnResize(userDisplay: HTMLDivElement) {
+function moveFollowingOnResize(userDisplay: HTMLAnchorElement) {
   function updatePosition() {
     const followingcontainerMobile = document.getElementById(
       "following-container-mobile",

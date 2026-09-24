@@ -19,7 +19,7 @@
     <ul class="nav-links">
       <li> <a href="homepage">Home </a></li>
       <li> <a id="profile-page-link" href="">Profile Page</a></li>
-      <li> <a href="">Log out </a></li>
+      <li> <button id="log-out-btn"> Log out </button></li>
     </ul>
     <div id="following-container-mobile">
       <h3>You're Following</h3>
@@ -39,7 +39,7 @@
 
   <main id="homepage-main">
     <div id="search-add-div">
-      <a id="create-post-btn" href="../createPostPage/createpost.html">Create new post</a> <input type="text"
+      <a id="create-post-btn" href="./src/pages/createPostPage/createpost.html">Create new post</a> <input type="text"
         id="post-search-field" placeholder="Search for post">
         <div id="search-error-div"></div>
     </div>
@@ -53,7 +53,7 @@
   </main>
   <script type="module" src="./src/pages/homePage/homePage.ts"></script>
   <script type="module" src="./src/components/asideFollowing.ts"></script>
-  <script type="module" src="./script/components/pagination.ts"></script>
+  <script type="module" src="./src/components/pagination.ts"></script>
 </body>
 
 </html>

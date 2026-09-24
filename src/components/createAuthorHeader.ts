@@ -29,6 +29,7 @@ export function createAuthorHeader(
   actionBtnFunction: () => void | Promise<void>,
   post?: Post,
   updated?: string,
+  href?: string
 ): HTMLDivElement {
   const postHeader = document.createElement("div");
   postHeader.classList.add("post-header");
@@ -36,6 +37,7 @@ export function createAuthorHeader(
   const authorImgDiv = document.createElement("div");
   authorImgDiv.classList.add("avatar");
   const userImage = document.createElement("img") as HTMLImageElement;
+
   if (avatar) {
     //TODO: default image wont work
     userImage.src = avatar?.url;
@@ -50,7 +52,7 @@ export function createAuthorHeader(
   const authorP = document.createElement("a");
   authorP.classList.add("header-author");
   authorP.textContent = name;
-  authorP.href = `../profilePage/profilePage.html?name=${name}`;
+  authorP.href = `${href}?name=${name}`;
 
   const titleFollowDiv = document.createElement("div");
   const followBtn = document.createElement("button");

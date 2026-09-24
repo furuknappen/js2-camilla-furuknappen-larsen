@@ -34,13 +34,21 @@ li {
 }
 
 input{
-  height: 2rem;
+
   flex: 1;
   border-radius: 15px;
   border-style: solid;
   border-color: rgb(196, 195, 195);
   padding-left: 1rem
 }
+textarea{
+
+  border-radius: 15px;
+  border-style: solid;
+  border-color: rgb(196, 195, 195);
+  padding-left: 1rem
+}
+
 input:focus {
   border-style: solid;
   border-color: rgb(110, 110, 110);

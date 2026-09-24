@@ -10,7 +10,7 @@ export type UpdateRequest = {
   media: {
     url: string;
     alt: string;
-  };
+  } | null;
 };
 
 

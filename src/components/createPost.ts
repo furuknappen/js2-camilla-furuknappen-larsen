@@ -48,7 +48,7 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   }
 
   let postHeader1: HTMLDivElement = document.createElement("div");
-//TODO: BK complicated delete thing
+  //TODO: BK complicated delete thing
   if (post.author) {
     postHeader1 = createAuthorHeader(
       post.author.avatar,
@@ -56,21 +56,20 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
       post.created,
       async () => {
         const result = await deletePost(post.id);
-         if (result.ok) {
-         return
+        if (result.ok) {
+          return;
         } else {
-        
-       postContainer.before(result.error.message);
-  }
-
+          postContainer.before(result.error.message);
+        }
       },
       post,
-      // post.updated,
+      undefined,
+      "./src/pages/profilePage/profilePage.html",
     );
   }
   const contentDiv = document.createElement("a") as HTMLAnchorElement;
 
-  contentDiv.href = `../postPage/singlePostPage.html?id=${post.id}`;
+  contentDiv.href = `./src/pages/postPage/singlePostPage.html?id=${post.id}`;
 
   contentDiv.append(title, body, tagDiv, imgDiv);
   postContainer.append(postHeader1, contentDiv, inteactionContainer);

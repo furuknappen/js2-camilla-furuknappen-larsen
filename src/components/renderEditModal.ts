@@ -12,35 +12,68 @@ export function renderEditModal(post: Post) {
 
   const updateForm = document.createElement("form");
   updateForm.classList.add("update-form");
+
+  const labelTitle = document.createElement("label");
+  labelTitle.setAttribute("for", "post-title");
+  labelTitle.textContent = "Title";
+
   const postTitle = document.createElement("input");
   postTitle.value = post.title;
+  postTitle.id = "post-title";
+  const labelBody = document.createElement("label");
+  labelBody.setAttribute("for", "post-body");
+  labelBody.textContent = "Content";
   const postBody = document.createElement("textarea");
   postBody.value = post.body;
+  postBody.id = "post-body";
+  postBody.classList.add("post-body");
 
+  const labelTags = document.createElement("label");
+  labelTags.setAttribute("for", "post-tags");
+  labelTags.textContent = "Tags";
   const postTags = document.createElement("input");
   postTags.value = post.tags.join(" ");
-  const postImgUrl = document.createElement("input");
-  const postImgAlt = document.createElement("input");
-  //  const img= document.createElement("imput") as HTMLImageElement
-  if (post.media?.url) {
-    // img.src = post.media?.url ?? null;
-    // img.alt = post.media?.alt ?? "No alt-text provided";
 
-    postImgUrl.value = post.media.url || "";
+  const labelImg = document.createElement("label");
+  labelImg.setAttribute("for", "post-url");
+  labelImg.textContent = "Url for image";
+
+  const postImgUrl = document.createElement("input");
+  postImgUrl.id = "post-url";
+
+  const labelAlt = document.createElement("label");
+  labelAlt.setAttribute("for", "post-alt");
+  labelAlt.textContent = "Describe the image";
+
+  const postImgAlt = document.createElement("input");
+  postImgAlt.id = "post-alt";
+
+  if (post.media?.url) {
+    postImgUrl.value = post.media.url;
     postImgAlt.value = post.media.alt;
   }
 
+  const cancelBtn = document.createElement("button");
+  cancelBtn.textContent = "Cancel";
+  cancelBtn.classList.add("cancel-btn");
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Update";
-  dialogTitle.textContent = "this is the modal";
+  submitBtn.classList.add("submit-button");
+  dialogTitle.textContent = "Update your post";
   document.querySelector("main")?.append(editDialog);
 
   updateForm.append(
+    labelTitle,
     postTitle,
+    labelBody,
     postBody,
+    labelImg,
     postImgUrl,
+    labelAlt,
     postImgAlt,
+    labelTags,
     postTags,
+    cancelBtn,
     submitBtn,
   );
 
@@ -49,28 +82,32 @@ export function renderEditModal(post: Post) {
 
   updateForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log(postTitle.value);
-
     const updateRequest: UpdateRequest = {
       title: postTitle.value,
       body: postBody.value,
       tags: postTags.value.split(" "),
-      media: {
-        url: postImgUrl.value,
-        alt: postImgAlt.value,
-      },
+      media: postImgUrl.value.trim()
+        ? {
+            url: postImgUrl.value.trim(),
+            alt: postImgAlt.value.trim(),
+          }
+        : null,
     };
 
     const result = await putUpdatePost(post.id, updateRequest);
 
     if (result.ok) {
-      //TODO: BK is this correct? how to check if ts displayed correctly? han den hente et element som blir laget på en annen side eller må den være i html? *.*
-      return result.value;
+      window.location.reload();
+      editDialog.close();
     } else {
-      // const errorDiv = document.querySelector(".post-header") as HTMLDivElement;
-      // errorDiv.append(result.error.message);
+      const errorDiv = document.querySelector("#post-parent") as HTMLDivElement;
+      errorDiv.append(result.error.message);
+      editDialog.close();
     }
+  });
+
+  cancelBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     editDialog.close();
-    window.location.reload();
   });
 }

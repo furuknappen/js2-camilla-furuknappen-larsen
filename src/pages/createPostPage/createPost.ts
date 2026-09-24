@@ -43,5 +43,5 @@ console.log("tagvalue: " , tagValue)
 
   postnewPost(newPostRequest);
 
-  // window.location.href = "./index.html";
+  window.location.href = "./index.html";
 });

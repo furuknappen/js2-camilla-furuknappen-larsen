@@ -69,7 +69,6 @@ margin-inline: 1rem
   }
 
   .nav-links {
-    display: flex;
     flex-direction: row;
     align-items: center
   }
@@ -84,6 +83,5 @@ margin-inline: 1rem
 
   #post-search-field {
    max-width: 40rem;
-
   }
 }

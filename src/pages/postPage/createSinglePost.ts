@@ -62,6 +62,7 @@ export function createSinglePost(
       },
       post,
       post.updated,
+    "../profilePage/profilePage.html"
     );
   }
 

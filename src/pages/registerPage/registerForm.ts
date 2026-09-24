@@ -1,6 +1,9 @@
-import { ApiError } from "../errors/apiError.ts";
-import { registerUser } from "../api/authService.ts";
-import { displayError, removeDisplayError } from "../utils/FormErrorDisplay.ts";
+
+import { registerUser } from "../../api/authService.ts";
+import { ApiError } from "../../errors/apiError.ts";
+import { displayError, removeDisplayError } from "../../utils/FormErrorDisplay.ts";
+
+
 
 interface RegistrationData {
   name: string;
