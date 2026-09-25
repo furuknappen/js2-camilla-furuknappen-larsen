@@ -9,7 +9,7 @@ export default defineConfig({
         main: path.resolve(import.meta.dirname, "index.html"),
         createPost: path.resolve(
           import.meta.dirname,
-          "src/pages/createPostPage/createPost.html",
+          "src/pages/createPostPage/createpost.html",
         ),
         singlePost: path.resolve(
           import.meta.dirname,
