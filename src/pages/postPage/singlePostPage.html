@@ -6,13 +6,31 @@
   <title>Document</title>
   <link rel="stylesheet" href="../../style/global.css" />
     <link rel="stylesheet" href="../../style/comment-section.css" />
+     <link rel="stylesheet" href="../../style/header.css" />
 </head>
 <body>
-  <main>
+ 
+     <nav class="nav">
+    <div class="hamburger">
+      <img src="../../assets/hamburger-menu.svg" class="svg-icon">
+    </div>
+    <ul class="nav-links">
+      <li> <a href="homepage">Home </a></li>
+      <li> <a id="profile-page-link" href="">Profile Page</a></li>
+      <li><button id="log-out-btn"> Log out </button></li>
+    </ul>
+    <div id="following-container-mobile">
+      <h3>You're Following</h3>
+
+      <div id="following-container" class="following"></div>
+    </div>
+
+  </nav> <main>
 <section id="post-parent" class="post"> </section>
 
 </main class="main">
 
   <script type="module" src="./singlePostPage.ts"></script>
+  <script type="module" src="../../components/asideFollowing.ts"></script>
 </body>
 </html>

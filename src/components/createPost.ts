@@ -48,7 +48,6 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   }
 
   let postHeader1: HTMLDivElement = document.createElement("div");
-  //TODO: BK complicated delete thing
   if (post.author) {
     postHeader1 = createAuthorHeader(
       post.author.avatar,
@@ -64,12 +63,12 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
       },
       post,
       undefined,
-      "./src/pages/profilePage/profilePage.html",
+      "/js2-camilla-furuknappen-larsen/src/pages/profilePage/profilePage.html",
     );
   }
   const contentDiv = document.createElement("a") as HTMLAnchorElement;
 
-  contentDiv.href = `./src/pages/postPage/singlePostPage.html?id=${post.id}`;
+  contentDiv.href = `/js2-camilla-furuknappen-larsen/src/pages/postPage/singlePostPage.html?id=${post.id}`;
 
   contentDiv.append(title, body, tagDiv, imgDiv);
   postContainer.append(postHeader1, contentDiv, inteactionContainer);

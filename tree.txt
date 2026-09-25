@@ -1,0 +1,113 @@
+Folder PATH listing for volume Windows
+Volume serial number is BA2B-98EE
+C:.
+|   .gitignore
+|   eslint.config.ts
+|   index.html
+|   package-lock.json
+|   package.json
+|   prettier.config.ts
+|   tree.txt
+|   tsconfig.json
+|   
++---.vscode
+|       settings.json
+|           
++---public
+\---src
+    |   types.ts
+    |   
+    +---api
+    |       apiClient.ts
+    |       authService.ts
+    |       
+    +---assets
+    |       edit.svg
+    |       hamburger-menu.svg
+    |       trash.svg
+    |       
+    +---components
+    |       asideFollowing.ts
+    |       comment.ts
+    |       createAuthorHeader.ts
+    |       createCommentSection.ts
+    |       createPost.ts
+    |       modal.ts
+    |       pagination.ts
+    |       renderEditModal.ts
+    |       
+    +---errors
+    |       apiError.ts
+    |       
+    +---hooks
+    |   |   deleteComment.ts
+    |   |   deletePost.ts
+    |   |   getAllPosts.ts
+    |   |   getpaginatedPosts.ts
+    |   |   getPosts.ts
+    |   |   getSearchResult.ts
+    |   |   getSinglePost.ts
+    |   |   getUpdatePost.ts
+    |   |   postComment.ts
+    |   |   postPost.ts
+    |   |   
+    |   \---profiles
+    |           followProfile.ts
+    |           getAllFollowingProfiles.ts
+    |           getAllProfiles.ts
+    |           getOneProfile.ts
+    |           getProfilePosts.ts
+    |           getSearchUser.ts
+    |           unfollowProfile.ts
+    |           
+    +---pages
+    |   +---createPostPage
+    |   |       createpost.css
+    |   |       createpost.html
+    |   |       createPost.ts
+    |   |       
+    |   +---homePage
+    |   |       homePage.ts
+    |   |       
+    |   +---loginPage
+    |   |       login.html
+    |   |       loginForm.ts
+    |   |       
+    |   +---postPage
+    |   |       createSinglePost.ts
+    |   |       getSinglePost.ts
+    |   |       singlePost.css
+    |   |       singlePostPage.html
+    |   |       singlePostPage.ts
+    |   |       
+    |   +---profilePage
+    |   |       profile-page.css
+    |   |       profilePage.html
+    |   |       profilePage.ts
+    |   |       
+    |   \---registerPage
+    |           registerForm.ts
+    |           registerPage.html
+    |           
+    +---style
+    |       aside-following.css
+    |       author-header.css
+    |       cards.css
+    |       comment-section.css
+    |       edit-dialog.css
+    |       form-style.css
+    |       global.css
+    |       header.css
+    |       homePage.css
+    |       modal.css
+    |       register.css
+    |       
+    \---utils
+            cleanUpTags.ts
+            formatTime.ts
+            FormErrorDisplay.ts
+            logOut.ts
+            result.ts
+            scroll.ts
+            storageUtils.ts
+            

@@ -7,8 +7,6 @@ import { deleteComment } from "../hooks/deleteComment";
 export function createComment(comment: Comment): HTMLDivElement {
   const commentDiv = document.createElement("div") as HTMLDivElement;
   commentDiv.id = comment.id.toString();
-  // commentDiv.classList.add("comment-div");
-  // commentDiv.classList.add("comment-directly-on-post");
   const commentBody = document.createElement("p");
   commentBody.classList.add("comment-body");
   commentBody.textContent = comment.body;
@@ -21,8 +19,9 @@ export function createComment(comment: Comment): HTMLDivElement {
       if (result.ok) {
         return result.value;
       } else {
-        //TODO: BK hvor kan jeg henge denne?
-        // .textContent = result.error.message;
+       
+        const postParentDiv =  document.getElementById("post-parent") as HTMLDivElement;
+        postParentDiv.textContent = result.error.message;
       }
     },
     undefined,

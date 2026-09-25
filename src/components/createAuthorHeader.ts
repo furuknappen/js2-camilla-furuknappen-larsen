@@ -29,7 +29,7 @@ export function createAuthorHeader(
   actionBtnFunction: () => void | Promise<void>,
   post?: Post,
   updated?: string,
-  href?: string
+  href?: string,
 ): HTMLDivElement {
   const postHeader = document.createElement("div");
   postHeader.classList.add("post-header");
@@ -39,9 +39,7 @@ export function createAuthorHeader(
   const userImage = document.createElement("img") as HTMLImageElement;
 
   if (avatar) {
-    //TODO: default image wont work
     userImage.src = avatar?.url;
-    // ?? defaultUserImage;
     userImage.alt = avatar?.alt ?? "No alt-text provided";
   }
   authorImgDiv.append(userImage);
@@ -56,56 +54,58 @@ export function createAuthorHeader(
 
   const titleFollowDiv = document.createElement("div");
   const followBtn = document.createElement("button");
-  followBtn.classList.add("follow-btn")
+  followBtn.classList.add("follow-btn");
   followBtn.textContent = "Follow";
-  let isFollowing: boolean = false;
+  followBtn.setAttribute("data-author-name", post?.author.name || "" )
 
-  const getfollowing: FollowProfileResponse | null =
-    localStorageUtil.load("following");
-  if (getfollowing && getfollowing.data) {
+
+  const getfollowing =
+    localStorageUtil.load<FollowProfileResponse>("following");
+  if (getfollowing) {
     const followingArray = getfollowing.data.following;
 
     const followedProfile = followingArray.some(
       (e: Profile) => e.name === name,
     );
     if (followedProfile) {
-      isFollowing = true;
+
       followBtn.textContent = "Unfollow";
     }
   }
-  //TODO: gjør at alle postnene fra en user updater followknappen når den trukkes på en
+ 
   followBtn.addEventListener("click", async (e) => {
-    console.log("isfollowing?", isFollowing);
+    const isFollowing = followBtn.textContent === "Follow" ? true : false;
     e.preventDefault();
+    console.log(followBtn.textContent);
 
-    isFollowing = !isFollowing;
+    document.querySelectorAll(`[data-author-name="${post?.author.name}"`).forEach((element)=> {
+      element.textContent = isFollowing ? "Unfollow" : "Follow";
+    })
+    
 
-    followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
-    console.log("isfollowing??", isFollowing);
-//TODO: BK den refresher hele siden ved error
     if (isFollowing) {
       const result = await followProfile(name);
-       if (result.ok) {
-      return result.value
-  } else {
-   followBtn.after(result.error.message);
-  }
+      if (result.ok) {
+        return result.value;
+      } else {
+        followBtn.after(result.error.message);
+      }
     } else {
       const result = await unfollowProfile(name);
-        if (result.ok) {
-          return;
-        } else {
-    followBtn.after(result.error.message)
-        }
+      if (result.ok) {
+        return;
+      } else {
+        followBtn.after(result.error.message);
+      }
     }
-    
+
     const followingArray =
       localStorageUtil.load<FollowProfileResponse>("following")?.data.following;
 
     if (followingArray) {
       renderFollowingSection();
     }
-    window.location.reload()
+    window.location.reload();
   });
 
   const createdTime = formatTime(created);
@@ -143,19 +143,16 @@ export function createAuthorHeader(
         const heading = "Delete?";
         const message = `Do you want to delete this post? This is a permanent action`;
         const actionBtn = "Delete";
-        createModal(heading, message, actionBtn, actionBtnFunction, () => {window.location.href = "./index.html"});
-      }
-    else{
+        createModal(heading, message, actionBtn, actionBtnFunction, () => {
+          window.location.href = "/index.html";
+        });
+      } else {
         const heading = "Delete?";
         const message = `Do you want to delete this comment and all potensial replies? This is a permanent action`;
         const actionBtn = "Delete";
-        createModal(
-          heading,
-          message,
-          actionBtn,
-          actionBtnFunction,
-          () => {window.location.reload()}
-        );
+        createModal(heading, message, actionBtn, actionBtnFunction, () => {
+          window.location.reload();
+        });
       }
     });
 
@@ -166,11 +163,11 @@ export function createAuthorHeader(
     editButton.append(editImg);
 
     editButton?.addEventListener("click", () => {
-      // e.preventDefault()
-      if(post){
+
+      if (post) {
         renderEditModal(post);
       }
-    })
+    });
     postHeader.append(editButton, trashButton);
   }
 

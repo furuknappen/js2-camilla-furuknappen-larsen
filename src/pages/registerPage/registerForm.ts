@@ -1,43 +1,37 @@
-
 import { registerUser } from "../../api/authService.ts";
-import { ApiError } from "../../errors/apiError.ts";
-import { displayError, removeDisplayError } from "../../utils/FormErrorDisplay.ts";
-
-
+import {
+  displayError,
+  removeDisplayError,
+} from "../../utils/FormErrorDisplay.ts";
 
 interface RegistrationData {
   name: string;
-  image?: string;
+  avatar?: {
+    url: string;
+    alt: string;
+  } | null;
   email: string;
   password: string;
 }
 interface RegistrationFormData {
   username: string;
   email: string;
-  image?: string;
+  imageUrl: string;
+  imageAlt: string;
   password1: string;
   password2: string;
 }
 
 async function onRegisterSubmit(formData: RegistrationData): Promise<void> {
-  try {
-    const user = await registerUser(formData);
-    console.log("User registered successfully:", user);
-    //TODO:  Redirect to login page logic here...
-  } catch (error: unknown) {
-    // Check if the error is an instance of our custom ApiError
-    if (error instanceof ApiError) {
-      if (error.status === 409) {
-        alert(
-          "This email or username is already registered. Please try logging in.",
-        );
-      } else {
-        alert(`Registration failed: ${error.message}`);
-      }
-    } else if (error instanceof Error) {
-      // Fallback for general errors
-      alert(`An unexpected error occurred: ${error.message}`);
-    }
+  const result = await registerUser(formData);
+  console.log("User registered successfully:", result);
+  if (result.ok) {
+    window.location.href = "../loginPage/login.html";
+  } else {
+    const errorP = document.getElementById(
+      "error-request",
+    ) as HTMLParagraphElement;
+    errorP.textContent = result.error.message;
   }
 }
 
@@ -58,7 +52,7 @@ const emailField = document.getElementById(
 const alertEmail = document.getElementById(
   "email-error",
 ) as HTMLParagraphElement;
-// const profileImg = document.getElementById("registration-image")
+
 const passwordField = document.getElementById("password1") as HTMLInputElement;
 const alertPassword = document.getElementById(
   "password-error",
@@ -85,9 +79,9 @@ form?.addEventListener("submit", async (e) => {
   const formData = new FormData(target);
   const data = Object.fromEntries(formData) as unknown as RegistrationFormData;
 
-  const { username, email, image, password1, password2 } = data;
+  const { username, email, imageUrl, imageAlt, password1, password2 } = data;
 
-  console.log(data, username, email, password1, password2);
+  console.log(data, username, imageUrl, imageAlt, email, password1, password2);
 
   let hasErrors = false;
 
@@ -124,12 +118,15 @@ form?.addEventListener("submit", async (e) => {
   }
 
   if (!hasErrors) {
-    // loadingStart();
-//TODO: sjekk om image fungerer!
     const registrationData: RegistrationData = {
       name: username,
+      avatar: imageUrl.trim()
+        ? {
+            url: imageUrl.trim(),
+            alt: imageAlt.trim(),
+          }
+        : null,
       email: email,
-      image:image,
       password: password1,
     };
 

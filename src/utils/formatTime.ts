@@ -14,8 +14,6 @@ export function formatTime(time: string): string {
     differenceInMilliseconds / millisecondsInAnHour,
   );
 
-  //TODO: go back here when theres posts fresher than 24h
-
   if (timePassed < 24) {
   return `${timePassed} hours ago`;
   }

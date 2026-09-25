@@ -8,6 +8,7 @@ import { scrollToPosition, startScrollTracking } from "../../utils/scroll";
 import { getAllPaginatedPosts } from "../../hooks/getpaginatedPosts";
 import type { Post } from "../../types";
 import { localStorageUtil } from "../../utils/storageUtils";
+import { LogOut } from "../../utils/logOut";
 
 startScrollTracking();
 
@@ -19,7 +20,7 @@ const accessToken = localStorageUtil.load("accessToken");
 console.log("accessToken ", accessToken);
 
 if (!accessToken) {
-  window.location.href = "/src/pages/loginPage/login.html";
+  window.location.href = "/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html";
 }
 
 const postsParent = document.getElementById("posts-parent") as HTMLElement;
@@ -89,16 +90,8 @@ hamburger?.addEventListener("click", () => {
 const profilePageLink = document.getElementById("profile-page-link");
 profilePageLink?.setAttribute(
   "href",
-  "./src/pages/profilePage/profilePage.html",
+  "/js2-camilla-furuknappen-larsen/src/pages/profilePage/profilePage.html",
 );
 
-document.getElementById("log-out-btn")?.addEventListener("click", (e) => {
-  e.preventDefault();
+LogOut()
 
-  localStorageUtil.remove("accessToken");
-  localStorageUtil.remove("following");
-  localStorageUtil.remove("justLoggedIn");
-  localStorageUtil.remove("user");
-  window.location.href = "/";
-});
-// src/pages/profilePage/profilePage.html

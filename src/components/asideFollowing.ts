@@ -28,7 +28,15 @@ export async function renderFollowingSection() {
   );
   const result = await getAllFollowingProfiles(userdata.data.name);
   if (result.ok) {
-    localStorageUtil.save("following", result);
+
+    if(result.value.data.following.length == 0){
+       const followingcontainerMobile = document.getElementById(
+      "following-container-mobile",
+    ) as HTMLDivElement;
+      followingcontainerMobile.style.display = "none";
+    }
+
+    localStorageUtil.save("following", result.value);
     if (!followingContainerDesktop) {
       return;
     }
@@ -41,16 +49,14 @@ export async function renderFollowingSection() {
       userName.textContent = profile.name;
       userDisplay.setAttribute(
         "href",
-        `./src/pages/profilePage/profilePage.html?name=${profile.name}`,
+        `/js2-camilla-furuknappen-larsen/src/pages/profilePage/profilePage.html?name=${profile.name}`,
       );
 
       const authorImgDiv = document.createElement("div");
       authorImgDiv.classList.add("img-div");
       const userImage = document.createElement("img") as HTMLImageElement;
       if (profile.avatar) {
-        //TODO: default image wont work
         userImage.src = profile.avatar?.url;
-        // ?? defaultUserImage;
         userImage.alt = profile.avatar?.alt ?? "No alt-text provided";
       }
 

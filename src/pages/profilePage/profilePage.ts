@@ -9,12 +9,9 @@ import { getOneProfile } from "../../hooks/profiles/getOneProfile";
 // import { getAllPosts } from "../../hooks/getPosts";
 // import "../../style/cards.css";
 
-//TODO BK HELP - red lines, fikset men se om ikke registerreponse er det samme som profile
 async function renderProfilepage() {
   const urlParams = new URLSearchParams(window.location.search);
   let profileName = urlParams.get("name");
-
- 
 
   if (profileName === null) {
     const user: RegisterResponse | null = localStorageUtil.load("user");
@@ -25,7 +22,8 @@ async function renderProfilepage() {
       return;
     }
   }
- const profilePostsContainer = document.getElementById(
+
+  const profilePostsContainer = document.getElementById(
     "profile-posts-container",
   ) as HTMLDivElement;
 
@@ -44,9 +42,8 @@ async function renderProfilepage() {
 
     const bannerImg = document.createElement("img") as HTMLImageElement;
     if (profile.banner) {
-      //TODO: default image wont work
       bannerImg.src = profile.banner?.url;
-      // ?? defaultUserImage;
+
       bannerImg.alt = profile.banner?.alt ?? "No alt-text provided";
     }
 
@@ -56,9 +53,8 @@ async function renderProfilepage() {
     const userImage = document.createElement("img") as HTMLImageElement;
 
     if (profile.avatar) {
-      //TODO: default image wont work
       userImage.src = profile.avatar?.url;
-      // ?? defaultUserImage;
+
       userImage.alt = profile.avatar?.alt ?? "No alt-text provided";
     }
     profileImgDiv.append(userImage);
@@ -70,14 +66,16 @@ async function renderProfilepage() {
     profileNameElement.textContent = profile.name;
 
     // const postParent = document.getElementById("post-parent") as HTMLElement;
-  const infoDiv = document.getElementById("info-profile-div") as HTMLParagraphElement
+    const infoDiv = document.getElementById(
+      "info-profile-div",
+    ) as HTMLParagraphElement;
     const resultPost = await getProfilePosts(profileName);
     if (resultPost.ok) {
-        if(resultPost.value.data.length == 0 ){
-         infoDiv.style.marginTop = "2rem"
-           infoDiv.textContent = "This profile has no posts yet"
-        }
-        
+      if (resultPost.value.data.length == 0) {
+        infoDiv.style.marginTop = "2rem";
+        infoDiv.textContent = "This profile has no posts yet";
+      }
+
       displayProfilePosts(resultPost.value.data, profilePostsContainer);
       function displayProfilePosts(posts: Post[], postsParent: HTMLElement) {
         postsParent.innerHTML = "";
@@ -86,12 +84,11 @@ async function renderProfilepage() {
         });
       }
     } else {
-      console.log("error1")
-       infoDiv.textContent = resultPost.error.message;
-  }
-    
+      console.log("error1");
+      infoDiv.textContent = resultPost.error.message;
+    }
   } else {
-     console.log("error2")
+    console.log("error2");
     profilePostsContainer.textContent = result.error.message;
   }
 }

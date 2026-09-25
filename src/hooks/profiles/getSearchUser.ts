@@ -2,7 +2,7 @@
 import { get } from "../../api/apiClient";
 import type { Result } from "../../utils/result";
 import type { Profile } from "./unfollowProfile";
-//TODO: not in use
+
 
 type SearchResponse ={
   data: Profile,

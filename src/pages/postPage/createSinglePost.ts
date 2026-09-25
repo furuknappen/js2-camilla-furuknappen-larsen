@@ -52,7 +52,6 @@ export function createSinglePost(
       post.author.name,
       post.created,
       async () => {
-        //TODO: noe feil med denne? tricky delete
        const result = await deletePost(post.id);
         if (result.ok) {
           return;
@@ -91,10 +90,9 @@ export function createSinglePost(
     if (data.comment == "") return;
 
     const result = await postComment(data.comment, post.id);
-//TODO: noe feil her? result.value??
+
     if (result.ok) {
       window.location.reload();
-      return result.value
     } else {
       commentForm.append(result.error.message);
     }

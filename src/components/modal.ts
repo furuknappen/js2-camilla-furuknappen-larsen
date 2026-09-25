@@ -13,7 +13,6 @@ export function createModal(
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-labelledby", "modal-heading");
   dialog.classList.add("modal", "border");
-  //TODO: endre navn på modal
   dialog.id = "login-modal";
 
   const header = document.createElement("h3");
