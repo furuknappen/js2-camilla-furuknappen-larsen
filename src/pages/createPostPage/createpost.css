@@ -3,14 +3,13 @@
 } */
 
 #create-post-main {
-
   padding-top: 7rem;
   display: flex;
   margin-inline: auto;
   margin-block: auto;
   /* width: 50rem; */
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
 
 #button-div {
@@ -22,7 +21,7 @@
 
 #create-post-main input {
   width: 100%;
-  padding: 0.5rem
+  padding: 0.5rem;
 }
 
 #new-post-submit-btn {
@@ -32,8 +31,7 @@
   border-radius: 7px;
   padding-inline: 0.5rem;
   padding-block: 1rem;
-  width:15rem
-
+  width: 15rem;
 }
 #create-new-post-form textarea {
   padding: 0.5rem;
@@ -47,14 +45,13 @@
   gap: 2rem;
   width: 100%;
   padding-inline: 1rem;
-  padding-top: 2rem
+  padding-top: 2rem;
 }
 
-#cancel-create-btn {}
 
-@media (min-width: 768px){
+
+@media (min-width: 768px) {
   #create-post-main {
-  width: 34rem;
-
-}
+    width: 34rem;
+  }
 }

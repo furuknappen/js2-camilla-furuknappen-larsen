@@ -3,7 +3,7 @@
   flex-direction: row;
   padding-bottom: 0.3rem;
   padding-left: 0.5rem;
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .post-header .avatar img {
@@ -19,24 +19,20 @@
   margin-left: 0.7rem;
 }
 
-
-
 /* .header-author {
   /* padding-block: 0rem */
 
-
 .time {
   color: #808080;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 0.9rem;
 }
 
-.follow-btn{
+.follow-btn {
   margin-left: 2rem;
   font-weight: 700;
-  color: var(--main-color) 
+  color: var(--main-color);
 }
-
 
 .follow-btn,
 .edit-btn,
@@ -49,23 +45,22 @@
   margin-right: 2rem;
 }
 
-.edit-btn{
+.edit-btn {
   margin-inline: auto 1rem;
 }
 
 @media (min-width: 768px) {
   .post-header {
-  padding-bottom: 2rem;
-  padding-left: 1.5rem;
-  padding-top: 0.5rem;
+    padding-bottom: 2rem;
+    padding-left: 1.5rem;
+    padding-top: 0.5rem;
+  }
 
-}
-
-.time {
-  font-size: 1rem;
-}
+  .time {
+    font-size: 1rem;
+  }
 }
 /* .reply-div{
 background-color: red;
 /* border: 2px solid rgb(70, 86, 139) */
-/* } */ 
+/* } */

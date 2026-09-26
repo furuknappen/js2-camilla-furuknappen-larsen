@@ -2,7 +2,6 @@ import { getSinglePost } from "../../hooks/getSinglePost";
 // import type { Post } from "../../hooks/getAllPosts";
 import { createSinglePost } from "./createSinglePost";
 // import { type PostWithComentsAndAuthor } from "./getSinglePost";
-console.log("Post Page");
 
 const urlParams = new URLSearchParams(window.location.search);
 const postIdRaw = urlParams.get("id");
@@ -10,10 +9,9 @@ const postIdRaw = urlParams.get("id");
 const postId = Number(postIdRaw);
 const postParent = document.getElementById("post-parent") as HTMLElement;
 
-
 const invalidNumber = Number.isNaN(postId);
 if (!postIdRaw || invalidNumber) {
-postParent.textContent = `Could not find post with ID ${postIdRaw}`
+  postParent.textContent = `Could not find post with ID ${postIdRaw}`;
 }
 
 if (postIdRaw && !invalidNumber) {
@@ -25,7 +23,6 @@ if (postIdRaw && !invalidNumber) {
     postParent.textContent = result.error.message;
   }
 }
-
 
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links") as HTMLUListElement;
@@ -40,7 +37,4 @@ hamburger?.addEventListener("click", () => {
 });
 
 const profilePageLink = document.getElementById("profile-page-link");
-profilePageLink?.setAttribute(
-  "href",
-  "../profilePage/profilePage.html",
-);
+profilePageLink?.setAttribute("href", "../profilePage/profilePage.html");

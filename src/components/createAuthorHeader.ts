@@ -19,11 +19,11 @@ import { renderEditModal } from "./renderEditModal";
 /**
  * Renders the header for a post.
  * this component is reused across multiple pages with different linkdestinations
- * @param {Avatar} avatar 
+ * @param {Avatar} avatar
  * @param {string} name
- * @param {string} created 
- * @param {() => void | Promise<void>} actionBtnFunction 
- * @param {Post} [post] 
+ * @param {string} created
+ * @param {() => void | Promise<void>} actionBtnFunction
+ * @param {Post} [post]
  * @param {string} [updated]
  * @param {string} [href ]
  * @returns {HTMLDivElement}
@@ -63,8 +63,7 @@ export function createAuthorHeader(
   const followBtn = document.createElement("button");
   followBtn.classList.add("follow-btn");
   followBtn.textContent = "Follow";
-  followBtn.setAttribute("data-author-name", post?.author.name || "" )
-
+  followBtn.setAttribute("data-author-name", post?.author.name || "");
 
   const getfollowing =
     localStorageUtil.load<FollowProfileResponse>("following");
@@ -75,25 +74,23 @@ export function createAuthorHeader(
       (e: Profile) => e.name === name,
     );
     if (followedProfile) {
-
       followBtn.textContent = "Unfollow";
     }
   }
- 
+
   followBtn.addEventListener("click", async (e) => {
     const isFollowing = followBtn.textContent === "Follow" ? true : false;
     e.preventDefault();
-    console.log(followBtn.textContent);
-
-    document.querySelectorAll(`[data-author-name="${post?.author.name}"`).forEach((element)=> {
-      element.textContent = isFollowing ? "Unfollow" : "Follow";
-    })
-    
+    document
+      .querySelectorAll(`[data-author-name="${post?.author.name}"`)
+      .forEach((element) => {
+        element.textContent = isFollowing ? "Unfollow" : "Follow";
+      });
 
     if (isFollowing) {
       const result = await followProfile(name);
       if (result.ok) {
-   renderFollowingSection();
+        renderFollowingSection();
 
         return result.value;
       } else {
@@ -102,7 +99,7 @@ export function createAuthorHeader(
     } else {
       const result = await unfollowProfile(name);
       if (result.ok) {
-           renderFollowingSection();
+        renderFollowingSection();
         return;
       } else {
         followBtn.after(result.error.message);
@@ -173,7 +170,6 @@ export function createAuthorHeader(
     editButton.append(editImg);
 
     editButton?.addEventListener("click", () => {
-
       if (post) {
         renderEditModal(post);
       }

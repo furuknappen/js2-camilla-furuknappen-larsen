@@ -15,11 +15,10 @@ export function formatTime(time: string): string {
   );
 
   if (timePassed < 24) {
-  return `${timePassed} hours ago`;
+    return `${timePassed} hours ago`;
   }
 
   const timeOptions = {
-    // weekday: "short",
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -29,19 +28,8 @@ export function formatTime(time: string): string {
   } as const;
 
   const formattedDate = new Intl.DateTimeFormat("en-UK", timeOptions);
-  // console.log()
+
   const manipulatedTime = formattedDate.format(timeCreated);
-
-
-  //
-  // timeEdited.classList.add("time");
-  // finnes en bedre løsning enn denne
-  // timeEdited.style.display = "block";
-
-  // if (post.updated !== post.created) {
-  //   const formatedTimeEdited = formatTime(post.updated);
-  //   timeEdited.textContent = `Updated: ${formatedTimeEdited}`;
-  // }
 
   return manipulatedTime;
 }

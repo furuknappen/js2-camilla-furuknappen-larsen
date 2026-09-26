@@ -2,9 +2,6 @@ import { get } from "../../api/apiClient";
 import type { Result } from "../../utils/result";
 import type { FollowProfileResponse } from "./unfollowProfile";
 
-
-
-
 export async function getAllProfiles(): Promise<
   Result<FollowProfileResponse, Error>
 > {
@@ -26,5 +23,3 @@ export async function getAllProfiles(): Promise<
     };
   }
 }
-
-

@@ -6,6 +6,7 @@ import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
+  { ignores: ["dist/**", "node_modules/**", "package-lock.json"] },
   {
     rules: {
       "no-unused-vars": "off",
@@ -32,9 +33,10 @@ export default defineConfig([
       "css/no-invalid-properties": [
         "warn",
         {
-          ignoreProperties: ["/^--/"],
+          allowUnknownVariables: true,
         },
       ],
+      "css/use-baseline": "off",
     },
   },
 ]);

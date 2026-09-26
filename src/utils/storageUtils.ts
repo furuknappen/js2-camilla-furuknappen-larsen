@@ -1,4 +1,3 @@
-
 const createStorage = (storageType: "local" | "session") => {
   const store = storageType == "local" ? localStorage : sessionStorage;
   return {
@@ -19,7 +18,7 @@ const createStorage = (storageType: "local" | "session") => {
 
     remove(key: string): void {
       store.removeItem(key);
-    }
+    },
   };
 };
 

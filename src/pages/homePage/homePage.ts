@@ -12,21 +12,15 @@ import { LogOut } from "../../utils/logOut";
 
 startScrollTracking();
 
-const userdata = localStorageUtil.load("user");
-
-console.log(userdata);
-
 const accessToken = localStorageUtil.load("accessToken");
-console.log("accessToken ", accessToken);
 
 if (!accessToken) {
-  window.location.href = "/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html";
+  window.location.href =
+    "/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html";
 }
 
 const postsParent = document.getElementById("posts-parent") as HTMLElement;
-// const createpostBtn = document.getElementById("create-post-btn") as HTMLAnchorElement
 
-console.log("homepage ts");
 const postSearchField = document.getElementById(
   "post-search-field",
 ) as HTMLInputElement;
@@ -50,7 +44,7 @@ postSearchField?.addEventListener("input", async () => {
       noResultInfo.textContent = `Found no posts is containing ${query}`;
       postSearchField.after(noResultInfo);
     }
-    console.log(resultSearch.value.data);
+
     renderPosts(resultSearch.value.data);
   } else {
     const searchErrorDiv = document.getElementById(
@@ -80,7 +74,6 @@ const navLinks = document.querySelector(".nav-links") as HTMLUListElement;
 const followingMobile = document.querySelector(
   "#following-container-mobile",
 ) as HTMLDivElement;
-// const followingMob = document.querySelector("#following-container-mob") as HTMLDivElement
 hamburger?.addEventListener("click", () => {
   navLinks.style.display = navLinks.style.display === "none" ? "flex" : "none";
   followingMobile.style.display =
@@ -93,5 +86,4 @@ profilePageLink?.setAttribute(
   "/js2-camilla-furuknappen-larsen/src/pages/profilePage/profilePage.html",
 );
 
-LogOut()
-
+LogOut();

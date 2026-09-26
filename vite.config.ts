@@ -19,7 +19,10 @@ export default defineConfig({
           import.meta.dirname,
           "src/pages/profilePage/profilePage.html",
         ),
-        login: path.resolve(import.meta.dirname, "src/pages/loginPage/login.html"),
+        login: path.resolve(
+          import.meta.dirname,
+          "src/pages/loginPage/login.html",
+        ),
         register: path.resolve(
           import.meta.dirname,
           "src/pages/registerPage/registerPage.html",

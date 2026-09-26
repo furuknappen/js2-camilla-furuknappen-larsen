@@ -13,19 +13,22 @@ export type UpdateRequest = {
   } | null;
 };
 
-
 type UpdateResponse = {
-  data: Post[],
-  meta: object
-}
+  data: Post[];
+  meta: object;
+};
 
-
-
-export async function putUpdatePost(id: number, updateRequest: UpdateRequest): Promise<Result<UpdateResponse, Error>> {
+export async function putUpdatePost(
+  id: number,
+  updateRequest: UpdateRequest,
+): Promise<Result<UpdateResponse, Error>> {
   try {
-    const response = await put<UpdateResponse>(`/social/posts/${id}`, updateRequest);
+    const response = await put<UpdateResponse>(
+      `/social/posts/${id}`,
+      updateRequest,
+    );
 
-     if (!response) {
+    if (!response) {
       return {
         ok: false,
         error: new Error("No response was recieved"),
@@ -34,9 +37,9 @@ export async function putUpdatePost(id: number, updateRequest: UpdateRequest): P
 
     return { ok: true, value: response };
   } catch (error: unknown) {
-    return{
+    return {
       ok: false,
-      error: error as Error
-    }
+      error: error as Error,
+    };
   }
 }

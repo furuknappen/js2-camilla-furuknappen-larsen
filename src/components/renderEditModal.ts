@@ -5,7 +5,6 @@ import { putUpdatePost, type UpdateRequest } from "../hooks/getUpdatePost";
 import "../style/edit-dialog.css";
 
 export function renderEditModal(post: Post) {
-  console.log(post);
   const editDialog = document.createElement("dialog");
   editDialog.classList.add("edit-dialog");
   const dialogTitle = document.createElement("h1");

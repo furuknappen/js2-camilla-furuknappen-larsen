@@ -1,5 +1,3 @@
-
-
 export function cleanUpTags(tags: string[]) {
   // const tags = post.tags as string[];
   const tagPill = document.createElement("span");

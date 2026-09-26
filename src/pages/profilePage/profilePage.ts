@@ -11,7 +11,6 @@ async function renderProfilepage() {
 
   if (profileName === null) {
     const user: RegisterResponse | null = localStorageUtil.load("user");
-    // console.log("user", user.data.name)
     if (user) {
       profileName = user.data.name;
     } else {
@@ -29,7 +28,6 @@ async function renderProfilepage() {
 
   const result = await getOneProfile(profileName);
   if (result.ok) {
-    console.log("input", result.value.data);
     const profile = result.value.data;
 
     const bannerContainer = document.getElementById(
@@ -61,7 +59,6 @@ async function renderProfilepage() {
     profileNameElement.classList.add("profile-name");
     profileNameElement.textContent = profile.name;
 
-    // const postParent = document.getElementById("post-parent") as HTMLElement;
     const infoDiv = document.getElementById(
       "info-profile-div",
     ) as HTMLParagraphElement;
@@ -80,11 +77,9 @@ async function renderProfilepage() {
         });
       }
     } else {
-      console.log("error1");
       infoDiv.textContent = resultPost.error.message;
     }
   } else {
-    console.log("error2");
     profilePostsContainer.textContent = result.error.message;
   }
 }

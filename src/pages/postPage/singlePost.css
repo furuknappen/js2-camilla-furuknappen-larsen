@@ -1,10 +1,7 @@
-
-
 .post {
   /* display: inline-block  */
   /* background-color: rgb(245, 245, 245); */
   margin-inline: 0rem;
-
 }
 
 .post-container {
@@ -15,7 +12,6 @@
   border-top: 1px solid rgb(197, 195, 195);
   border-bottom: 1px solid rgb(197, 195, 195);
   padding-top: 1rem;
-
 }
 
 /* .post-header {
@@ -49,21 +45,19 @@
   font-size: 0.9rem;
 } */
 
-
 .post h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.2rem;
-    margin-inline: 1rem;
-    margin-bottom: 0.5rem;
+  margin-inline: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .post .body {
   color: black;
   font-family: Arial, Helvetica, sans-serif;
   padding-top: 0.1rem;
-    margin-inline: 1rem;
+  margin-inline: 1rem;
 }
-
 
 .post .tagDiv {
   color: rgb(156, 156, 156);
@@ -80,8 +74,8 @@
 
 /* 
 .comment-div{ */
-  /* border: 2px solid red; */
-  /* border-bottom: 1px solid gray;
+/* border: 2px solid red; */
+/* border-bottom: 1px solid gray;
   margin-bottom: 0.5rem
 }
 
@@ -100,7 +94,6 @@
 @media (min-width: 768px) {
   #post-parent {
     margin-inline: 30%;
-
   }
 
   .post-container {
@@ -116,11 +109,9 @@
   /* #post-parent p, */
   #post-parent .tagDiv {
     margin-inline: 0.8rem;
-
   }
 
   /* #post-parent .time {} */
-
 }
 
 /* #post-parent p{

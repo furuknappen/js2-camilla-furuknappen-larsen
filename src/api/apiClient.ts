@@ -7,30 +7,20 @@ interface ApiClientOptions extends Omit<RequestInit, "body"> {
   body?: unknown;
 }
 
-// interface ApiErrorResponse {
-//   errors?: { message: string }[];
-// }
-
 async function apiClient<T = unknown>(
   endpoint: string,
   options: ApiClientOptions = {},
 ): Promise<T | null> {
   const { body, ...customOptions } = options;
 
-  // Retrieve auth info from storage
+  const apiKey = "e5f9875a-30a9-4ed7-9e21-8132c86725c0";
 
-  const apiKey = "e5f9875a-30a9-4ed7-9e21-8132c86725c0"
-  // localStorage.getItem("apiKey"); 
-  // Your Noroff API key
+  const accessToken = localStorageUtil.load<string>("accessToken");
 
-  const accessToken =  localStorageUtil.load<string> ("accessToken");
-   // The user's login token
-//  console.log("accesstoken... ", accessToken)
   const headers: HeadersInit = {
     "Content-Type": "application/json",
     Accept: "application/json",
     From: "camlar06341@stud.noroff.no",
-    // "User-Agent": "Mozilla/5.0",
     ...(apiKey && { "X-Noroff-API-Key": apiKey }),
     ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
     ...customOptions.headers,
@@ -45,8 +35,6 @@ async function apiClient<T = unknown>(
 
   try {
     const response = await fetch(BASE_URL + endpoint, config);
-
-    // If the response has no content (e.g., a 204 No Content), we don't try to parse it
     if (response.status === 204) {
       if (!response.ok) {
         throw new ApiError(`HTTP Error: ${response.status}`, response.status);
@@ -65,12 +53,11 @@ async function apiClient<T = unknown>(
     return responseData as T;
   } catch (error) {
     console.error("API Client Error:", error);
-    // Re-throw the error so the calling code can handle it
+
     throw error;
   }
 }
 
-// Now we can export helper methods
 export const get = <T = unknown>(endpoint: string): Promise<T | null> =>
   apiClient<T>(endpoint);
 

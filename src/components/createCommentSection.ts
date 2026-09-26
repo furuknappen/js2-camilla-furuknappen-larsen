@@ -19,16 +19,16 @@ export function createComment(comment: Comment): HTMLDivElement {
       if (result.ok) {
         return result.value;
       } else {
-       
-        const postParentDiv =  document.getElementById("post-parent") as HTMLDivElement;
+        const postParentDiv = document.getElementById(
+          "post-parent",
+        ) as HTMLDivElement;
         postParentDiv.textContent = result.error.message;
       }
     },
     undefined,
     undefined,
-    "../profilePage/profilePage.html"
+    "../profilePage/profilePage.html",
   );
-
 
   const replyBtn = document.createElement("button") as HTMLButtonElement;
   replyBtn.classList.add("reply-btn");
@@ -37,7 +37,7 @@ export function createComment(comment: Comment): HTMLDivElement {
   replyDiv.classList.add("reply-comment");
   if (comment.replyToId) {
     commentDiv.classList.add("reply-div");
-  
+
     replyDiv.append(header, commentBody, replyBtn);
     commentDiv.append(replyDiv);
   } else {

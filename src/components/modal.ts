@@ -1,13 +1,12 @@
-import "../style/modal.css"
-
+import "../style/modal.css";
 
 /**
  * Creates a costumizable modal with an actionbutton
- * @param heading 
- * @param message 
- * @param buttonText 
- * @param actionBtnFunction 
- * @param secondFunction 
+ * @param heading
+ * @param message
+ * @param buttonText
+ * @param actionBtnFunction
+ * @param secondFunction
  */
 
 export function createModal(
@@ -15,7 +14,7 @@ export function createModal(
   message: string,
   buttonText: string,
   actionBtnFunction: () => void | Promise<void>,
-  secondFunction?: () => void 
+  secondFunction?: () => void,
 ) {
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-labelledby", "modal-heading");
@@ -46,10 +45,10 @@ export function createModal(
 
   actionBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-  
+
     await actionBtnFunction();
-    if(secondFunction){
-     secondFunction()
+    if (secondFunction) {
+      secondFunction();
     }
     dialog.close();
   });

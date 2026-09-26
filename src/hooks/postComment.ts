@@ -11,17 +11,20 @@ type CommentResponse = {
   meta: object;
 };
 
-
-
-export async function postComment(comment: string, postId:number, replyToId?: number): Promise<Result<CommentResponse, Error>> {
- try {
-   const request: CommentRequest = {
-    body: comment,
-    replyToId: replyToId 
-   }
+export async function postComment(
+  comment: string,
+  postId: number,
+  replyToId?: number,
+): Promise<Result<CommentResponse, Error>> {
+  try {
+    const request: CommentRequest = {
+      body: comment,
+      replyToId: replyToId,
+    };
 
     const response = await post<CommentResponse>(
-      `/social/posts/${postId}/comment`, request
+      `/social/posts/${postId}/comment`,
+      request,
     );
 
     if (!response) {
@@ -33,10 +36,9 @@ export async function postComment(comment: string, postId:number, replyToId?: nu
 
     return { ok: true, value: response };
   } catch (error: unknown) {
-    return{
+    return {
       ok: false,
-      error: error as Error
-    }
+      error: error as Error,
+    };
   }
-
 }

@@ -1,59 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/style/global.css" />
+    <link rel="stylesheet" href="/src/style/header.css" />
+    <link rel="stylesheet" href="/src/style/homePage.css" />
+    <title>Sociable | Homepage</title>
+  </head>
 
-  <link rel="stylesheet" href="/src/style/global.css" />
-  <link rel="stylesheet" href="/src/style/header.css" />
-  <link rel="stylesheet" href="/src/style/homePage.css" />
-  <title>Sociable | Homepage</title>
-</head>
+  <body>
+    <nav class="nav">
+      <div class="hamburger">
+        <img src="./src/assets/hamburger-menu.svg" class="svg-icon" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="/js2-camilla-furuknappen-larsen/">Home </a></li>
+        <li><a id="profile-page-link" href="">Profile Page</a></li>
+        <li><button id="log-out-btn">Log out</button></li>
+      </ul>
+      <div id="following-container-mobile">
+        <h3>You're Following</h3>
 
-<body>
-  <nav class="nav">
-    <div class="hamburger">
-      <img src="./src/assets/hamburger-menu.svg" class="svg-icon">
-    </div>
-    <ul class="nav-links">
-      <li> <a href="/js2-camilla-furuknappen-larsen/">Home </a></li>
-      <li> <a id="profile-page-link" href="">Profile Page</a></li>
-      <li> <button id="log-out-btn"> Log out </button></li>
-    </ul>
-    <div id="following-container-mobile">
-      <h3>You're Following</h3>
+        <div id="following-container" class="following"></div>
+      </div>
+    </nav>
 
-      <div id="following-container" class="following"></div>
-    </div>
-  </nav>
+    <aside id="following-aside">
+      <!-- <input type="text" id="search-following"> -->
+      <div id="following-container" class="following">
+        <!-- Where the users you follow are -->
+      </div>
+    </aside>
 
-
-  <aside id="following-aside">
-    <!-- <input type="text" id="search-following"> -->
-    <div id="following-container" class="following">
-      <!-- Where the users you follow are -->
-    </div>
-  </aside>
-
-
-  <main id="homepage-main">
-    <div id="search-add-div">
-      <a id="create-post-btn" href="/js2-camilla-furuknappen-larsen/src/pages/createPostPage/createpost.html">Create new post</a> <input type="text"
-        id="post-search-field" placeholder="Search for post">
+    <main id="homepage-main">
+      <div id="search-add-div">
+        <a
+          id="create-post-btn"
+          href="/js2-camilla-furuknappen-larsen/src/pages/createPostPage/createpost.html"
+          >Create new post</a
+        >
+        <input
+          type="text"
+          id="post-search-field"
+          placeholder="Search for post"
+        />
         <div id="search-error-div"></div>
-    </div>
+      </div>
 
-    <section id="posts-parent" class="post"></section>
-    <div class="btn-div">
-      <button id="prev-btn"> Previous Page</button>
-          <button id="next-btn">Next Page</button>
-    </div>
-    </section>
-  </main>
-  <script type="module" src="./src/pages/homePage/homePage.ts"></script>
-  <script type="module" src="./src/components/asideFollowing.ts"></script>
-  <script type="module" src="./src/components/pagination.ts"></script>
-</body>
-
+      <section id="posts-parent" class="post"></section>
+      <div class="btn-div">
+        <button id="prev-btn">Previous Page</button>
+        <button id="next-btn">Next Page</button>
+      </div>
+    </main>
+    <script type="module" src="./src/pages/homePage/homePage.ts"></script>
+    <script type="module" src="./src/components/asideFollowing.ts"></script>
+    <script type="module" src="./src/components/pagination.ts"></script>
+  </body>
 </html>

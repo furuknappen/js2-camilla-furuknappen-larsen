@@ -4,30 +4,29 @@
   justify-self: center;
   align-self: center;
   color: var(--text-color-dark);
-
 }
 
 .modal::backdrop {
-  background-color: hsla(240, 20%, 36%, 0.6)
+  background-color: hsla(240, 20%, 36%, 0.6);
 }
 
 .modal h3 {
   font-size: 2rem;
   font-weight: 400;
-  font-family: var(--main-font)
+  font-family: var(--main-font);
 }
 
 .modal p {
   padding-block: 2rem 3rem;
   font-size: 1rem;
-  font-family: var(--main-font)
+  font-family: var(--main-font);
 }
 
 .buttons-div {
   /* padding: 3rem */
   display: flex;
   justify-content: space-around;
-  gap: 2rem
+  gap: 2rem;
 }
 
 .action-btn {
@@ -56,14 +55,11 @@
 
 /* .............. iPads (tablets) - Landscape ............ */
 @media (min-width: 768px) {
-
   .modal {
     padding: 3em 5rem;
   }
 
   .buttons-div {
-    gap: 2rem
+    gap: 2rem;
   }
-
-
 }

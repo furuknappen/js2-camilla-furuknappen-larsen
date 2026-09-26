@@ -13,23 +13,20 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
 }
 
 .update-form input {
   padding: 0.5rem;
-  margin-bottom: 0rem
+  margin-bottom: 0rem;
 }
 
-.post-body{
+.post-body {
   /* height: 400px; */
   padding: 0.5rem;
   resize: vertical;
 }
 
-
-
-.update-form label{
+.update-form label {
   margin-top: 1rem;
 }
 .submit-button {
@@ -37,7 +34,7 @@
   background-color: var(--main-color);
   color: var(--text-light);
   border-radius: 7px;
-  padding: 0.5rem
+  padding: 0.5rem;
 }
 
 .cancel-btn {
@@ -45,18 +42,18 @@
   background-color: transparent;
   color: gray;
   border-radius: 7px;
-  padding: 0.5rem
+  padding: 0.5rem;
 }
 
 @media (min-width: 768px) {
   .edit-dialog {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  border: 2px solid rgb(204, 199, 199);
-  border-radius: 8px;
-  margin-inline: auto;
-  margin-block: auto;
-  width: 30rem;
-}
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 2px solid rgb(204, 199, 199);
+    border-radius: 8px;
+    margin-inline: auto;
+    margin-block: auto;
+    width: 30rem;
+  }
 }

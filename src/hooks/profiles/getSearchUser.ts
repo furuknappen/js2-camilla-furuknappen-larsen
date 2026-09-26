@@ -1,20 +1,21 @@
-
 import { get } from "../../api/apiClient";
 import type { Result } from "../../utils/result";
 import type { Profile } from "./unfollowProfile";
 
+type SearchResponse = {
+  data: Profile;
+  meta: object;
+};
 
-type SearchResponse ={
-  data: Profile,
-  meta: object
-
-}
-
-export async function getSearchUser(query: string): Promise<Result<SearchResponse, Error>> {
+export async function getSearchUser(
+  query: string,
+): Promise<Result<SearchResponse, Error>> {
   try {
-    const response = await get<SearchResponse>(`/social/profiles/search?q=${encodeURIComponent(query)}&_author=true&_reactions=true`);
+    const response = await get<SearchResponse>(
+      `/social/profiles/search?q=${encodeURIComponent(query)}&_author=true&_reactions=true`,
+    );
 
- if (!response) {
+    if (!response) {
       return {
         ok: false,
         error: new Error("No response was recieved from API"),
@@ -23,9 +24,9 @@ export async function getSearchUser(query: string): Promise<Result<SearchRespons
 
     return { ok: true, value: response };
   } catch (error: unknown) {
-    return{
+    return {
       ok: false,
-      error: error as Error
-    }
+      error: error as Error,
+    };
   }
 }

@@ -1,26 +1,11 @@
-// import type {
-//   FollowProfileResponse,
-//   Profile,
-// } from "../hooks/profiles/follow-unfollow-profile";
 import { localStorageUtil } from "../utils/storageUtils";
 import "../style/aside-following.css";
 import { getAllFollowingProfiles } from "../hooks/profiles/getAllFollowingProfiles";
 import type { LoginResponse } from "../api/authService";
-// import { getSearchUser } from "../hooks/profiles/getSearchUser";
-
-// const followingSearchField = document.getElementById(
-//   "search-following",
-// ) as HTMLInputElement;
 
 const followingContainerDesktop = document.getElementById(
   "following-container",
 ) as HTMLDivElement;
-
-// let noResultInfo: HTMLParagraphElement | null;
-// const followingRaw:  =FollowProfileResponse
-
-// const followingArray  = localStorageUtil.load<FollowProfileResponse>("following")?.data.following;
-// console.log("youre following: ", followingArray);
 
 export async function renderFollowingSection() {
   const userdata: LoginResponse = JSON.parse(
@@ -28,11 +13,10 @@ export async function renderFollowingSection() {
   );
   const result = await getAllFollowingProfiles(userdata.data.name);
   if (result.ok) {
-
-    if(result.value.data.following.length == 0){
-       const followingcontainerMobile = document.getElementById(
-      "following-container-mobile",
-    ) as HTMLDivElement;
+    if (result.value.data.following.length == 0) {
+      const followingcontainerMobile = document.getElementById(
+        "following-container-mobile",
+      ) as HTMLDivElement;
       followingcontainerMobile.style.display = "none";
     }
 
@@ -43,7 +27,7 @@ export async function renderFollowingSection() {
     followingContainerDesktop.innerHTML = "";
 
     result.value.data.following.forEach((profile) => {
-      const userDisplay = document.createElement("a") as HTMLAnchorElement
+      const userDisplay = document.createElement("a") as HTMLAnchorElement;
       userDisplay.classList.add("user-display");
       const userName = document.createElement("div");
       userName.textContent = profile.name;
@@ -64,8 +48,6 @@ export async function renderFollowingSection() {
       userDisplay.append(authorImgDiv, userName);
 
       moveFollowingOnResize(userDisplay);
-
-
     });
   } else {
     followingContainerDesktop.textContent = result.error.message;
@@ -93,26 +75,4 @@ function moveFollowingOnResize(userDisplay: HTMLAnchorElement) {
   window.addEventListener("resize", updatePosition);
 }
 
-// if (followingArray) {
-//   renderFollowingSection(followingArray);
-// }
 renderFollowingSection();
-// followingSearchField?.addEventListener("input", async () => {
-//   if (followingSearchField.value == "") {
-//     return;
-//   }
-//   noResultInfo?.remove();
-//   noResultInfo = null;
-
-//   const query = followingSearchField.value.trim();
-
-//   const response = await getSearchUser(query);
-
-//   if (response.data.length === 0) {
-//     noResultInfo = document.createElement("p");
-//     noResultInfo.textContent = "";
-//     noResultInfo.textContent = `No friend with that name found`;
-//     followingSearchField.after(noResultInfo);
-//   }
-//   console.log(response.data);
-// });

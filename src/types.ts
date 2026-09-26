@@ -26,7 +26,6 @@ export type Meta = {
   nextPage: number;
   pageCount: number;
   totalCount: number;
-
 };
 
 export type Author = {
@@ -60,9 +59,3 @@ export type Reaction = {
   reactors: string[];
   symbol: string;
 };
-
-
-
-
-
-

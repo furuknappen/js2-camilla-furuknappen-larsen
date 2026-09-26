@@ -1,11 +1,8 @@
 import { postnewPost, type PostRequest } from "../../hooks/postPost";
-console.log("create new post");
 
 const newPostForm = document.getElementById(
   "create-new-post-form",
 ) as HTMLFormElement;
-
-// const formBtn = document.getElementById("new-post-submit-btn") as HTMLButtonElement
 
 newPostForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -16,10 +13,7 @@ newPostForm.addEventListener("submit", (e) => {
   ) as HTMLTextAreaElement;
   const bodyValue = bodyInput.value;
   const tagInput = document.getElementById("tag-input") as HTMLInputElement;
-  const tagValue = tagInput.value
-  // tagInput.value.join(' ');
-console.log("tagvalue: " , tagValue)
-//  const hashtagArray = tagValue.trim().split(/\s+/).filter(tag => tag.length > 0).map(tag => `#${tag.replace(/^#+/, '')}`).join(' ');
+  const tagValue = tagInput.value;
 
   const imgInput = document.getElementById("img-input") as HTMLInputElement;
   const imgValue = imgInput.value;
@@ -30,18 +24,18 @@ console.log("tagvalue: " , tagValue)
 
   const newPostRequest: PostRequest = {
     title: titleValue,
-    body: bodyValue, 
-    tags: [tagValue], 
+    body: bodyValue,
+    tags: [tagValue],
   };
-  
-  if(imgValue.trim()){
-    newPostRequest.media={
-        url: imgValue,
+
+  if (imgValue.trim()) {
+    newPostRequest.media = {
+      url: imgValue,
       alt: altTextValue,
-    }
+    };
   }
 
   postnewPost(newPostRequest);
 
-  window.location.href = "./index.html";
+  window.location.href = "/js2-camilla-furuknappen-larsen/";
 });

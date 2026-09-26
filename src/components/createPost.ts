@@ -5,11 +5,10 @@ import { cleanUpTags } from "../utils/cleanUpTags";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
 
-
 /**
  * Creates a post, used on multiple pages
- * @param post 
- * @param postsParentContainer 
+ * @param post
+ * @param postsParentContainer
  */
 export function createPost(post: Post, postsParentContainer: HTMLElement) {
   const postContainer = document.createElement("div");
@@ -21,7 +20,7 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   const body = document.createElement("p");
   body.classList.add("body");
   body.textContent = post.body;
-  // console.log(post.id, post._count.comments);
+
   const imgDiv = document.createElement("div") as HTMLDivElement;
   imgDiv.classList.add("imgDiv");
 
@@ -42,11 +41,9 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
 
   commentsAmount.textContent = `Comments: ${post._count.comments}`;
   inteactionContainer.append(commentsAmount);
-  // console.log(post.reactions)
 
   const tagDiv = document.createElement("div");
   tagDiv.classList.add("tagDiv");
-  /// TAGS
 
   if (post.tags.length) {
     const tags = cleanUpTags(post.tags);

@@ -24,7 +24,6 @@ interface RegistrationFormData {
 
 async function onRegisterSubmit(formData: RegistrationData): Promise<void> {
   const result = await registerUser(formData);
-  console.log("User registered successfully:", result);
   if (result.ok) {
     window.location.href = "../loginPage/login.html";
   } else {
@@ -80,8 +79,6 @@ form?.addEventListener("submit", async (e) => {
   const data = Object.fromEntries(formData) as unknown as RegistrationFormData;
 
   const { username, email, imageUrl, imageAlt, password1, password2 } = data;
-
-  console.log(data, username, imageUrl, imageAlt, email, password1, password2);
 
   let hasErrors = false;
 

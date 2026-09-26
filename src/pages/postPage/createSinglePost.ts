@@ -1,18 +1,16 @@
 import type { Post } from "../../types";
-// import "../style/cards.css";
 import "./singlePost.css";
 import { createAuthorHeader } from "../../components/createAuthorHeader";
 import { createComment } from "../../components/createCommentSection";
 import { postComment } from "../../hooks/postComment";
 import { deletePost } from "../../hooks/deletePost";
-/// SINGLE POST
+
 export function createSinglePost(
   post: Post,
   postsParentContainer: HTMLElement,
 ) {
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
-  // postContainer.href = `../postPage/postPage.html?id=${post.id}`;
 
   const title = document.createElement("h2");
   title.textContent = post.title;
@@ -20,7 +18,6 @@ export function createSinglePost(
   const body = document.createElement("p");
   body.classList.add("body");
   body.textContent = post.body;
-  // console.log(post.id, post._count.comments);
   const imgDiv = document.createElement("div") as HTMLDivElement;
   imgDiv.classList.add("imgDiv");
 
@@ -34,7 +31,7 @@ export function createSinglePost(
   imgDiv.append(image);
   const tagDiv = document.createElement("div");
   tagDiv.classList.add("tagDiv");
-  /// TAGS
+
   if (post.tags.length) {
     const tags = post.tags;
     tags.forEach((tag) => {
@@ -52,7 +49,7 @@ export function createSinglePost(
       post.author.name,
       post.created,
       async () => {
-       const result = await deletePost(post.id);
+        const result = await deletePost(post.id);
         if (result.ok) {
           return;
         } else {
@@ -61,14 +58,13 @@ export function createSinglePost(
       },
       post,
       post.updated,
-    "../profilePage/profilePage.html"
+      "../profilePage/profilePage.html",
     );
   }
 
   postContainer.append(postHeader1, title, body, tagDiv, imgDiv);
   postsParentContainer.append(postContainer);
 
-  // const commentInputSection = document.createElement("div")
   const commentForm = document.createElement("form");
   commentForm.classList.add("comment-form");
   const commentInput = document.createElement("input");
@@ -106,7 +102,6 @@ export function createSinglePost(
     commentsContainer.classList.add("comment-section");
     postsParentContainer.append(commentsContainer);
     post.comments.forEach((comment) => {
-      console.log(comment, " comment")
       const commentDiv = createComment(comment);
 
       if (comment.replyToId) {
