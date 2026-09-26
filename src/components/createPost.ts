@@ -5,6 +5,12 @@ import { cleanUpTags } from "../utils/cleanUpTags";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
 
+
+/**
+ * Creates a post, used on multiple pages
+ * @param post 
+ * @param postsParentContainer 
+ */
 export function createPost(post: Post, postsParentContainer: HTMLElement) {
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");

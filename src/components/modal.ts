@@ -1,8 +1,15 @@
 import "../style/modal.css"
 
+
 /**
- * Info: this function takes inn 5 parameters: heading, message, button-text, a function for the actionbutton and the functionparameters
+ * Creates a costumizable modal with an actionbutton
+ * @param heading 
+ * @param message 
+ * @param buttonText 
+ * @param actionBtnFunction 
+ * @param secondFunction 
  */
+
 export function createModal(
   heading: string,
   message: string,

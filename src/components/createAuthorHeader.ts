@@ -16,11 +16,18 @@ import { followProfile } from "../hooks/profiles/followProfile";
 import { renderFollowingSection } from "./asideFollowing";
 import { renderEditModal } from "./renderEditModal";
 
-// import { getAllProfiles } from "../hooks/profiles/getAllProfiles";
-// import {following } from "../pages/homePage/homePage";
-
-// const following:string[] = []
-// localStorageUtil.save("following", following)
+/**
+ * Renders the header for a post.
+ * this component is reused across multiple pages with different linkdestinations
+ * @param {Avatar} avatar 
+ * @param {string} name
+ * @param {string} created 
+ * @param {() => void | Promise<void>} actionBtnFunction 
+ * @param {Post} [post] 
+ * @param {string} [updated]
+ * @param {string} [href ]
+ * @returns {HTMLDivElement}
+ */
 
 export function createAuthorHeader(
   avatar: Avatar,
@@ -86,6 +93,8 @@ export function createAuthorHeader(
     if (isFollowing) {
       const result = await followProfile(name);
       if (result.ok) {
+   renderFollowingSection();
+
         return result.value;
       } else {
         followBtn.after(result.error.message);
@@ -93,6 +102,7 @@ export function createAuthorHeader(
     } else {
       const result = await unfollowProfile(name);
       if (result.ok) {
+           renderFollowingSection();
         return;
       } else {
         followBtn.after(result.error.message);
