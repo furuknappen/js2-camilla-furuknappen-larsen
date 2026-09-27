@@ -1,13 +1,9 @@
-/* textarea {
-  background-color: red
-} */
-
 #create-post-main {
   padding-top: 7rem;
   display: flex;
   margin-inline: auto;
   margin-block: auto;
-  /* width: 50rem; */
+
   flex-direction: column;
   align-items: center;
 }
@@ -22,6 +18,11 @@
 #create-post-main input {
   width: 100%;
   padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#create-post-main label {
+  margin-top: 1rem;
 }
 
 #new-post-submit-btn {
@@ -42,13 +43,10 @@
 #create-new-post-form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   width: 100%;
   padding-inline: 1rem;
   padding-top: 2rem;
 }
-
-
 
 @media (min-width: 768px) {
   #create-post-main {

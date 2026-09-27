@@ -65,7 +65,3 @@ export function createModal(
     dialog.close();
   });
 }
-
-// export function redirectToHomepage(){
-//      window.location.href = "./index.html";
-// }

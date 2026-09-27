@@ -1,6 +1,4 @@
 export function formatTime(time: string): string {
-  // const formatedTimeCreated =
-
   const now = new Date();
   const timeCreated = new Date(time);
 

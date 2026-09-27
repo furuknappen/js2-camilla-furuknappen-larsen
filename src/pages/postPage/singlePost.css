@@ -1,11 +1,8 @@
 .post {
-  /* display: inline-block  */
-  /* background-color: rgb(245, 245, 245); */
   margin-inline: 0rem;
 }
 
 .post-container {
-  /* border: 2px solid red; */
   display: block;
   margin-bottom: 0.5rem;
   background-color: white;
@@ -13,37 +10,6 @@
   border-bottom: 1px solid rgb(197, 195, 195);
   padding-top: 1rem;
 }
-
-/* .post-header {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  font-family:Arial, Helvetica, sans-serif
-}
-
-.post .avatar img {
-  border-radius: 50px;
-  width: 2.5rem
-}
-
-.post-header-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 0.7rem;
-}
-
-
-.header-author {
-  padding-block: 0rem
-}
-
-.post .time {
-  color: gray;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 0.9rem;
-} */
 
 .post h2 {
   font-family: Arial, Helvetica, sans-serif;
@@ -72,24 +38,6 @@
   display: flex;
 }
 
-/* 
-.comment-div{ */
-/* border: 2px solid red; */
-/* border-bottom: 1px solid gray;
-  margin-bottom: 0.5rem
-}
-
-.comment-body {
- font-family: Arial, Helvetica, sans-serif;
-  margin-inline: 1rem;
-  margin-bottom: 1rem
-}
-
-.reply-comment{
-  margin-left: 1rem;
-  border-bottom: none
-} */
-
 /* .............. iPads (tablets) - Landscape ............ */
 @media (min-width: 768px) {
   #post-parent {
@@ -97,7 +45,6 @@
   }
 
   .post-container {
-    /* border: 2px solid red; */
     border: 1px solid rgb(197, 195, 195);
     padding-top: 1rem;
     border-radius: 15px;
@@ -105,32 +52,7 @@
   }
 
   #post-parent h2,
-  /*   */
-  /* #post-parent p, */
   #post-parent .tagDiv {
     margin-inline: 0.8rem;
   }
-
-  /* #post-parent .time {} */
 }
-
-/* #post-parent p{
-
- padding-block: 0.6rem;
-}
-#post-parent img{
-  border-radius: 15px;
-}
-
-} */
-
-/* ............ Desktops ................*/
-/* @media (min-width: 1025px) {
-
-} */
-
-/*............ Large Desktops ................*/
-/* @media (min-width: 2550px) {
-
-
-} */

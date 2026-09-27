@@ -23,7 +23,6 @@
 }
 
 .buttons-div {
-  /* padding: 3rem */
   display: flex;
   justify-content: space-around;
   gap: 2rem;
@@ -41,7 +40,6 @@
 .btn-small {
   background-color: transparent;
   font-size: 1.3rem;
-  /* color: var(--text-color-dark); */
   padding: 0.5rem 1rem;
   border: 2px solid gray;
   border-radius: 8px;

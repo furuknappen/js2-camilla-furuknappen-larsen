@@ -67,11 +67,7 @@ form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   removeDisplayError(usernameField, alertName);
-  removeDisplayError(
-    emailField,
-    alertEmail,
-    "Email must be a Noroff student mail",
-  );
+  removeDisplayError(emailField, alertEmail);
   removeDisplayError(passwordField, alertPassword);
 
   const target = e.currentTarget as HTMLFormElement;

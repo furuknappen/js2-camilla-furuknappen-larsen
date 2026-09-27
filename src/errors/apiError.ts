@@ -5,7 +5,6 @@ export class ApiError extends Error {
     super(message);
     this.name = "ApiError";
     this.status = status;
-    // Maintains proper stack trace for where our error was thrown (required in TS)
     Object.setPrototypeOf(this, ApiError.prototype);
   }
 }

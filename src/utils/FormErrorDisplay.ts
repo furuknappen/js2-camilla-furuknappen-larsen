@@ -14,10 +14,8 @@ export function displayError(
 export function removeDisplayError(
   field: HTMLElement,
   alert: HTMLParagraphElement,
-  message?: string,
 ) {
   field.removeAttribute("aria-invalid");
 
-  // alert.textContent = message;
   alert.classList.remove("alert");
 }

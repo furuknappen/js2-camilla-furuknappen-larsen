@@ -3,11 +3,8 @@
   --main-color: rgb(154, 57, 154);
   --text-light: white;
   --text-dark: rgb(10, 10, 10);
-
   --main-font: arial;
 }
-
-/* rgb(117, 59, 149) */
 
 body {
   margin: 0;
@@ -25,6 +22,7 @@ a {
   text-decoration: none;
   color: black;
 }
+
 li {
   list-style-type: none;
 }

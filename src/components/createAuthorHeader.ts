@@ -151,7 +151,7 @@ export function createAuthorHeader(
         const message = `Do you want to delete this post? This is a permanent action`;
         const actionBtn = "Delete";
         createModal(heading, message, actionBtn, actionBtnFunction, () => {
-          window.location.href = "/index.html";
+          window.location.href = "/js2-camilla-furuknappen-larsen/";
         });
       } else {
         const heading = "Delete?";

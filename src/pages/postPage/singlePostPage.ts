@@ -1,7 +1,6 @@
 import { getSinglePost } from "../../hooks/getSinglePost";
-// import type { Post } from "../../hooks/getAllPosts";
+
 import { createSinglePost } from "./createSinglePost";
-// import { type PostWithComentsAndAuthor } from "./getSinglePost";
 
 const urlParams = new URLSearchParams(window.location.search);
 const postIdRaw = urlParams.get("id");
@@ -29,7 +28,7 @@ const navLinks = document.querySelector(".nav-links") as HTMLUListElement;
 const followingMobile = document.querySelector(
   "#following-container-mobile",
 ) as HTMLDivElement;
-// const followingMob = document.querySelector("#following-container-mob") as HTMLDivElement
+
 hamburger?.addEventListener("click", () => {
   navLinks.style.display = navLinks.style.display === "none" ? "flex" : "none";
   followingMobile.style.display =

@@ -6,7 +6,14 @@ import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { ignores: ["dist/**", "node_modules/**", "package-lock.json"] },
+  {
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      "package-lock.json",
+      "tsconfig.json",
+    ],
+  },
   {
     rules: {
       "no-unused-vars": "off",

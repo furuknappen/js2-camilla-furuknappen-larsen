@@ -1,4 +1,3 @@
-// import { getAllPosts, type Meta } from "../hooks/getAllPosts";
 import type { Meta } from "../types";
 import { getAllPaginatedPosts } from "../hooks/getpaginatedPosts";
 import { renderPosts } from "../pages/homePage/homePage";

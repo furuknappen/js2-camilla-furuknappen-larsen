@@ -1,7 +1,5 @@
 import type { Post } from "../types";
 import { putUpdatePost, type UpdateRequest } from "../hooks/getUpdatePost";
-
-// import { createSinglePost } from "../pages/postPage/createSinglePost";
 import "../style/edit-dialog.css";
 
 export function renderEditModal(post: Post) {
