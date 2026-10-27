@@ -66,15 +66,18 @@ export function renderPosts(posts: Post[]) {
   scrollToPosition();
 }
 
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links") as HTMLUListElement;
+const hamburger = document.querySelector("#hamburger");
+const navLinks = document.querySelector("#nav-links") as HTMLUListElement;
 const followingMobile = document.querySelector(
   "#following-container-mobile",
 ) as HTMLDivElement;
 hamburger?.addEventListener("click", () => {
-  navLinks.style.display = navLinks.style.display === "none" ? "flex" : "none";
-  followingMobile.style.display =
-    followingMobile.style.display === "none" ? "flex" : "none";
+  navLinks?.classList.toggle("hidden");
+  followingMobile?.classList.toggle("hidden")
+
+  // navLinks.style.display = navLinks.style.display === "none" ? "flex" : "none";
+  // followingMobile.style.display =
+  //   followingMobile.style.display === "none" ? "flex" : "none";
 });
 
 const profilePageLink = document.getElementById("profile-page-link");

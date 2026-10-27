@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import path from "path";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   base: "/js2-camilla-furuknappen-larsen/",
@@ -30,4 +31,5 @@ export default defineConfig({
       },
     },
   },
+    plugins: [tailwindcss()],
 });
