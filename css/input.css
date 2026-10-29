@@ -1,0 +1,7 @@
+/* @import "tailwindcss";
+
+@layer components {
+ .input-field{
+  @apply flex rounded-lg bg-transparent ;
+ }
+} */

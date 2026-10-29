@@ -8,26 +8,37 @@
   <link rel="stylesheet" href="/src/style/global.css" />
   <!-- <link rel="stylesheet" href="/src/style/header.css" /> -->
 
-  <link rel="stylesheet" href="/src/style/homePage.css" />
+  <!-- <link rel="stylesheet" href="/src/style/homePage.css" /> -->
 
   <link rel="stylesheet" href="/src/style/input.css" />
   <title>Sociable | Homepage</title>
 </head>
 
 <body>
-  <nav class="bg-red-400 border-b border-gray-300 flex flex-col min-h-10 justify-center">
-    <div class=" block md:hidden " id="hamburger">
+  <nav class=" border-b border-gray-300 flex flex-col min-h-12 justify-center">
+    <div class=" block lg:hidden " id="hamburger">
       <img src="./src/assets/hamburger-menu.svg" class="svg-icon h-8 ml-1 " />
     </div>
-    <ul id="nav-links" class=" hidden flex flex-col justify-around z-10 gap-1 md:flex md:flex-row md:items-center">
-      <li><a href="/js2-camilla-furuknappen-larsen/">Home </a></li>
-      <li><a id="profile-page-link" href="">Profile Page</a></li>
-      <li><button id="log-out-btn" class="">Log out</button></li>
+    <ul id="nav-links" class="hidden  flex-col  justify-around gap-1 lg:flex lg:flex-row lg:items-center">
+      <li class="ml-4"><a href="/js2-camilla-furuknappen-larsen/" class="hover:text-fuchsia-400">Home </a></li>
+      <li class="ml-4"><a id="profile-page-link" href="" class="hover:text-fuchsia-400">Profile Page</a></li>
+      <li class="ml-4"><button id="log-out-btn" class="hover:text-fuchsia-400">Log out</button></li>
     </ul>
-    <div id="following-container-mobile" class="pt-4 flex flex-col hidden md:hidden">
-      <h3>You're Following</h3>
+    <div id="following-container-mobile" class="hidden flex-col pt-4  w-full rounded-lg relative
+    bg-white 
+    lg:flex
+    lg:w-60
+    lg:p-4 
+    lg:fixed 
+    lg:right-4 
+    lg:top-40
+    lg:border
+    lg:border-gray-300
+   xl:w-80
+    ">
+      <h3 class="px-2 font-semibold text-base">You're Following</h3>
 
-      <div id="following-container" class="following hidden"></div>
+      <div id="following-container" class="following "></div>
     </div>
   </nav>
 
@@ -38,19 +49,21 @@
     </div>
   </aside>
 
-  <main id="homepage-main" class="pt-4">
+  <main id="homepage-main" class="pt-4 ">
     <div id="search-add-div" class="flex flex-col h-25 md:flex-row md:items-center md:justify-center md:h-16">
       <a id="create-post-btn" class="border-none bg-fuchsia-600 px-4 py-2 mx-8 my-4 rounded-md text-white text-center"
         href="/js2-camilla-furuknappen-larsen/src/pages/createPostPage/createpost.html">Create new post</a>
       <input type="text" id="post-search-field" placeholder="Search for post"
-        class="mx-4 flex rounded border md:max-w-200 " />
+        class="input-field  w-92 mx-auto md:mx-0" />
       <div id="search-error-div"></div>
     </div>
 
-    <section id="posts-parent" class="post"></section>
-    <div class="btn-div">
-      <button id="prev-btn">Previous Page</button>
-      <button id="next-btn">Next Page</button>
+    <section id="posts-parent" class="flex flex-col gap-4 items-center mt-8 lg:items-start  lg:ml-40 xl:items-center xl:ml-0"></section>
+    <div class="btn-div flex justify-center gap-4 my-12 md:gap-20 md:text-xl">
+      <button id="prev-btn"
+        class="py-1 px-5 bg-fuchsia-600 px-4 py-2 mx-8 my-4 rounded-md text-white text-center">Previous Page</button>
+      <button id="next-btn" class="py-1 px-5 bg-fuchsia-600 px-4 py-2 mx-8 my-4 rounded-md text-white text-center">Next
+        Page</button>
     </div>
   </main>
   <script type="module" src="./src/pages/homePage/homePage.ts"></script>

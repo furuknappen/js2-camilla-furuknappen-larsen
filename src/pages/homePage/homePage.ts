@@ -71,7 +71,9 @@ const navLinks = document.querySelector("#nav-links") as HTMLUListElement;
 const followingMobile = document.querySelector(
   "#following-container-mobile",
 ) as HTMLDivElement;
+
 hamburger?.addEventListener("click", () => {
+
   navLinks?.classList.toggle("hidden");
   followingMobile?.classList.toggle("hidden")
 

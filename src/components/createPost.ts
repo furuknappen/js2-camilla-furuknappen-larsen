@@ -1,6 +1,6 @@
 import { deletePost } from "../hooks/deletePost";
 import type { Post } from "../types";
-import "../style/cards.css";
+// import "../style/cards.css";
 import { cleanUpTags } from "../utils/cleanUpTags";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
@@ -12,19 +12,34 @@ import { createComment } from "./createCommentSection";
  */
 export function createPost(post: Post, postsParentContainer: HTMLElement) {
   const postContainer = document.createElement("div");
-  postContainer.classList.add("post-container");
+  postContainer.classList.add(
+    "container",
+    "block",
+    "mb-2",
+    "bg-white",
+    "border-t-1",
+    "border-gray-300",
+    "pt-4",
+    "md:pt-4",
+    "md:rounded-xl",
+    "md:border",
+    "lg:max-w-150",
+    "2xl:max-w-200",
+  );
 
   const title = document.createElement("h2");
   title.textContent = post.title;
+  title.classList.add("mx-4", "text-xl", "mb-2");
 
   const body = document.createElement("p");
-  body.classList.add("body");
+  body.classList.add("body", "mx-4", "text-lg", "pb-1", "wrap-break-word");
   body.textContent = post.body;
 
   const imgDiv = document.createElement("div") as HTMLDivElement;
   imgDiv.classList.add("imgDiv");
 
   const image = document.createElement("img") as HTMLImageElement;
+  image.classList.add("w-full", "flex");
 
   if (post.media?.url) {
     image.src = post.media?.url ?? null;
@@ -34,16 +49,21 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   imgDiv.append(image);
 
   const inteactionContainer = document.createElement("div");
-  inteactionContainer.classList.add("interaction-container");
+  inteactionContainer.classList.add(
+    "interaction-container",
+    "flex",
+    "justify-end",
+    "mx-6",
+  );
 
   const commentsAmount = document.createElement("span") as HTMLSpanElement;
-  commentsAmount.classList.add("comment-ammount");
+  commentsAmount.classList.add("comment-ammount", "text-gray-500", "p-4");
 
   commentsAmount.textContent = `Comments: ${post._count.comments}`;
   inteactionContainer.append(commentsAmount);
 
   const tagDiv = document.createElement("div");
-  tagDiv.classList.add("tagDiv");
+  tagDiv.classList.add("tagDiv", "mx-4", "m-4", "text-gray-500");
 
   if (post.tags.length) {
     const tags = cleanUpTags(post.tags);

@@ -4,7 +4,7 @@ import type { Post } from "../types";
 import { formatTime } from "../utils/formatTime";
 import { localStorageUtil } from "../utils/storageUtils";
 import { createModal } from "./modal";
-import "../style/author-header.css";
+// import "../style/author-header.css";
 import trashIcon from "../assets/trash.svg";
 import editIcon from "../assets/edit.svg";
 import {
@@ -39,12 +39,12 @@ export function createAuthorHeader(
   href?: string,
 ): HTMLDivElement {
   const postHeader = document.createElement("div");
-  postHeader.classList.add("post-header");
+  postHeader.classList.add("post-header", "flex", "flex-row", "pb-2", "pl-2", "md:pb-8", "pl-6", "pt-2");
 
   const authorImgDiv = document.createElement("div");
   authorImgDiv.classList.add("avatar");
   const userImage = document.createElement("img") as HTMLImageElement;
-
+userImage.classList.add("rounded-full", "w-10", "aspect-square")
   if (avatar) {
     userImage.src = avatar?.url;
     userImage.alt = avatar?.alt ?? "No alt-text provided";
@@ -52,7 +52,7 @@ export function createAuthorHeader(
   authorImgDiv.append(userImage);
 
   const postHeaderTextDiv = document.createElement("div");
-  postHeaderTextDiv.classList.add("post-header-text");
+  postHeaderTextDiv.classList.add("post-header-text", "flex", "flex-col", "justify-center", "ml-6" );
 
   const authorP = document.createElement("a");
   authorP.classList.add("header-author");
@@ -61,7 +61,7 @@ export function createAuthorHeader(
 
   const titleFollowDiv = document.createElement("div");
   const followBtn = document.createElement("button");
-  followBtn.classList.add("follow-btn");
+  followBtn.classList.add("follow-btn", "ml-8", "font-semibold", "text-fuchsia-600", );
   followBtn.textContent = "Follow";
   followBtn.setAttribute("data-author-name", post?.author.name || "");
 
@@ -117,7 +117,7 @@ export function createAuthorHeader(
 
   const createdTime = formatTime(created);
   const createdTimeSpan = document.createElement("span");
-  createdTimeSpan.classList.add("time");
+  createdTimeSpan.classList.add("time", "text-gray-500", "text-sm" );
   createdTimeSpan.textContent = createdTime;
   titleFollowDiv.append(authorP, followBtn);
   postHeaderTextDiv.append(titleFollowDiv, createdTimeSpan);
@@ -125,7 +125,7 @@ export function createAuthorHeader(
   if (updated && updated !== created) {
     const editedTime = formatTime(updated);
     const updatedTimeSpan = document.createElement("span");
-    updatedTimeSpan.classList.add("time");
+    updatedTimeSpan.classList.add("time","text-gray-500", "text-sm");
     updatedTimeSpan.textContent = `Updated: ${editedTime}`;
     postHeaderTextDiv.append(updatedTimeSpan);
   }
@@ -136,7 +136,7 @@ export function createAuthorHeader(
 
   if (user?.data.name == name) {
     const trashButton = document.createElement("button");
-    trashButton.classList.add("trash-btn");
+    trashButton.classList.add("trash-btn", "mr-8");
 
     const trashImg = document.createElement("img");
     trashImg.src = trashIcon;
@@ -164,7 +164,7 @@ export function createAuthorHeader(
     });
 
     const editButton = document.createElement("button");
-    editButton.classList.add("edit-btn");
+    editButton.classList.add("edit-btn", "ml-auto", "mr-0");
     const editImg = document.createElement("img");
     editImg.src = editIcon;
     editButton.append(editImg);

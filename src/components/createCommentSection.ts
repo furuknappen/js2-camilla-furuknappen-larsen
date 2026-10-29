@@ -7,8 +7,9 @@ import { deleteComment } from "../hooks/deleteComment";
 export function createComment(comment: Comment): HTMLDivElement {
   const commentDiv = document.createElement("div") as HTMLDivElement;
   commentDiv.id = comment.id.toString();
+
   const commentBody = document.createElement("p");
-  commentBody.classList.add("comment-body");
+  commentBody.classList.add("comment-body", "my-3", "ml-12");
   commentBody.textContent = comment.body;
   const header = createAuthorHeader(
     comment.author?.avatar,
@@ -31,12 +32,12 @@ export function createComment(comment: Comment): HTMLDivElement {
   );
 
   const replyBtn = document.createElement("button") as HTMLButtonElement;
-  replyBtn.classList.add("reply-btn");
+  replyBtn.classList.add("reply-btn" , "text-gray-500", "mb-3", "ml-12");
   replyBtn.textContent = "Reply";
   const replyDiv = document.createElement("div");
   replyDiv.classList.add("reply-comment");
   if (comment.replyToId) {
-    commentDiv.classList.add("reply-div");
+    commentDiv.classList.add("ml-8");
 
     replyDiv.append(header, commentBody, replyBtn);
     commentDiv.append(replyDiv);
