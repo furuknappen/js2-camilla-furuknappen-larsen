@@ -8,7 +8,15 @@ export function displayError(
 
   alert.removeAttribute("hidden");
   alert.textContent = message;
-  alert.classList.add("alert");
+  alert.classList.add(
+    "text-red-500",
+    "p-2",
+    "ml-2",
+    "justify-center",
+    "bg-red-200",
+    "rounded-xl",
+    "font-sm",
+  );
 }
 
 export function removeDisplayError(
@@ -17,5 +25,14 @@ export function removeDisplayError(
 ) {
   field.removeAttribute("aria-invalid");
 
-  alert.classList.remove("alert");
+  alert.classList.remove(
+    "alert",
+    "text-red-500",
+    "p-2",
+    "ml-2",
+    "justify-center",
+    "bg-red-200",
+    "rounded-xl",
+    "font-sm",
+  );
 }

@@ -9,66 +9,66 @@
   <link rel="stylesheet" href="../../style/form-style.css" />
   <link rel="stylesheet" href="../../style/global.css" />
   <link rel="stylesheet" href="../../style/register.css" />
-
+  <link rel="stylesheet" href="../../style/input.css" />
   <title>Sociable | Sign up</title>
 </head>
-<a href="/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html" rel="noopener noreferrer">login</a>
+
 
 <body>
-  <main id="login-main">
-    <h1>Register</h1>
-    <p id="error-request" class="alert-info" role="alert" aria-live="polite"></p>
+  <main id="login-main" class="py-24 flex flex-col mx-auto max-w-96">
+    <h1 class="text-4xl">Register</h1>
+    <p id="error-request" class="alert-info pl-4 block  text-gray-500" role="alert" aria-live="polite"></p>
     <form id="registration-form">
-      <div class="form-group">
-        <label for="username"> Username </label><br />
-        <input type="text" id="username" name="username" required placeholder="Enter name"
-          autocomplete="username" /><br />
-        <p id="username-error" class="alert-info" role="alert" aria-live="polite">
+      <div class="form-group flex flex-col gap-4 ">
+        <label class="pt-8 ml-2 font-semibold" for="username"> Username </label>
+        <input class="input-field" type="text" id="username" name="username" required placeholder="Enter name"
+          autocomplete="username" />
+        <p id="username-error" class="alert-info pl-4 block  text-gray-500 " role="alert" aria-live="polite">
           Username is required
         </p>
       </div>
-      <div>
-        <label for="registration-image">Optional Profile Picture </label>
-      </br>
+      <div class="flex flex-col gap-4">
+        <label class="pt-8 ml-2 font-semibold" for="registration-image">Optional Profile Picture </label>
+      
 
-        <input type="url" id="registration-image" name="imageUrl" placeholder="www.example.com/image" />
+        <input class="input-field" type="url" id="registration-image" name="imageUrl" placeholder="www.example.com/image" />
       </div>
-      <div>
-        <label for="registration-image-alt">Describe the picture to help others see</label></br>
+      <div class="flex flex-col gap-4">
+        <label class="pt-8 ml-2 font-semibold" for="registration-image-alt">Describe the picture to help others see</label>
 
-        <input type="text" id="registration-image-alt" name="imageAlt" placeholder="A yellow and orange sunset" />
+        <input class="input-field" type="text" id="registration-image-alt" name="imageAlt" placeholder="A yellow and orange sunset" />
       </div>
-      <div class="form-group">
-        <label for="registration-email"> Email Address</label><br />
-        <input type="email" id="registration-email" name="email" placeholder="email@stud.noroff.no"
+      <div class="form-group flex flex-col gap-4">
+        <label class="pt-8 ml-2 font-semibold" for="registration-email"> Email Address</label>
+        <input class="input-field" type="email" id="registration-email" name="email" placeholder="email@stud.noroff.no"
           aria-describedby="email-error" required />
-        <p id="email-error" class="alert-info" role="alert" aria-live="polite">
+        <p id="email-error" class="alert-info pl-4 block  text-gray-500" role="alert" aria-live="polite">
           Email must be a Noroff student mail
         </p>
       </div>
 
-      <div class="form-group">
-        <label for="password1"> Password</label><br />
-        <input type="password" id="password1" name="password1" required placeholder="Enter password"
-          aria-describedby="password-error" /><br />
-        <p id="password-error" class="alert-info" role="alert" aria-live="polite">
+      <div class="form-group flex flex-col gap-4">
+        <label class="pt-8 ml-2 font-semibold" for="password1"> Password</label>
+        <input class="input-field" type="password" id="password1" name="password1" required placeholder="Enter password"
+          aria-describedby="password-error" />
+        <p id="password-error" class="alert-info pl-4 block  text-gray-500" role="alert" aria-live="polite">
           Passwords must be at least 8 characters long
         </p>
       </div>
 
-      <div class="form-group">
-        <label for="password2"> Repeat Password</label><br />
-        <input type="password" id="password2" name="password2" required placeholder="Repeat password"
-          aria-describedby="password-confirm-error" /><br />
-        <p id="password-confirm-error" class="alert-info" role="alert" aria-live="polite">
+      <div class="form-group flex flex-col gap-4">
+        <label class="pt-8 ml-2 font-semibold" for="password2"> Repeat Password</label>
+        <input class="input-field" type="password" id="password2" name="password2" required placeholder="Repeat password"
+          aria-describedby="password-confirm-error" />
+        <p id="password-confirm-error" class="alert-info pl-4 block  text-gray-500" role="alert" aria-live="polite">
           Passwords must match
         </p>
       </div>
 
-      <div class="bottomButtons">
+      <div class="bottomButtons flex my-8 items-center justify-center">
         <div class="backToBtnDivCheckout">
           <h2 class="account-link">Already got an account?</h2>
-          <a class="linkBackBtn" href="/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html">
+          <a class="linkBackBtn underline underline-offset-3" href="/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html" rel="noopener noreferrer">
             <!-- <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -80,7 +80,7 @@
             <span> Sign in here </span>
           </a>
         </div>
-        <button type="submit" class="btn checkoutBtn" id="registerBtn">
+        <button type="submit" class="btn checkoutBtn px-4 md:text-xl bg-fuchsia-600 text-white rounded-xl md:px-8 py-2 ml-8" id="registerBtn">
           Continue
         </button>
       </div>
