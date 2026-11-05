@@ -1,11 +1,10 @@
 import { createPost } from "../../components/createPost";
-
 import { getSearchResult } from "../../hooks/getSearchResult";
 import { scrollToPosition, startScrollTracking } from "../../utils/scroll";
 import { getAllPaginatedPosts } from "../../hooks/getpaginatedPosts";
 import type { Post } from "../../types";
 import { localStorageUtil } from "../../utils/storageUtils";
-import { LogOut } from "../../utils/logOut";
+import { logOut } from "../../utils/logOut";
 
 startScrollTracking();
 
@@ -21,25 +20,28 @@ const postsParent = document.getElementById("posts-parent") as HTMLElement;
 const postSearchField = document.getElementById(
   "post-search-field",
 ) as HTMLInputElement;
-
-let noResultInfo: HTMLParagraphElement | null;
+const searchErrorDiv = document.getElementById(
+      "search-error-div",
+    ) as HTMLDivElement;
 
 postSearchField?.addEventListener("input", async () => {
-  if (postSearchField.value == "") {
+  if (postSearchField.value === "") {
     return;
-  }
-  noResultInfo?.remove();
-  noResultInfo = null;
+  }   
+  searchErrorDiv.textContent=""
 
   const query = postSearchField.value.trim();
 
   const resultSearch = await getSearchResult(query);
   if (resultSearch.ok) {
     if (resultSearch.value.data.length === 0) {
-      noResultInfo = document.createElement("p");
-      noResultInfo.textContent = "";
-      noResultInfo.textContent = `Found no posts is containing ${query}`;
-      postSearchField.after(noResultInfo);
+      searchErrorDiv.textContent = "";
+      searchErrorDiv.textContent = `Found no posts is containing ${query}`;
+      postSearchField.after(searchErrorDiv);
+
+      if(postSearchField.value.length === 0 ){
+      searchErrorDiv.textContent = ""
+      }
     }
 
     renderPosts(resultSearch.value.data);
@@ -66,21 +68,6 @@ export function renderPosts(posts: Post[]) {
   scrollToPosition();
 }
 
-const hamburger = document.querySelector("#hamburger");
-const navLinks = document.querySelector("#nav-links") as HTMLUListElement;
-const followingMobile = document.querySelector(
-  "#following-container-mobile",
-) as HTMLDivElement;
-
-hamburger?.addEventListener("click", () => {
-
-  navLinks?.classList.toggle("hidden");
-  followingMobile?.classList.toggle("hidden")
-
-  // navLinks.style.display = navLinks.style.display === "none" ? "flex" : "none";
-  // followingMobile.style.display =
-  //   followingMobile.style.display === "none" ? "flex" : "none";
-});
 
 const profilePageLink = document.getElementById("profile-page-link");
 profilePageLink?.setAttribute(
@@ -88,4 +75,4 @@ profilePageLink?.setAttribute(
   "/js2-camilla-furuknappen-larsen/src/pages/profilePage/profilePage.html",
 );
 
-LogOut();
+logOut();

@@ -1,40 +1,65 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./profile-page.css" />
-    <link rel="stylesheet" href="../../style/global.css" />
-    <link rel="stylesheet" href="../../style/header.css" />
-    <title>Sociable | Profile Page</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <nav class="nav">
-      <div class="hamburger">
-        <img src="./src/assets/hamburger-menu.svg" class="svg-icon" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="/js2-camilla-furuknappen-larsen/">Home </a></li>
-        <li><a id="profile-page-link" href="">Profile Page</a></li>
-        <li><a href="">Log out </a></li>
-      </ul>
-    </nav>
+  <link rel="stylesheet" href="../../style/global.css" />
 
-    <main id="profile-page-main">
-      <div id="banner-container"></div>
-      <div id="profile-header">
-        <div id="profile-img"></div>
-        <div id="profile-name"></div>
-        <p id="info-profile-div"></p>
+  <link rel="stylesheet" href="../../style/input.css" />
+  <title>Sociable | Profile Page</title>
+</head>
+
+<body>
+  <nav
+    class="border-line-light dark:border-line-dark bg-background-light dark:bg-background-dark flex min-h-12 flex-col justify-center border-b">
+     <button id="theme-btn" class="items-center mr-4 absolute right-2 lg:right-8">
+        <img id="sun-icon" src="../../assets/sun.svg" />
+        <img id="moon-icon" src="../../assets/moon.svg" class="hidden" />
+      </button>
+    <div class="flex justify-between h-12 items-center lg:hidden">
+      <div id="hamburger">
+        <img src="../../assets/hamburger-menu.svg" class="ml-1 h-8" />
       </div>
 
-      <div id="profile-posts-container">
-        <!-- Posts renders here -->
-      </div>
-    </main>
+    </div>
+    <ul id="nav-links" class="hidden flex-col justify-around gap-1 lg:flex lg:flex-row lg:items-center">
+      <li class="active:text-primary ml-4 pt-2 lg:pt-0">
+        <a href="/js2-camilla-furuknappen-larsen/" class="hover:text-primary-hover">Home</a>
+      </li>
+      <li class="active:text-primary ml-4 pt-2 lg:pt-0">
+        <a id="profile-page-link" href="" class="hover:text-primary-hover">Profile Page</a>
+      </li>
+      <li class="active:text-primary ml-4 pt-2 lg:pt-0">
+        <button id="log-out-btn" class="hover:text-primary-hover">
+          Log out
+        </button>
+      </li>
+    </ul>
+    <div id="following-container-mobile"
+      class="border-line-light dark:border-line-dark relative hidden w-full flex-col rounded-lg border-b bg-background-light dark:bg-background-dark pt-4 lg:fixed lg:top-60 lg:right-4 lg:flex lg:w-60 lg:border lg:p-4 xl:w-80">
+      <h3 class="px-2 text-base font-semibold">You're Following</h3>
 
-    <script type="module" src="profilePage.ts"></script>
-  </body>
+      <div id="following-container"></div>
+    </div>
+  </nav>
+
+  <main id="profile-page-main" class=" xl:mx-80">
+    <div id="banner-container" class="w-full md:mx-20"></div>
+    <div id="profile-header" class="relative mb-4 lg:mb-12">
+      <div id="profile-img" class="absolute -top-10 left-1 md:left-32 lg:-top-16"></div>
+      <div id="profile-name" class="ml-24 text-4xl md:text-5xl lg:ml-72 text-dark-text dark:text-light-text"></div>
+      <p id="info-profile-div" class="mx-auto max-w-80"></p>
+    </div>
+
+    <div id="profile-posts-container" class="mx-auto max-w-200">
+      <!-- Posts renders here -->
+    </div>
+  </main>
+
+  <script type="module" src="profilePage.ts"></script>
+  <script type="module" src="../../components/header.ts"></script>
+</body>
+
 </html>

@@ -13,14 +13,13 @@ async function apiClient<T = unknown>(
 ): Promise<T | null> {
   const { body, ...customOptions } = options;
 
-  const apiKey = "e5f9875a-30a9-4ed7-9e21-8132c86725c0";
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   const accessToken = localStorageUtil.load<string>("accessToken");
 
   const headers: HeadersInit = {
     "Content-Type": "application/json",
     Accept: "application/json",
-    From: "camlar06341@stud.noroff.no",
     ...(apiKey && { "X-Noroff-API-Key": apiKey }),
     ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
     ...customOptions.headers,

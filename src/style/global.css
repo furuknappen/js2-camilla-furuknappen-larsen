@@ -1,48 +1,37 @@
-:root {
-  --h2-font: Arial, Helvetica, sans-serif;
-  --main-color: rgb(154, 57, 154);
-  --text-light: white;
-  --text-dark: rgb(10, 10, 10);
-  --main-font: arial;
-}
 
-body {
-  margin: 0;
-  padding: 0;
-}
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
-a {
+/* a {
   text-decoration: none;
-  color: black;
-}
+ 
+} */
 
-li {
+/* li {
   list-style-type: none;
-}
+} */
 
-input {
+/* input {
   flex: 1;
   border-radius: 15px;
   border-style: solid;
   border-color: rgb(196, 195, 195);
   padding-left: 1rem;
-}
-textarea {
+} */
+/* textarea {
   border-radius: 15px;
   border-style: solid;
   border-color: rgb(196, 195, 195);
   padding-left: 1rem;
-}
+} */
 
-input:focus {
+/* input:focus {
   border-style: solid;
   border-color: rgb(110, 110, 110);
   outline: none;
-}
+} */

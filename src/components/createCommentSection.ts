@@ -1,7 +1,6 @@
 import { postComment } from "../hooks/postComment";
 import type { Comment } from "../types";
 import { createAuthorHeader } from "./createAuthorHeader";
-import "../style/comment-section.css";
 import { deleteComment } from "../hooks/deleteComment";
 
 export function createComment(comment: Comment): HTMLDivElement {
@@ -9,7 +8,7 @@ export function createComment(comment: Comment): HTMLDivElement {
   commentDiv.id = comment.id.toString();
 
   const commentBody = document.createElement("p");
-  commentBody.classList.add("comment-body", "my-3", "ml-12");
+  commentBody.classList.add("my-2", "ml-12", "lg:my-0");
   commentBody.textContent = comment.body;
   const header = createAuthorHeader(
     comment.author?.avatar,
@@ -32,13 +31,11 @@ export function createComment(comment: Comment): HTMLDivElement {
   );
 
   const replyBtn = document.createElement("button") as HTMLButtonElement;
-  replyBtn.classList.add("reply-btn" , "text-gray-500", "mb-3", "ml-12");
+  replyBtn.classList.add("text-secondary-text", "mb-3", "ml-12");
   replyBtn.textContent = "Reply";
   const replyDiv = document.createElement("div");
-  replyDiv.classList.add("reply-comment");
   if (comment.replyToId) {
     commentDiv.classList.add("ml-8");
-
     replyDiv.append(header, commentBody, replyBtn);
     commentDiv.append(replyDiv);
   } else {
@@ -47,20 +44,41 @@ export function createComment(comment: Comment): HTMLDivElement {
 
   replyBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    replyBtn.style.display = "none";
+    replyBtn.classList.add("hidden");
 
     const commentForm = document.createElement("form");
-    commentForm.classList.add("commentform");
+    commentForm.classList.add("flex", "justify-center", "m-4");
+
+    const cancelButton = document.createElement("button");
+    cancelButton.textContent = "Cancel";
+    cancelButton.classList.add("text-secondary-text", "ml-2");
+
+    cancelButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      commentForm.remove();
+      replyBtn.classList.remove("hidden");
+    });
+
     const commentInput = document.createElement("input");
+    commentInput.classList.add("input-field", "flex-1");
     commentInput.name = "comment";
     commentInput.type = "text";
-    commentInput.placeholder = `write a comment to ${comment.author.name}`;
+    commentInput.placeholder = `Write a comment to ${comment.author.name}`;
 
     const submitCommentBtn = document.createElement("button");
     submitCommentBtn.textContent = "Send";
     submitCommentBtn.type = "submit";
-
-    commentForm.append(commentInput, submitCommentBtn);
+    submitCommentBtn.classList.add(
+      "px-4",
+      "md:text-xl",
+      "bg-primary",
+      "text-light",
+      "rounded-xl",
+      "md:px-8",
+      "py-2",
+      "ml-2",
+    );
+    commentForm.append(commentInput, cancelButton, submitCommentBtn);
 
     if (comment.replyToId) {
       commentBody.after(commentForm);
@@ -77,7 +95,7 @@ export function createComment(comment: Comment): HTMLDivElement {
         comment: string;
       };
 
-      if (data.comment == "") return;
+      if (data.comment === "") return;
 
       await postComment(data.comment, comment.postId, comment.id);
       window.location.reload();

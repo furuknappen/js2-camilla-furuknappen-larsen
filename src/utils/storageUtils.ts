@@ -1,5 +1,5 @@
 const createStorage = (storageType: "local" | "session") => {
-  const store = storageType == "local" ? localStorage : sessionStorage;
+  const store = storageType === "local" ? localStorage : sessionStorage;
   return {
     save<T>(key: string, value: T): void {
       store.setItem(key, JSON.stringify(value));

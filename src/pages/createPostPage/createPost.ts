@@ -1,10 +1,18 @@
 import { postnewPost, type PostRequest } from "../../hooks/postPost";
+import { localStorageUtil } from "../../utils/storageUtils";
+
+const accessToken = localStorageUtil.load("accessToken");
+
+if (!accessToken) {
+  window.location.href =
+    "/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html";
+}
 
 const newPostForm = document.getElementById(
   "create-new-post-form",
 ) as HTMLFormElement;
 
-newPostForm.addEventListener("submit", (e) => {
+newPostForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const titleInput = document.getElementById("title-input") as HTMLInputElement;
   const titleValue = titleInput.value;
@@ -35,7 +43,13 @@ newPostForm.addEventListener("submit", (e) => {
     };
   }
 
-  postnewPost(newPostRequest);
-
-  window.location.href = "/js2-camilla-furuknappen-larsen/";
+  const resultSearch = await postnewPost(newPostRequest);
+  if (resultSearch.ok) {
+    window.location.href = "/js2-camilla-furuknappen-larsen/";
+  } else {
+    const errorDiv = document.getElementById(
+      "new-post-error-div",
+    ) as HTMLDivElement;
+    errorDiv.textContent = resultSearch.error.message;
+  }
 });

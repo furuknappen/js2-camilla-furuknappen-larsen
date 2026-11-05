@@ -18,7 +18,7 @@ This is a school API, so be respectful and kind
 
 - TypeScript
 - HTML
-- CSS
+- CSS / Tailwind
 
 ## Features
 
@@ -35,6 +35,49 @@ This is a school API, so be respectful and kind
 
 This website was made as an assignment form Noroff University as a way to learn about how to connect to the Noroff API.
 The goal for this project was to learn how to connect with an API and using get, put, post, delete. The Design, UX and accessibility was not a priority in this assignment
+
+## Prerequesites
+
+- Node.js to run npm
+- Git
+- VSCode, or equivalent
+
+## Setup
+
+Clone the repository
+
+git clone https://github.com/IngerMathildeEiklund/js2-ca.git
+cd js2-ca
+
+## Install dependencies
+
+`npm install`
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file:
+
+`VITE_API_KEY`
+
+## Scripts
+
+To start the server:
+
+`npm run dev`
+
+Type-check and build for production:
+
+`npm build`
+
+Preview the production build:
+
+`npm run preview`
+
+## Code Formatting. Eslint & Prettier
+
+- `bash`
+- `npm run lint`
+- `npm run format`
 
 ## Author
 
