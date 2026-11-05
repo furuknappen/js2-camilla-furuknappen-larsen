@@ -1,62 +1,90 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/src/style/global.css" />
-    <link rel="stylesheet" href="/src/style/header.css" />
-    <link rel="stylesheet" href="/src/style/homePage.css" />
-    <title>Sociable | Homepage</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <nav class="nav">
-      <div class="hamburger">
-        <img src="./src/assets/hamburger-menu.svg" class="svg-icon" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="/js2-camilla-furuknappen-larsen/">Home </a></li>
-        <li><a id="profile-page-link" href="">Profile Page</a></li>
-        <li><button id="log-out-btn">Log out</button></li>
-      </ul>
-      <div id="following-container-mobile">
-        <h3>You're Following</h3>
+  <link rel="stylesheet" href="/src/style/global.css" />
 
-        <div id="following-container" class="following"></div>
-      </div>
-    </nav>
+  <link rel="stylesheet" href="/src/style/input.css" />
+  <title>Sociable | Homepage</title>
+</head>
 
-    <aside id="following-aside">
-      <!-- <input type="text" id="search-following"> -->
-      <div id="following-container" class="following">
-        <!-- Where the users you follow are -->
-      </div>
-    </aside>
+<body class="">
+  <nav class="border-line-light dark:border-line-dark flex min-h-12 flex-col justify-center border-b">
+      <button id="theme-btn" class="items-center mr-4 absolute right-2 lg:right-8">
+        <img id="sun-icon" src="./src/assets/sun.svg" />
+        <img id="moon-icon" src="./src/assets/moon.svg" class="hidden" />
+      </button>
+    <div class="flex justify-between h-12 lg:hidden " >
+      <div id="hamburger" class="flex items-center">
+      <img src="./src/assets/hamburger-menu.svg" class="ml-1 h-8 " /></div>
+      <!-- <button id="theme-btn" class="items-center mr-4 lg:absolute lg:right-5">
+        <img id="sun-icon" src="./src/assets/sun.svg" />
+        <img id="moon-icon" src="./src/assets/moon.svg" class="hidden" />
+      </button> -->
+    </div>
 
-    <main id="homepage-main">
-      <div id="search-add-div">
-        <a
-          id="create-post-btn"
-          href="/js2-camilla-furuknappen-larsen/src/pages/createPostPage/createpost.html"
-          >Create new post</a
-        >
-        <input
-          type="text"
-          id="post-search-field"
-          placeholder="Search for post"
-        />
+
+    <ul id="nav-links" class="hidden flex-col justify-around gap-1 lg:flex lg:flex-row lg:items-center">
+      <li class="active:text-primary ml-4 pt-4 lg:pt-0">
+        <a href="/js2-camilla-furuknappen-larsen/" class="hover:text-primary-hover">Home</a>
+      </li>
+      <li class="active:text-primary ml-4 pt-4 lg:pt-0">
+        <a id="profile-page-link" href="" class="hover:text-primary-hover">Profile Page</a>
+      </li>
+      <li class="active:text-primary ml-4 pt-4 lg:pt-0">
+        <button id="log-out-btn" class="hover:text-primary-hover">
+          Log out
+        </button>
+      </li>
+    </ul>
+    <div id="following-container-mobile"
+      class="border-line-light dark:border-line-dark relative hidden w-full flex-col rounded-lg border-b bg-background-lightdark:bg-background-dark pt-4 lg:fixed lg:top-40 lg:right-4 lg:flex lg:w-60 lg:border lg:p-4 xl:w-80">
+      <h3 class="px-2 text-base font-semibold">You're Following</h3>
+
+      <div id="following-container"></div>
+    </div>
+  </nav>
+
+  <aside id="following-aside">
+    <!-- <input type="text" id="search-following"> -->
+    <div id="following-container">
+      <!-- Where the users you follow are -->
+    </div>
+  </aside>
+
+  <main id="homepage-main" class="pt-4">
+    <div id="search-add-div" class="flex h-25 flex-col md:h-16 md:flex-row md:items-center md:justify-center">
+      <a id="create-post-btn"
+        class="bg-primary text-light-text hover:bg-primary-hover mx-8 my-4 rounded-md border-none px-4 py-2 text-center active:translate-y-1"
+        href="/js2-camilla-furuknappen-larsen/src/pages/createPostPage/createpost.html">Create new post</a>
+      <div>
+        <input type="text" id="post-search-field" placeholder="Search for post"
+          class="input-field mx-auto w-92 md:mx-0" />
         <div id="search-error-div"></div>
       </div>
+    </div>
 
-      <section id="posts-parent" class="post"></section>
-      <div class="btn-div">
-        <button id="prev-btn">Previous Page</button>
-        <button id="next-btn">Next Page</button>
-      </div>
-    </main>
-    <script type="module" src="./src/pages/homePage/homePage.ts"></script>
-    <script type="module" src="./src/components/asideFollowing.ts"></script>
-    <script type="module" src="./src/components/pagination.ts"></script>
-  </body>
+    <section id="posts-parent"
+      class="mt-8 flex flex-col items-center md:gap-4 lg:ml-40 lg:items-start xl:ml-0 xl:items-center"></section>
+
+    <div class="my-12 flex justify-center gap-4 md:gap-20 md:text-xl">
+      <button id="prev-btn"
+        class="bg-primary text-light-text hover:bg-primary-hover mx-8 my-4 rounded-md px-5 py-1 text-center active:translate-y-1 md:px-4 md:py-3">
+        Previous Page
+      </button>
+      <button id="next-btn"
+        class="bg-primary text-light-text hover:bg-primary-hover mx-8 my-4 rounded-md px-5 py-1 text-center active:translate-y-1 md:px-4 md:py-3">
+        Next Page
+      </button>
+    </div>
+  </main>
+  <script type="module" src="./src/pages/homePage/homePage.ts"></script>
+  <script type="module" src="./src/components/asideFollowing.ts"></script>
+  <script type="module" src="./src/components/pagination.ts"></script>
+  <script type="module" src="./src/components/header.ts"></script>
+</body>
+
 </html>

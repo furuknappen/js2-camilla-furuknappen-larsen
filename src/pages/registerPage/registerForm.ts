@@ -78,7 +78,7 @@ form?.addEventListener("submit", async (e) => {
 
   let hasErrors = false;
 
-  if (username == "") {
+  if (username === "") {
     displayError(usernameField, alertName, "Username is required");
     hasErrors = true;
   }

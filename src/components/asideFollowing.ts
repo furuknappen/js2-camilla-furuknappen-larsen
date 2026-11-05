@@ -1,5 +1,4 @@
 import { localStorageUtil } from "../utils/storageUtils";
-import "../style/aside-following.css";
 import { getAllFollowingProfiles } from "../hooks/profiles/getAllFollowingProfiles";
 import type { LoginResponse } from "../api/authService";
 
@@ -13,11 +12,11 @@ export async function renderFollowingSection() {
   );
   const result = await getAllFollowingProfiles(userdata.data.name);
   if (result.ok) {
-    if (result.value.data.following.length == 0) {
+    if (result.value.data.following.length === 0) {
       const followingcontainerMobile = document.getElementById(
         "following-container-mobile",
       ) as HTMLDivElement;
-      followingcontainerMobile.style.display = "none";
+      followingcontainerMobile.classList.add("hidden");
     }
 
     localStorageUtil.save("following", result.value);
@@ -28,8 +27,18 @@ export async function renderFollowingSection() {
 
     result.value.data.following.forEach((profile) => {
       const userDisplay = document.createElement("a") as HTMLAnchorElement;
-      userDisplay.classList.add("user-display");
+      userDisplay.classList.add(
+        "flex",
+        "items-center",
+        "gap-4",
+        "p-1",
+        "mx-2",
+        "border-b-1",
+        "border-line-light", "dark:border-line-dark",
+        "last:border-none",
+      );
       const userName = document.createElement("div");
+      userName.classList.add("truncate");
       userName.textContent = profile.name;
       userDisplay.setAttribute(
         "href",
@@ -37,8 +46,14 @@ export async function renderFollowingSection() {
       );
 
       const authorImgDiv = document.createElement("div");
-      authorImgDiv.classList.add("img-div");
+
       const userImage = document.createElement("img") as HTMLImageElement;
+      userImage.classList.add(
+        "rounded-full",
+        "h-12",
+        "object-cover",
+        "aspect-square",
+      );
       if (profile.avatar) {
         userImage.src = profile.avatar?.url;
         userImage.alt = profile.avatar?.alt ?? "No alt-text provided";
@@ -59,15 +74,15 @@ function moveFollowingOnResize(userDisplay: HTMLAnchorElement) {
     const followingcontainerMobile = document.getElementById(
       "following-container-mobile",
     ) as HTMLDivElement;
-    const navLinks = document.querySelector(".nav-links") as HTMLUListElement;
+    const navLinks = document.querySelector("#nav-links") as HTMLUListElement;
 
     if (window.innerWidth < 1025) {
       followingcontainerMobile.append(userDisplay);
-      navLinks.style.display = "none";
-      followingcontainerMobile.style.display = "none";
+      navLinks.classList.add("hidden");
+      followingcontainerMobile.classList.add("hidden");
     } else {
       followingContainerDesktop.append(userDisplay);
-      followingcontainerMobile.style.display = "flex";
+      followingcontainerMobile.classList.add("flex");
     }
   }
 

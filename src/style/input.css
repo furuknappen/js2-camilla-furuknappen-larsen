@@ -1,0 +1,36 @@
+/* eslint-disable css/no-invalid-at-rules */
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+  .input-field {
+    @apply border-line-light flex h-10 rounded-2xl border bg-gray-100 pl-4 text-gray-900;
+  }
+  body {
+    @apply text-dark-text dark:text-light-text bg-background-light dark:bg-background-dark;
+  }
+}
+
+@theme {
+  /* fuchsia-600 */
+  --color-primary: oklch(59.1% 0.293 322.896);
+
+  /* fuchsia-700 */
+  --color-primary-hover: oklch(51.8% 0.253 323.949);
+
+  --color-background-light: rgb(248, 248, 248);
+  --color-background-dark: #1e1e1e;
+
+  /* color of most svgs */
+  --color-secondary-text: #6a7282;
+  --color-light-text: oklch(93.685% 0.003 264.782);
+  --color-dark-text: oklch(16.714% 0.06173 310.497);
+
+  --color-line-light: oklch(87.2% 0.01 258.338);
+  --color-line-dark: #5b5b5b;
+
+  --font-arial: Arial, Helvetica, sans-serif;
+  
+}
+
+

@@ -1,6 +1,6 @@
 import { deletePost } from "../hooks/deletePost";
 import type { Post } from "../types";
-import "../style/cards.css";
+// import "../style/cards.css";
 import { cleanUpTags } from "../utils/cleanUpTags";
 import { createAuthorHeader } from "./createAuthorHeader";
 import { createComment } from "./createCommentSection";
@@ -12,19 +12,52 @@ import { createComment } from "./createCommentSection";
  */
 export function createPost(post: Post, postsParentContainer: HTMLElement) {
   const postContainer = document.createElement("div");
-  postContainer.classList.add("post-container");
+  postContainer.classList.add(
+    "container",
+    "block",
+    "mb-2",
+    "bg-background", "dark:bg-background-dark",
+    "border-t-1",
+    "border-line-light", "dark:border-line-dark",
+    "text-dark-text", "dark:text-light-text",
+    "pt-4",
+    "md:pt-4",
+    "md:rounded-xl",
+    "md:border",
+    "md:border-line-light", "dark:border-line-dark",
+    "lg:max-w-150",
+    "2xl:max-w-200",
+  );
 
   const title = document.createElement("h2");
   title.textContent = post.title;
+  title.classList.add(
+    "mx-6",
+    "text-lg",
+    "font-semibold",
+    "mb-2",
+    "font-arial",
+    "tracking-wide",
+  
+  );
 
   const body = document.createElement("p");
-  body.classList.add("body");
+  body.classList.add(
+    "body",
+    "mx-6",
+    "pb-1",
+    "wrap-break-word",
+    "font-arial",
+    "tracking-wide",
+  
+  );
   body.textContent = post.body;
 
   const imgDiv = document.createElement("div") as HTMLDivElement;
-  imgDiv.classList.add("imgDiv");
+  imgDiv.classList.add("mt-3");
 
   const image = document.createElement("img") as HTMLImageElement;
+  image.classList.add("w-full", "flex");
 
   if (post.media?.url) {
     image.src = post.media?.url ?? null;
@@ -34,16 +67,21 @@ export function createPost(post: Post, postsParentContainer: HTMLElement) {
   imgDiv.append(image);
 
   const inteactionContainer = document.createElement("div");
-  inteactionContainer.classList.add("interaction-container");
+  inteactionContainer.classList.add("flex", "justify-end", "mx-6");
 
   const commentsAmount = document.createElement("span") as HTMLSpanElement;
-  commentsAmount.classList.add("comment-ammount");
+  commentsAmount.classList.add(
+    "text-secondary-text",
+    "px-4",
+    "py-2",
+    "md:mb-2",
+  );
 
   commentsAmount.textContent = `Comments: ${post._count.comments}`;
   inteactionContainer.append(commentsAmount);
 
   const tagDiv = document.createElement("div");
-  tagDiv.classList.add("tagDiv");
+  tagDiv.classList.add("mx-6", "mt-2", "text-secondary-text");
 
   if (post.tags.length) {
     const tags = cleanUpTags(post.tags);

@@ -4,6 +4,14 @@ import type { Post } from "../../types";
 import { getProfilePosts } from "../../hooks/profiles/getProfilePosts";
 import { localStorageUtil } from "../../utils/storageUtils";
 import { getOneProfile } from "../../hooks/profiles/getOneProfile";
+import { logOut } from "../../utils/logOut";
+
+const accessToken = localStorageUtil.load("accessToken");
+
+if (!accessToken) {
+  window.location.href =
+    "/js2-camilla-furuknappen-larsen/src/pages/loginPage/login.html";
+}
 
 async function renderProfilepage() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -35,6 +43,7 @@ async function renderProfilepage() {
     ) as HTMLDivElement;
 
     const bannerImg = document.createElement("img") as HTMLImageElement;
+    bannerImg.classList.add("w-full", "md:h-72", "md:rounded-xl");
     if (profile.banner) {
       bannerImg.src = profile.banner?.url;
 
@@ -43,9 +52,16 @@ async function renderProfilepage() {
 
     bannerContainer.append(bannerImg);
 
-    profileImgDiv.classList.add("profile-img-div");
     const userImage = document.createElement("img") as HTMLImageElement;
-
+    userImage.classList.add(
+      "w-20",
+      "aspect-square",
+      "object-cover",
+      "border-5",
+      "border-background-light", "dark:border-background-dark",
+      "rounded-full",
+      "lg:w-28",
+    );
     if (profile.avatar) {
       userImage.src = profile.avatar?.url;
 
@@ -56,7 +72,6 @@ async function renderProfilepage() {
     const profileNameElement = document.getElementById(
       "profile-name",
     ) as HTMLHeadingElement;
-    profileNameElement.classList.add("profile-name");
     profileNameElement.textContent = profile.name;
 
     const infoDiv = document.getElementById(
@@ -64,8 +79,8 @@ async function renderProfilepage() {
     ) as HTMLParagraphElement;
     const resultPost = await getProfilePosts(profileName);
     if (resultPost.ok) {
-      if (resultPost.value.data.length == 0) {
-        infoDiv.style.marginTop = "2rem";
+      if (resultPost.value.data.length === 0) {
+        infoDiv.classList.add("mt-8");
         infoDiv.textContent = "This profile has no posts yet";
       }
 
@@ -84,4 +99,6 @@ async function renderProfilepage() {
   }
 }
 
+
 renderProfilepage();
+logOut();
